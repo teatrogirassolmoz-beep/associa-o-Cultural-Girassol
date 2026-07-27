@@ -1,4 +1,4 @@
-const repoName = 'Associa-o-cultural-girassol';
+const repoName = 'associa-o-Cultural-Girassol';
 const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 const githubPagesPath = `/${repoName}`;
 
