@@ -24,6 +24,7 @@ const visualIdentitySections=[{title:'Logotipo da Associação',fields:[['site_l
 const selectKeys = new Set(['background_motion_intensity','background_type','button_style']);
 
 const tableColumns: Record<string, readonly string[]> = {
+  pages: ['slug','title','seo_title','seo_description','share_image_url','is_published'],
   news: ['title','slug','summary','content','image_url','category','published'],
   projects: ['title','description','image_url','link','featured','is_active'],
   gallery: ['title','image_url','category','description','alt_text','is_active'],
@@ -43,7 +44,7 @@ const tableColumns: Record<string, readonly string[]> = {
   fiti_applications: ['type','company_name','country','city','contact_person','email','phone','show_title','synopsis','duration','team_size','technical_needs','video_link','portfolio_link','notes','status'],
 };
 
-const booleanFields = new Set(['published','featured','is_active','is_external','show_on_home','show_on_fiti','active']);
+const booleanFields = new Set(['is_published','published','featured','is_active','is_external','show_on_home','show_on_fiti','active']);
 const numberFields = new Set(['order_index','year','value','vacancies']);
 
 function slugify(value: string) {
