@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { supabase } from '@/lib/supabase';
+import { useSection, text } from '@/components/publicCms';
 
 type App = {
   type: string;
@@ -26,6 +27,7 @@ type App = {
 };
 
 export function FitiForms() {
+  const f=useSection('fiti_forms');
   const { register, handleSubmit, reset } = useForm<App>({ defaultValues: { type: 'company' } });
   const [ok, setOk] = useState(false);
   const [error, setError] = useState('');
@@ -44,9 +46,9 @@ export function FitiForms() {
   return (
     <section id="formularios" className="py-24">
       <div className="mx-auto max-w-4xl px-4">
-        <SectionTitle eyebrow="Formulários FITI" title="Inscrições e pedidos" />
+        <SectionTitle eyebrow={text(f.eyebrow,'Formulários FITI')} title={text(f.section_title,'Inscrições e pedidos')} />
         <form onSubmit={handleSubmit(submit)} className="grid gap-4 rounded-3xl border border-white/10 bg-zinc-900/70 p-6 md:grid-cols-2">
-          <label className="block text-sm text-zinc-200">Tipo<select className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white" {...register('type')}><option value="company">Inscrição de companhia</option><option value="volunteer">Voluntariado</option><option value="press">Credenciamento de imprensa</option><option value="info">Pedido de informações</option></select></label>
+          <label className="block text-sm text-zinc-200">Tipo<select className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white" {...register('type')}><option value="company">{text(f.company_option,'Inscrição de companhia')}</option><option value="volunteer">{text(f.volunteer_option,'Voluntariado')}</option><option value="press">{text(f.press_option,'Credenciamento de imprensa')}</option><option value="info">{text(f.info_option,'Pedido de informações')}</option></select></label>
           <FormInput label="Nome da companhia" registration={register('company_name')} />
           <FormInput label="País" registration={register('country')} />
           <FormInput label="Cidade" registration={register('city')} />
