@@ -111,8 +111,8 @@ select s.id,v.field_key,v.field_label,v.field_type,v.field_value,v.field_json,v.
 from values_to_seed v join public.page_sections s on s.section_key=v.section_key
 on conflict(section_id,field_key) do update set
  field_label=excluded.field_label,field_type=excluded.field_type,order_index=excluded.order_index,
- field_value=case when coalesce(trim(public.section_fields.field_value),'')='' or public.section_fields.field_value like 'Conteúdo em actualização.%' then excluded.field_value else public.section_fields.field_value end,
- field_json=case when public.section_fields.field_json is null or public.section_fields.field_json='{}'::jsonb then excluded.field_json else public.section_fields.field_json end;
+ field_value=case when coalesce(trim(section_fields.field_value),'')='' or section_fields.field_value like 'Conteúdo em actualização.%' then excluded.field_value else section_fields.field_value end,
+ field_json=case when section_fields.field_json is null or section_fields.field_json='{}'::jsonb then excluded.field_json else section_fields.field_json end;
 
 grant execute on function public.can_manage_content(uuid) to authenticated;
 grant execute on function public.can_manage_content() to authenticated;
