@@ -46,7 +46,7 @@ export function usePublicRows<T extends Row>(table: string, fallback: T[] = [], 
       return fallbackRef.current;
     }
     const rows = dedupePublicRows((result.data ?? []) as T[]);
-    const next = rows.length ? rows : fallbackRef.current;
+    const next = rows;
     setError(null);
     setData(next);
     return next;
