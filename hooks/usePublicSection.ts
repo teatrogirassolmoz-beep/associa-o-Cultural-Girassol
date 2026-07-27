@@ -57,7 +57,7 @@ export function usePublicSection(sectionKey: string, fallbackFields: SectionFiel
     const result = await supabase.from('section_fields').select('*').eq('section_id', section.data.id).order('order_index');
     setLoading(false);
     if (result.error) { setError(result.error.message); setFields(fallbackRef.current); return publicFieldMap(fallbackRef.current); }
-    const next = ((result.data ?? []) as SectionField[]).length ? (result.data as SectionField[]) : fallbackRef.current;
+    const next = (result.data ?? []) as SectionField[];
     setError(null); setFields(next); return publicFieldMap(next);
   }, [sectionKey]);
 
