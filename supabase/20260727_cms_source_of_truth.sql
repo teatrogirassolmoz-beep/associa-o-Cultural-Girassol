@@ -107,7 +107,7 @@ with values_to_seed(section_key,field_key,field_label,field_type,field_value,fie
  ('fiti_forms','press_option','Opção imprensa','text','Credenciamento de imprensa',null,5),('fiti_forms','info_option','Opção informação','text','Pedido de informações',null,6)
 )
 insert into public.section_fields(section_id,field_key,field_label,field_type,field_value,field_json,order_index)
-select s.id,v.field_key,v.field_label,v.field_type,v.field_value,v.field_json,v.order_index
+select s.id,v.field_key,v.field_label,v.field_type,v.field_value,coalesce(v.field_json,'{}'::jsonb),v.order_index
 from values_to_seed v join public.page_sections s on s.section_key=v.section_key
 on conflict(section_id,field_key) do update set
  field_label=excluded.field_label,field_type=excluded.field_type,order_index=excluded.order_index,
