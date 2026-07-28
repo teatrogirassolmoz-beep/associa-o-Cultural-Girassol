@@ -18,12 +18,12 @@ type Form = {
   message: string;
 };
 
-export function Contact() {
+export function Contact({ sectionKey = 'home_contact' }: { sectionKey?: string }) {
   const { register, handleSubmit, reset } = useForm<Form>();
   const [ok, setOk] = useState(false);
   const [error, setError] = useState('');
   const { settings } = useThemeSettings();
-  const f=useSection('home_contact');
+  const f=useSection(sectionKey);
   const social=useRows('social_links',[] as any[],q=>q.eq('is_active',true).order('order_index'));
   const channel=(platform:string)=>social.find((item:any)=>String(item.platform).toLowerCase()===platform);
 

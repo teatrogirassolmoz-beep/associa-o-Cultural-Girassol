@@ -1,3 +1,12 @@
 'use client';
-import { SectionTitle } from '@/components/ui/SectionTitle'; import { Card } from '@/components/ui/Card'; import { GirassolLogo } from '@/components/ui/GirassolLogo'; import { ManagedLogo } from '@/components/ui/ManagedLogo'; import { useSection, text } from '@/components/publicCms';
-export function About(){const a=useSection('home_about');const mv=useSection('home_mission_vision');const paras=text(a.section_text||a.text).split('\n').filter(Boolean);const values=text(mv.values,'Criatividade\nInclusão\nJuventude\nMemória\nIntercâmbio').split(/\n|,/).map(v=>v.trim()).filter(Boolean);return <section id="quem-somos" className="py-24"><div className="mx-auto max-w-7xl px-4"><SectionTitle eyebrow={text(a.eyebrow,'Quem Somos')} title={text(a.section_title,'Uma casa para criação, formação e encontro')}/><div className="grid gap-8 md:grid-cols-[.8fr_1.2fr]"><Card><ManagedLogo debugLabel="About" settingKey="site_logo_url" alt="Associação Cultural Girassol" className="mx-auto" fallback={<GirassolLogo/>}/><p className="mt-6 text-center text-sun">{text(a.image_caption,'Marca institucional da Associação Cultural Girassol')}</p></Card><div className="space-y-5 text-lg leading-8 text-zinc-300">{paras.map(p=><p key={p}>{p}</p>)}</div></div><div className="mt-10 grid gap-5 md:grid-cols-2"><Card><h3 className="text-2xl font-bold text-sun">Missão</h3><p className="mt-3 text-zinc-300">{text(mv.mission)}</p></Card><Card><h3 className="text-2xl font-bold text-sun">Visão</h3><p className="mt-3 text-zinc-300">{text(mv.vision)}</p></Card></div><div className="mt-6 flex flex-wrap justify-center gap-3">{values.map(v=><span className="rounded-full border border-sun/30 bg-sun/10 px-4 py-2 text-sun" key={v}>{v}</span>)}</div></div></section>}
+import { SectionTitle } from '@/components/ui/SectionTitle';
+import { Card } from '@/components/ui/Card';
+import { GirassolLogo } from '@/components/ui/GirassolLogo';
+import { ManagedLogo } from '@/components/ui/ManagedLogo';
+import { useSection, text } from '@/components/publicCms';
+
+export function About() {
+  const about = useSection('home_about');
+  const paragraphs = text(about.section_text || about.text).split('\n').filter(Boolean);
+  return <section id="quem-somos" className="py-24"><div className="mx-auto max-w-7xl px-4"><SectionTitle eyebrow={text(about.eyebrow,'Quem Somos')} title={text(about.section_title,'Uma casa para criação, formação e encontro')}/><div className="grid gap-8 md:grid-cols-[.8fr_1.2fr]"><Card><ManagedLogo debugLabel="About" settingKey="site_logo_url" alt="Associação Cultural Girassol" className="mx-auto" fallback={<GirassolLogo/>}/><p className="mt-6 text-center text-sun">{text(about.image_caption,'Marca institucional da Associação Cultural Girassol')}</p></Card><div className="space-y-5 text-lg leading-8 text-zinc-300">{paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</div></div></div></section>;
+}
