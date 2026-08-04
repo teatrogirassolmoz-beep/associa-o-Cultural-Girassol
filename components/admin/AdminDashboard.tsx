@@ -208,8 +208,10 @@ export function AdminDashboard(){
 <CollectionManager title="Páginas e SEO" table="pages" previewPathKey="slug" editableKeys={['title','seo_title','seo_description','share_image_url','is_published']} fields={[{key:'slug',label:'Identificador da página (protegido)'},{key:'title',label:'Nome da página'},{key:'seo_title',label:'Título para Google e partilhas'},{key:'seo_description',label:'Descrição para Google e partilhas',type:'textarea'},{key:'share_image_url',label:'URL da imagem de partilha',type:'url'},{key:'is_published',label:'Estado da página',type:'boolean'}]} fallbackRows={[{slug:'home',title:'Associação Cultural Girassol',seo_title:'Associação Cultural Girassol',seo_description:'Teatro, cultura e juventude em Moçambique.',share_image_url:'',is_published:true},{slug:'fiti',title:'FITI',seo_title:'FITI – Festival Internacional Teatro de Inverno',seo_description:'Festival internacional da Associação Cultural Girassol.',share_image_url:'',is_published:true}]} />
 </section>
 <section id="Homepage" className="mt-10 space-y-5">
-<h2 className="font-display text-3xl text-sun">Homepage</h2>{home.map(s=>
-<SectionEditor key={s.id} section={s} fields={adminFields[s.section_key] ?? []}/>)}</section>
+<div className="flex flex-wrap items-end justify-between gap-3"><div><h2 className="font-display text-3xl text-sun">Homepage</h2><p className="mt-1 text-sm text-zinc-400">Edite as secções que formam a página principal, apresentadas abaixo pela ordem em que aparecem no site.</p></div><span className="rounded-full border border-sun/20 bg-sun/10 px-4 py-2 text-xs font-bold text-sun">{home.length} secções</span></div>
+{home.map((s,index)=><div key={s.id} className="relative"><span className="absolute -left-3 top-5 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-sun/40 bg-black text-xs font-bold text-sun">{index+1}</span><SectionEditor section={s} fields={adminFields[s.section_key] ?? []}/></div>)}
+<div className="flex items-center gap-4 py-5" aria-label="Fim da Homepage"><div className="h-px flex-1 bg-gradient-to-r from-transparent to-sun/40"/><span className="rounded-full border border-sun/20 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-sun">Fim da Homepage</span><div className="h-px flex-1 bg-gradient-to-l from-transparent to-sun/40"/></div>
+</section>
 <section id="FITI" className="mt-10 space-y-5">
 <h2 className="font-display text-3xl text-sun">FITI</h2>{fiti.map(s=>
 <SectionEditor key={s.id} section={s} fields={adminFields[s.section_key] ?? []}/>)}</section>
