@@ -7,6 +7,7 @@ import { text, useSection } from '@/components/publicCms';
 export function MissionVision() {
   const fields = useSection('home_mission_vision');
   const values = text(fields.values, 'Criatividade\nInclusão\nJuventude\nMemória\nIntercâmbio')
+    .replace(/\\n/g, '\n')
     .split(/\n|,/)
     .map((value) => value.trim())
     .filter(Boolean);
