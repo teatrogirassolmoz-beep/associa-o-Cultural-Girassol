@@ -190,6 +190,14 @@ export function AdminDashboard(){
 <a className="rounded-full border border-white/10 px-5 py-3" href="#FITI">Editar FITI</a>
 <button type="button" onClick={loadDashboardStats} disabled={dashboardLoading} className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 disabled:opacity-60"><RefreshCw size={17} className={dashboardLoading?'animate-spin':''}/> Actualizar indicadores</button>
 </div>
+<div className="my-10 flex items-center gap-4" aria-label="Início da gestão de conteúdo">
+<div className="h-px flex-1 bg-gradient-to-r from-transparent via-sun/70 to-sun/20"/>
+<div className="flex shrink-0 items-center gap-3 rounded-full border border-sun/30 bg-sun/10 px-4 py-2">
+<span className="h-2 w-2 rounded-full bg-sun shadow-[0_0_14px_rgba(255,190,0,0.9)]"/>
+<span className="text-xs font-bold uppercase tracking-[0.22em] text-sun">Gestão de conteúdo</span>
+</div>
+<div className="h-px flex-1 bg-gradient-to-l from-transparent via-sun/70 to-sun/20"/>
+</div>
 <section id="Páginas" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
 <span id="SEO" className="scroll-mt-8"/>
 <h2 className="font-display text-3xl text-sun">Páginas e SEO</h2>
