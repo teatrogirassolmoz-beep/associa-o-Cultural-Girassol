@@ -143,7 +143,8 @@ const managers = [
 ] as const;
 
 export function AdminDashboard(){
-  const[session,setSession]=useState(false);const[email,setEmail]=useState('');const[sessionEmail,setSessionEmail]=useState('');const[password,setPassword]=useState('');const[loginError,setLoginError]=useState('');const[loading,setLoading]=useState(false);const[themeValues,setThemeValues]=useState<Record<string,string>>({});const[adminSections,setAdminSections]=useState<PageSection[]>(cmsFallbackSections);const[adminFields,setAdminFields]=useState<Record<string,SectionField[]>>(cmsFallbackFields);const[dashboardStats,setDashboardStats]=useState<DashboardStats>(emptyDashboardStats);const[dashboardLoading,setDashboardLoading]=useState(false);const[dashboardError,setDashboardError]=useState('');
+  const[session,setSession]=useState(false);const[email,setEmail]=useState('');const[sessionEmail,setSessionEmail]=useState('');const[password,setPassword]=useState('');const[loginError,setLoginError]=useState('');const[loading,setLoading]=useState(false);const[themeValues,setThemeValues]=useState<Record<string,string>>({});const[adminSections,setAdminSections]=useState<PageSection[]>(cmsFallbackSections);const[adminFields,setAdminFields]=useState<Record<string,SectionField[]>>(cmsFallbackFields);const[dashboardStats,setDashboardStats]=useState<DashboardStats>(emptyDashboardStats);const[dashboardLoading,setDashboardLoading]=useState(false);const[dashboardError,setDashboardError]=useState('');const[activeArea,setActiveArea]=useState('Dashboard');
+  useEffect(()=>{const syncArea=()=>{const hash=decodeURIComponent(window.location.hash.slice(1));setActiveArea(hash||'Dashboard');window.scrollTo({top:0,behavior:'smooth'});};syncArea();window.addEventListener('hashchange',syncArea);return()=>window.removeEventListener('hashchange',syncArea);},[]);
   useEffect(()=>{if(!supabase)return;supabase.auth.getSession().then(({data})=>{setSession(Boolean(data.session));setSessionEmail(data.session?.user.email??'');});const{data:{subscription}}=supabase.auth.onAuthStateChange((_event,currentSession)=>{setSession(Boolean(currentSession));setSessionEmail(currentSession?.user.email??'');});return()=>subscription.unsubscribe();},[]);
   useEffect(()=>{if(!supabase||!session)return;supabase.from('theme_settings').select('key,value').then(({data})=>{if(data)setThemeValues(Object.fromEntries(data.map(row=>[row.key,toSafeString(row.value)])));});},[session]);
   useEffect(()=>{if(!supabase||!session)return;async function loadSectionFields(){const{data,error}=await supabase!.from('page_sections').select('*, fields:section_fields(*)').in('page_slug',['home','fiti']).order('order_index',{ascending:true});if(error||!data?.length)return;setAdminSections(data.map(({fields: _fields,...section})=>section as PageSection));setAdminFields(current=>{const next={...current};data.forEach((section)=>{const loadedFields=Array.isArray(section.fields)?section.fields:[];if(loadedFields.length)next[section.section_key]=(loadedFields as SectionField[]).sort((a,b)=>(a.order_index??0)-(b.order_index??0)||String(a.field_key).localeCompare(String(b.field_key)));});return next;});}loadSectionFields();},[session]);
@@ -179,8 +180,9 @@ export function AdminDashboard(){
     {label:'Imagens e ficheiros',value:dashboardStats.media,newCount:0,href:'#Media Library',icon:ImageIcon},
   ];
   return <AdminLayout>
+<section id="Dashboard" className={activeArea==='Dashboard'?'':'hidden'}>
 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-<div><h1 id="Dashboard" className="font-display text-5xl font-black">Painel de Gestão Girassol + FITI</h1><p className="mt-3 text-zinc-300">CMS completo para editar páginas, secções, menus, SEO, aparência, media, formulários e conteúdos específicos sem alterar código.</p></div>
+<div><h1 className="font-display text-5xl font-black">Painel de Gestão Girassol + FITI</h1><p className="mt-3 text-zinc-300">CMS completo para editar páginas, secções, menus, SEO, aparência, media, formulários e conteúdos específicos sem alterar código.</p></div>
 <div className="flex flex-col items-start gap-2 rounded-2xl border border-white/10 bg-zinc-950 p-4 text-sm lg:items-end"><span className="inline-flex items-center gap-2 text-emerald-300"><Database size={16}/> Supabase ligado</span><span className="max-w-xs truncate text-zinc-400" title={sessionEmail}>{sessionEmail||'Utilizador autenticado'}</span><button type="button" onClick={handleLogout} disabled={loading} className="inline-flex items-center gap-2 rounded-full border border-red-500/30 px-3 py-2 text-red-100 hover:border-red-400 disabled:opacity-60"><LogOut size={16}/> Sair do CMS</button></div>
 </div>
 <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{dashboardCards.map(({label,value,newCount,href,icon:Icon})=>
@@ -200,22 +202,23 @@ export function AdminDashboard(){
 </div>
 <div className="h-px flex-1 bg-gradient-to-l from-transparent via-sun/70 to-sun/20"/>
 </div>
-<section id="Páginas" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+</section>
+<section id="Páginas" className={`${activeArea==='Páginas'||activeArea==='SEO'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <span id="SEO" className="scroll-mt-8"/>
 <h2 className="font-display text-3xl text-sun">Páginas e SEO</h2>
 <p className="mt-2 text-zinc-300">Seleccione a Homepage ou o FITI para actualizar a identificação usada no site, nos motores de pesquisa e nas partilhas.</p>
 <div className="mt-4 rounded-2xl border border-sun/20 bg-sun/5 p-4 text-sm text-zinc-300"><b className="text-sun">Área protegida:</b> os identificadores <code>home</code> e <code>fiti</code> não podem ser alterados ou apagados. Para usar uma imagem de partilha, carregue primeiro o ficheiro na <a href="#Media Library" className="font-semibold text-sun underline decoration-sun/40 underline-offset-4">Media Library</a> e cole aqui o URL público.</div>
 <CollectionManager title="Páginas e SEO" table="pages" previewPathKey="slug" editableKeys={['title','seo_title','seo_description','share_image_url','is_published']} fields={[{key:'slug',label:'Identificador da página (protegido)'},{key:'title',label:'Nome da página'},{key:'seo_title',label:'Título para Google e partilhas'},{key:'seo_description',label:'Descrição para Google e partilhas',type:'textarea'},{key:'share_image_url',label:'URL da imagem de partilha',type:'url'},{key:'is_published',label:'Estado da página',type:'boolean'}]} fallbackRows={[{slug:'home',title:'Associação Cultural Girassol',seo_title:'Associação Cultural Girassol',seo_description:'Teatro, cultura e juventude em Moçambique.',share_image_url:'',is_published:true},{slug:'fiti',title:'FITI',seo_title:'FITI – Festival Internacional Teatro de Inverno',seo_description:'Festival internacional da Associação Cultural Girassol.',share_image_url:'',is_published:true}]} />
 </section>
-<section id="Homepage" className="mt-10 space-y-5">
+<section id="Homepage" className={`${activeArea==='Homepage'?'':'hidden'} space-y-5`}>
 <div className="flex flex-wrap items-end justify-between gap-3"><div><h2 className="font-display text-3xl text-sun">Homepage</h2><p className="mt-1 text-sm text-zinc-400">Edite as secções que formam a página principal, apresentadas abaixo pela ordem em que aparecem no site.</p></div><span className="rounded-full border border-sun/20 bg-sun/10 px-4 py-2 text-xs font-bold text-sun">{home.length} secções</span></div>
 {home.map((s,index)=><div key={s.id} className="relative"><span className="absolute -left-3 top-5 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-sun/40 bg-black text-xs font-bold text-sun">{index+1}</span><SectionEditor section={s} fields={adminFields[s.section_key] ?? []}/></div>)}
 <div className="flex items-center gap-4 py-5" aria-label="Fim da Homepage"><div className="h-px flex-1 bg-gradient-to-r from-transparent to-sun/40"/><span className="rounded-full border border-sun/20 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-sun">Fim da Homepage</span><div className="h-px flex-1 bg-gradient-to-l from-transparent to-sun/40"/></div>
 </section>
-<section id="FITI" className="mt-10 space-y-5">
+<section id="FITI" className={`${activeArea==='FITI'?'':'hidden'} space-y-5`}>
 <h2 className="font-display text-3xl text-sun">FITI</h2>{fiti.map(s=>
 <SectionEditor key={s.id} section={s} fields={adminFields[s.section_key] ?? []}/>)}</section>
-<section id="Identidade Visual" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+<section id="Identidade Visual" className={`${activeArea==='Identidade Visual'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">Identidade Visual</h2>
 <p className="mt-2 text-zinc-300">Faça upload na Media Library, seleccione uma imagem e guarde em theme_settings. Os fallbacks CSS/SVG continuam activos quando os URLs estiverem vazios ou falharem.</p>
 <div className="mt-5 space-y-6">{visualIdentitySections.map(section=>
@@ -225,38 +228,38 @@ export function AdminDashboard(){
 <VisualIdentityField key={key} settingKey={key} label={label} description={description} type={type} defaultValue={themeValues[key] ?? String(cmsFallbackTheme[key as keyof typeof cmsFallbackTheme] ?? '')} onSave={async (key,value)=>{await saveThemeSetting(key,value);setThemeValues(current=>({...current,[key]:value}));}}/>)}</div>
 </div>)}</div>
 </section>
-<section id="Aparência" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+<section id="Aparência" className={`${activeArea==='Aparência'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">Aparência e contactos públicos</h2>
 <div className="mt-4 grid gap-4 md:grid-cols-3">{themeKeys.map((k,i)=>{const v=cmsFallbackTheme[k];return <EditableField key={k} onChange={(value)=>saveThemeSetting(k,value).catch(()=>undefined)} field={{id:k,section_id:'theme',field_key:k,field_label:themeLabels[k] ?? k,field_type:typeof v==='boolean'?'boolean':typeof v==='number'?'number':k.includes('color')||k.includes('gradient')?'color':selectKeys.has(k)?'select':'text',field_value:themeValues[k] ?? String(v ?? ''),order_index:i}}/>})}</div>
 </section>
-<SupabaseDiagnostics/>
-<section id="Media Library" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+<div className={activeArea==='Diagnóstico'?'':'hidden'}><SupabaseDiagnostics/></div>
+<section id="Media Library" className={`${activeArea==='Media Library'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">Media Library</h2>
 <p className="mt-2 text-zinc-300">Carregue logotipos, imagens, vídeos e PDFs para o bucket público site-media do Supabase Storage.</p>
 <div className="mt-5">
 <MediaLibrary />
 </div>
 </section>{managers.map((manager)=>
-<section id={manager.area} key={manager.area} className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+<section id={manager.area} key={manager.area} className={`${activeArea===manager.area?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">{manager.area}</h2>
 <p className="mt-2 text-zinc-300">Listagem, criação, edição, activação/desactivação e remoção ligadas ao Supabase, com dados institucionais de fallback quando a tabela estiver vazia.</p>
 {manager.area==='Notícias'&&<div className="mt-4 rounded-2xl border border-sun/20 bg-sun/5 p-4 text-sm text-zinc-300"><p><b className="text-sun">Como publicar uma notícia:</b> preencha Título, Resumo, Conteúdo e Categoria; carregue a fotografia na <a href="#Media Library" className="font-semibold text-sun underline decoration-sun/40 underline-offset-4">Media Library</a>, cole o URL em Imagem e seleccione “Publicado”.</p><p className="mt-2 text-zinc-400">O slug é criado automaticamente quando ficar vazio. A data apresentada no site corresponde ao momento em que a notícia foi criada.</p></div>}
 <CollectionManager title={manager.area} table={manager.table} fields={manager.fields} fallbackRows={manager.fallbackRows as unknown as Row[]} />
-</section>)}<section id="Imprensa" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+</section>)}<section id="Imprensa" className={`${activeArea==='Imprensa'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">Pedidos de imprensa</h2>
 <p className="mt-2 text-zinc-300">Pedidos de credenciamento submetidos no formulário FITI. Os dados pessoais são apenas para consulta; pode actualizar o Estado.</p>
 <CollectionManager title="Imprensa" table="fiti_applications" filters={{type:'press'}} editableKeys={['status']} fields={[{key:'contact_person',label:'Pessoa de contacto'},{key:'email',label:'Email'},{key:'phone',label:'Telefone'},{key:'company_name',label:'Órgão/entidade'},{key:'notes',label:'Observações',type:'textarea'},{key:'status',label:'Estado'}]} fallbackRows={[{contact_person:'Sem pedidos',email:'',phone:'',company_name:'',notes:'Os pedidos de imprensa aparecerão aqui.',status:'Novo'}]} />
 </section>
-<section id="Contactos" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+<section id="Contactos" className={`${activeArea==='Contactos'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">Contactos</h2>
 <p className="mt-2 text-zinc-300">Mensagens enviadas pelo formulário de contacto. Os dados pessoais são apenas para consulta; pode actualizar o Estado.</p>
 <CollectionManager title="Contactos" table="contact_messages" filters={{type:'contacto'}} editableKeys={['status']} fields={[{key:'name',label:'Nome'},{key:'email',label:'Email'},{key:'phone',label:'Telefone'},{key:'subject',label:'Assunto'},{key:'message',label:'Mensagem',type:'textarea'},{key:'status',label:'Estado'}]} fallbackRows={[{name:'Sem mensagens',email:'',phone:'',subject:'',message:'As mensagens aparecerão aqui após submissão dos formulários.',status:'Novo'}]} />
 </section>
-<section id="Definições" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+<section id="Definições" className={`${activeArea==='Definições'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">Definições</h2>
 <p className="mt-2 text-zinc-300">Supabase configurado, static export activo, GitHub Pages preparado e fallbacks públicos disponíveis.</p>
 </section>
-<section id="Formulários" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
+<section id="Formulários" className={`${activeArea==='Formulários'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">Formulários</h2>
 <p className="text-zinc-300">Mensagens, inscrições, voluntariado, imprensa e pedidos de informação com estados Novo, Em análise, Respondido e Arquivado.</p>
 <a download="girassol-formularios.csv" href={`data:text/csv;charset=utf-8,${encodeURIComponent(csv)}`} className="mt-4 inline-flex items-center gap-2 rounded-full bg-sun px-5 py-3 font-bold text-black">
