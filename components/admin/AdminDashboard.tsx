@@ -240,6 +240,7 @@ export function AdminDashboard(){
 <section id={manager.area} key={manager.area} className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
 <h2 className="font-display text-3xl text-sun">{manager.area}</h2>
 <p className="mt-2 text-zinc-300">Listagem, criação, edição, activação/desactivação e remoção ligadas ao Supabase, com dados institucionais de fallback quando a tabela estiver vazia.</p>
+{manager.area==='Notícias'&&<div className="mt-4 rounded-2xl border border-sun/20 bg-sun/5 p-4 text-sm text-zinc-300"><p><b className="text-sun">Como publicar uma notícia:</b> preencha Título, Resumo, Conteúdo e Categoria; carregue a fotografia na <a href="#Media Library" className="font-semibold text-sun underline decoration-sun/40 underline-offset-4">Media Library</a>, cole o URL em Imagem e seleccione “Publicado”.</p><p className="mt-2 text-zinc-400">O slug é criado automaticamente quando ficar vazio. A data apresentada no site corresponde ao momento em que a notícia foi criada.</p></div>}
 <CollectionManager title={manager.area} table={manager.table} fields={manager.fields} fallbackRows={manager.fallbackRows as unknown as Row[]} />
 </section>)}<section id="Imprensa" className="mt-10 rounded-3xl border border-white/10 bg-zinc-950 p-5">
 <h2 className="font-display text-3xl text-sun">Pedidos de imprensa</h2>
