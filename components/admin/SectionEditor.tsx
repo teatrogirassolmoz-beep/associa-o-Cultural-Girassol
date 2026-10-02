@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { PageSection, SectionField } from '@/types/cms';
 import { supabase } from '@/lib/supabase';
 import { EditableField } from './EditableField';
+import { WhatWeDoCardsField } from './WhatWeDoCardsField';
 
 type SaveArgs = {
   sectionId: string;
@@ -28,7 +29,7 @@ const sectionGuidance: Record<string, { text: string; target?: string; targetLab
   home_about: { text: 'Edite aqui o texto institucional apresentado em “Quem somos”. Use parágrafos separados por uma mudança de linha.' },
   home_mission_vision: { text: 'Edite aqui a missão, a visão e os valores. Coloque um valor por linha.' },
   home_timeline: { text: 'Aqui edita apenas o título de apresentação. Os anos e acontecimentos são geridos em Conteúdos → Timeline.', target: 'Timeline', targetLabel: 'Abrir Timeline' },
-  home_what_we_do: { text: 'Edite aqui o título e as áreas de actuação. O campo JSON deve manter uma lista de cartões com “title” e “description”.' },
+  home_what_we_do: { text: 'Edite o título e as áreas de actuação. Pode adicionar, remover e ordenar os cartões no editor visual abaixo.' },
   home_projects: { text: 'Aqui edita apenas o título de apresentação. Os projectos são geridos em Conteúdos → Projectos.', target: 'Projectos', targetLabel: 'Abrir Projectos' },
   home_impact: { text: 'Aqui edita apenas o título de apresentação. Os números e indicadores são geridos em Conteúdos → Impacto.', target: 'Impacto', targetLabel: 'Abrir Impacto' },
   home_gallery: { text: 'Aqui edita apenas o título de apresentação. As fotografias são geridas em Conteúdos → Galeria.', target: 'Galeria', targetLabel: 'Abrir Galeria' },
@@ -37,13 +38,9 @@ const sectionGuidance: Record<string, { text: string; target?: string; targetLab
   home_contact: { text: 'Edite aqui o título da área. Email, WhatsApp e localização são geridos em Site e identidade → Aparência; redes sociais em Redes sociais.' },
 };
 
-function jsonOrEmpty(field: SectionField, value: string) {
+function parseJsonField(field: SectionField, value: string) {
   if (field.field_type !== 'json') return null;
-  try {
-    return value.trim() ? JSON.parse(value) : {};
-  } catch {
-    return field.field_json ?? {};
-  }
+  return value.trim() ? JSON.parse(value) : {};
 }
 
 export async function saveSectionField({ sectionId, fieldKey, fieldLabel, fieldType, value, jsonValue, orderIndex }: SaveArgs) {
@@ -80,6 +77,15 @@ export function SectionEditor({ section, fields }: { section: PageSection; field
     setSaving(true);
     setMessage('A guardar em public.section_fields...');
     try {
+      for (const field of savedFields.filter((candidate) => candidate.field_type === 'json')) {
+        const parsed = parseJsonField(field, values[field.field_key] ?? '');
+        if (section.section_key === 'home_what_we_do' && field.field_key === 'cards') {
+          if (!Array.isArray(parsed)) throw new Error('As áreas de actuação devem ser uma lista de cartões.');
+          if (parsed.some((card) => !card || typeof card !== 'object' || !String((card as Record<string, unknown>).title ?? '').trim() || !String((card as Record<string, unknown>).description ?? '').trim())) {
+            throw new Error('Preencha o título e a descrição de todos os cartões antes de guardar.');
+          }
+        }
+      }
       const fieldsByKey = new Map(savedFields.map((field) => [field.field_key, field]));
       for (const sourceField of savedFields) {
         const value = values[sourceField.field_key] ?? '';
@@ -89,7 +95,7 @@ export function SectionEditor({ section, fields }: { section: PageSection; field
           fieldLabel: sourceField.field_label,
           fieldType: sourceField.field_type,
           value: sourceField.field_type === 'json' ? '' : value,
-          jsonValue: jsonOrEmpty(sourceField, value),
+          jsonValue: parseJsonField(sourceField, value),
           orderIndex: sourceField.order_index,
         });
       }
@@ -112,5 +118,5 @@ export function SectionEditor({ section, fields }: { section: PageSection; field
 
   const guidance=sectionGuidance[section.section_key];
 
-  return <section id={section.section_name} className="scroll-mt-8 rounded-3xl border border-white/10 bg-zinc-950/80 p-5"><div className="flex flex-wrap items-center justify-between gap-3"><div><h3 className="font-display text-2xl font-bold text-sun">{section.section_name}</h3><p className="text-sm text-zinc-400">Chave: {section.section_key} · ordem {section.order_index} · {dirtyKeys.length ? `${dirtyKeys.length} alteração(ões)` : 'sem alterações'}</p></div><div className="flex gap-2 text-xs"><a href={section.page_slug==='fiti'?'../fiti/':'../'} target="_blank" className="rounded-full border border-white/10 px-3 py-2">Pré-visualizar</a><button type="button" onClick={()=>move(-1)} className="rounded-full border border-white/10 px-3 py-2">Mover ↑</button><button type="button" onClick={()=>move(1)} className="rounded-full border border-white/10 px-3 py-2">Mover ↓</button><button type="button" onClick={toggle} className="rounded-full border border-white/10 px-3 py-2">{section.is_active?'Ocultar':'Publicar'}</button><button type="button" disabled={saving} onClick={save} className="rounded-full bg-sun px-3 py-2 font-bold text-black disabled:opacity-60">{saving ? 'A guardar...' : 'Guardar'}</button></div></div>{guidance&&<div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-sun/20 bg-sun/5 p-3 text-sm text-zinc-300"><span>{guidance.text}</span>{guidance.target&&<a href={`#${guidance.target}`} className="shrink-0 rounded-full border border-sun/30 px-3 py-2 font-bold text-sun">{guidance.targetLabel}</a>}</div>}<div className="mt-5 grid gap-4 md:grid-cols-2">{savedFields.map((field) => <EditableField key={field.id} field={{ ...field, field_value: values[field.field_key] ?? '' }} onChange={(value) => setValues((current) => ({ ...current, [field.field_key]: value }))} />)}</div>{message && <p className="mt-4 rounded-2xl border border-sun/20 bg-sun/10 p-3 text-sm text-sun">{message}</p>}</section>;
+  return <section id={section.section_name} className="scroll-mt-8 rounded-3xl border border-white/10 bg-zinc-950/80 p-5"><div className="flex flex-wrap items-center justify-between gap-3"><div><h3 className="font-display text-2xl font-bold text-sun">{section.section_name}</h3><p className="text-sm text-zinc-400">Chave: {section.section_key} · ordem {section.order_index} · {dirtyKeys.length ? `${dirtyKeys.length} alteração(ões)` : 'sem alterações'}</p></div><div className="flex gap-2 text-xs"><a href={section.page_slug==='fiti'?'../fiti/':'../'} target="_blank" className="rounded-full border border-white/10 px-3 py-2">Pré-visualizar</a><button type="button" onClick={()=>move(-1)} className="rounded-full border border-white/10 px-3 py-2">Mover ↑</button><button type="button" onClick={()=>move(1)} className="rounded-full border border-white/10 px-3 py-2">Mover ↓</button><button type="button" onClick={toggle} className="rounded-full border border-white/10 px-3 py-2">{section.is_active?'Ocultar':'Publicar'}</button><button type="button" disabled={saving} onClick={save} className="rounded-full bg-sun px-3 py-2 font-bold text-black disabled:opacity-60">{saving ? 'A guardar...' : 'Guardar'}</button></div></div>{guidance&&<div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-sun/20 bg-sun/5 p-3 text-sm text-zinc-300"><span>{guidance.text}</span>{guidance.target&&<a href={`#${guidance.target}`} className="shrink-0 rounded-full border border-sun/30 px-3 py-2 font-bold text-sun">{guidance.targetLabel}</a>}</div>}<div className="mt-5 grid gap-4 md:grid-cols-2">{savedFields.map((field) => section.section_key === 'home_what_we_do' && field.field_key === 'cards' ? <WhatWeDoCardsField key={field.id} value={values[field.field_key] ?? ''} onChange={(value) => setValues((current) => ({ ...current, [field.field_key]: value }))} /> : <EditableField key={field.id} field={{ ...field, field_value: values[field.field_key] ?? '' }} onChange={(value) => setValues((current) => ({ ...current, [field.field_key]: value }))} />)}</div>{message && <p className="mt-4 rounded-2xl border border-sun/20 bg-sun/10 p-3 text-sm text-sun">{message}</p>}</section>;
 }
