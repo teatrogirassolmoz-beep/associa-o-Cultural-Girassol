@@ -44,7 +44,7 @@ export function FitiForms() {
   }
 
   return (
-    <section id="formularios" className="py-24">
+    <section id="formularios" className="py-16 md:py-20">
       <div className="mx-auto max-w-4xl px-4">
         <SectionTitle eyebrow={text(f.eyebrow,'Formulários FITI')} title={text(f.section_title,'Inscrições e pedidos')} />
         <form onSubmit={handleSubmit(submit)} className="grid gap-4 rounded-3xl border border-white/10 bg-zinc-900/70 p-6 md:grid-cols-2">
