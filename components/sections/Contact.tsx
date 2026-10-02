@@ -39,7 +39,7 @@ export function Contact({ sectionKey = 'home_contact' }: { sectionKey?: string }
   }
 
   return (
-    <section id="contacto" className="py-24">
+    <section id="contacto" className="py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionTitle eyebrow={text(f.eyebrow,'Contacto')} title={text(f.section_title,'Fale com a Associação')} />
         <div className="grid gap-8 md:grid-cols-2">

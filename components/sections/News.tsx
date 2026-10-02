@@ -13,7 +13,7 @@ export function News() {
   const rows = useRows('news', [] as any[], (q) => q.eq('published', true).order('created_at', { ascending: false }));
 
   return (
-    <section id="noticias" className="py-24">
+    <section id="noticias" className="py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionTitle eyebrow={text(f.eyebrow, 'Notícias')} title={text(f.section_title, 'Actualizações')} />
         {rows.length === 0 ? (

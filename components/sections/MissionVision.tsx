@@ -13,7 +13,7 @@ export function MissionVision() {
     .filter(Boolean);
 
   return (
-    <section id="missao-visao" className="py-24">
+    <section id="missao-visao" className="py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionTitle eyebrow={text(fields.eyebrow, 'Identidade')} title={text(fields.section_title, 'Missão, visão e valores')} />
         <div className="grid gap-5 md:grid-cols-2">
