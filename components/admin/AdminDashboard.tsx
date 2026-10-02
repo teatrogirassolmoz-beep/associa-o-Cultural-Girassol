@@ -48,16 +48,17 @@ const tableColumns: Record<string, readonly string[]> = {
 };
 
 const booleanFields = new Set(['is_published','published','featured','is_active','is_external','show_on_home','show_on_fiti','active']);
-const numberFields = new Set(['order_index','year','value','vacancies']);
+const numberFields = new Set(['order_index','value','vacancies']);
+const numericYearTables = new Set(['fiti_editions','fiti_archive']);
 
 function slugify(value: string) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
-function coerceValue(key: string, value: unknown) {
+function coerceValue(tableName: string, key: string, value: unknown) {
   if (value === undefined) return undefined;
   if (booleanFields.has(key)) return value === true || value === 'true';
-  if (numberFields.has(key)) return value === '' || value === null ? null : Number(value);
+  if (numberFields.has(key) || (key === 'year' && numericYearTables.has(tableName))) return value === '' || value === null ? null : Number(value);
   return value;
 }
 
@@ -66,7 +67,7 @@ function cleanPayloadForTable(tableName: string, payload: Row) {
   const source = { ...payload };
   if (tableName === 'news' && !toSafeString(source.slug) && toSafeString(source.title)) source.slug = slugify(toSafeString(source.title));
   return Object.fromEntries(allowed.flatMap((key) => {
-    const value = coerceValue(key, source[key]);
+    const value = coerceValue(tableName, key, source[key]);
     return value === undefined ? [] : [[key, value]];
   }));
 }
