@@ -16,7 +16,14 @@ import { MediaLibrary } from './MediaLibrary';
 import { SupabaseDiagnostics } from './SupabaseDiagnostics';
 
 type ManagerField = { key: string; label: string; type?: 'text' | 'textarea' | 'number' | 'boolean' | 'url' | 'date' };
-type Row = Record<string, unknown> & { id?: string };
+type Row = Record<string, unknown> & { id?: string; __suggestionKey?: string };
+
+function suggestionRows(rows: Row[]) {
+  return rows.map((row, index) => ({ ...row, __suggestionKey: `suggestion-${index}` }));
+}
+function sameRow(left: Row, right: Row) {
+  return left.id ? left.id === right.id : Boolean(left.__suggestionKey && left.__suggestionKey === right.__suggestionKey);
+}
 type DashboardStats = { messages: number; newMessages: number; applications: number; newApplications: number; news: number; media: number };
 
 const emptyDashboardStats: DashboardStats = { messages: 0, newMessages: 0, applications: 0, newApplications: 0, news: 0, media: 0 };
@@ -102,7 +109,7 @@ function CollectionManager({ title, table, fields, fallbackRows, readOnly = fals
     query.order('created_at', { ascending: false }).then(({ data, error }) => {
       if (error) setMessage(`Fallback activo: ${error.message}`);
       if (data) {
-        const nextRows = data.length ? data as Row[] : fallbackRows;
+        const nextRows = data.length ? data as Row[] : suggestionRows(fallbackRows);
         setRows(nextRows);
         setSelected(nextRows[0] ?? emptyRow(fields));
       }
@@ -134,12 +141,17 @@ function CollectionManager({ title, table, fields, fallbackRows, readOnly = fals
     const confirm = saved.id ? await supabase.from(table).select('*').eq('id', saved.id).single() : { data: saved, error: null };
     if (confirm.error) return setMessage(`Guardado, mas a confirmação falhou: ${confirm.error.message}`);
     const confirmed = confirm.data as Row;
-    setRows((current) => selected.id ? current.map((row) => row.id === selected.id ? confirmed : row) : [confirmed, ...current]);
+    setRows((current) => selected.id
+      ? current.map((row) => row.id === selected.id ? confirmed : row)
+      : selected.__suggestionKey
+        ? current.map((row) => row.__suggestionKey === selected.__suggestionKey ? confirmed : row)
+        : [confirmed, ...current]);
     setSelected(confirmed);
     const firstKey = fields[0]?.key ?? 'id';
     setMessage(`Guardado com sucesso. Tabela: ${table} · ID: ${toSafeString(confirmed.id)} · Valor confirmado: ${cellValue(confirmed, firstKey)}${toSafeString(confirmed.updated_at) ? ` · updated_at: ${toSafeString(confirmed.updated_at)}` : ''}`);
   }
-  async function remove(row: Row) { if (!supabase || !row.id || readOnly) return; if (!confirm(`Apagar item de ${title}?`)) return; const { error } = await supabase.from(table).delete().eq('id', row.id); if (error) return setMessage(error.message); setRows((current) => current.filter((item) => item.id !== row.id)); setSelected(emptyRow(fields)); setMessage('Item apagado.'); }
+  function removeSuggestion(row: Row) { setRows((current) => current.filter((item) => !sameRow(item, row))); setSelected(emptyRow(fields)); setMessage('Sugestão removida apenas desta interface. Nenhum registo foi apagado do Supabase.'); }
+  async function remove(row: Row) { if (!supabase || !row.id || readOnly) return; if (!confirm(`Apagar item de ${title}?`)) return; const { error } = await supabase.from(table).delete().eq('id', row.id); if (error) return setMessage(error.message); setRows((current) => current.filter((item) => item.id !== row.id)); setSelected(emptyRow(fields)); setMessage('Registo apagado do Supabase com sucesso.'); }
   const previewSlug=previewPathKey?cellValue(selected,previewPathKey):'';
   const previewHref=previewSlug==='home'?'/':previewSlug?`/${previewSlug}`:'';
   return <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1.1fr]"><div className="space-y-2">{rows.map((row, index) => <button key={row.id ?? index} type="button" onClick={() => setSelected(row)} className={`block w-full rounded-2xl border bg-black/30 p-3 text-left transition ${selected.id===row.id?'border-sun/60 shadow-[0_0_20px_rgba(255,190,0,0.08)]':'border-white/10 hover:border-sun'}`}><b className="text-white">{cellValue(row, fields[0].key) || `${title} ${index + 1}`}</b><p className="text-xs text-zinc-400">{fields.slice(1, 3).map((f) => cellValue(row, f.key)).filter(Boolean).join(' · ') || 'Item editável'}</p></button>)}</div><div className="rounded-2xl border border-white/10 bg-black/30 p-4"><div className="mb-3 flex flex-wrap gap-2">{!readOnly&&!editableKeys&&<button type="button" onClick={() => setSelected(newRow())} className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-sm"><Plus size={16}/> Novo</button>}{!readOnly&&<button type="button" onClick={save} className="inline-flex items-center gap-2 rounded-full bg-sun px-3 py-2 text-sm font-bold text-black"><Save size={16}/> Guardar alterações</button>}{previewHref&&<Link href={previewHref} className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-sm">Ver página</Link>}{selected.id && !readOnly && !editableKeys && <button type="button" onClick={() => remove(selected)} className="inline-flex items-center gap-2 rounded-full border border-red-500/40 px-3 py-2 text-sm text-red-100"><Trash2 size={16}/> Apagar</button>}</div>{hasEditionField && editionOptions.length === 0 && <p className="mb-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-amber-100">Crie primeiro uma edição em Gestão do FITI → Edições FITI.</p>}<div className="grid gap-3 md:grid-cols-2">{fields.map((field) => {const disabled=readOnly||Boolean(editableKeys&&!editableKeys.includes(field.key));return <label key={field.key} className="text-sm text-zinc-300"><span>{field.key === 'edition_id' ? 'Edição' : field.label}</span>{field.key === 'edition_id' ? <select disabled={disabled || editionOptions.length === 0} value={cellValue(selected, field.key)} onChange={(e) => update(field.key, e.target.value)} className="mt-1 w-full rounded-xl border border-white/10 bg-zinc-950 px-3 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60"><option value="">Seleccionar edição</option>{editionOptions.map((edition) => <option key={String(edition.id)} value={String(edition.id)}>{toSafeString(edition.year)} — {toSafeString(edition.theme) || 'Edição FITI'}{edition.active === true ? ' (activa)' : ''}</option>)}</select> : field.type === 'textarea' ? <textarea disabled={disabled} value={cellValue(selected, field.key)} onChange={(e) => update(field.key, e.target.value)} className="mt-1 min-h-24 w-full rounded-xl border border-white/10 bg-zinc-950 px-3 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60" /> : field.type === 'boolean' ? <select disabled={disabled} value={cellValue(selected, field.key) || 'true'} onChange={(e) => update(field.key, e.target.value)} className="mt-1 w-full rounded-xl border border-white/10 bg-zinc-950 px-3 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60"><option value="true">Activo</option><option value="false">Inactivo</option></select> : <input disabled={disabled} type={field.type === 'number' ? 'number' : field.type === 'date' ? 'date' : field.type === 'url' ? 'url' : 'text'} value={cellValue(selected, field.key)} onChange={(e) => update(field.key, e.target.value)} className="mt-1 w-full rounded-xl border border-white/10 bg-zinc-950 px-3 py-2 text-white disabled:cursor-not-allowed disabled:opacity-60" />}</label>})}</div>{message && <p className="mt-3 rounded-xl border border-sun/20 bg-sun/10 p-3 text-sm text-sun">{message}</p>}</div></div>;
