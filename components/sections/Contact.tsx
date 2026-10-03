@@ -26,6 +26,10 @@ export function Contact({ sectionKey = 'home_contact' }: { sectionKey?: string }
   const f=useSection(sectionKey);
   const social=useRows('social_links',[] as any[],q=>q.eq('is_active',true).order('order_index'));
   const channel=(platform:string)=>social.find((item:any)=>String(item.platform).toLowerCase()===platform);
+  const publicSocials= social.filter((item:any) => {
+    const platform=String(item.platform).toLowerCase();
+    return platform.includes('instagram') || platform.includes('facebook');
+  });
 
   async function onSubmit(data: Form) {
     setError('');
@@ -62,8 +66,13 @@ export function Contact({ sectionKey = 'home_contact' }: { sectionKey?: string }
             <div className="mt-6 grid gap-4 text-zinc-300">
               <a className="flex gap-3" href={text(channel('whatsapp')?.url, text(settings.whatsapp_url, text(settings.whatsapp, '#')))}><MessageCircle className="text-sun" /> WhatsApp</a>
               <a className="flex gap-3" href={channel('email')?.url || `mailto:${text(settings.contact_email,'')}`}><Mail className="text-sun" /> {text(channel('email')?.label,text(settings.contact_email,'Email a configurar'))}</a>
-              <span className="flex gap-3"><Instagram className="text-sun" /> {text(channel('instagram')?.label,'Instagram a configurar')}</span>
-              <span className="flex gap-3"><Facebook className="text-sun" /> {text(channel('facebook')?.label,'Facebook a configurar')}</span>
+              {publicSocials.map((item:any) => {
+                const isInstagram=String(item.platform).toLowerCase().includes('instagram');
+                const network=isInstagram?'Instagram':'Facebook';
+                const Icon=isInstagram?Instagram:Facebook;
+                return <a className="flex gap-3 transition hover:text-sun" href={item.url} target="_blank" rel="noreferrer" key={item.id||`${item.platform}-${item.url}`} aria-label={`${network}: ${text(item.label,network)}`}><Icon className="shrink-0 text-sun" /> <span>{network} — {text(item.label,network)}</span></a>;
+              })}
+              {publicSocials.length===0&&<span className="flex gap-3"><Instagram className="text-sun" /> Redes sociais a configurar</span>}
               <span className="flex gap-3"><MapPin className="text-sun" /> {text(channel('localizacao')?.label,text(settings.contact_location,'Localização a configurar'))}</span>
             </div>
           </div>
