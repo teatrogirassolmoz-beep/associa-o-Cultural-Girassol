@@ -63,12 +63,14 @@ export function SectionEditor({ section, fields }: { section: PageSection; field
   const [savedFields, setSavedFields] = useState<SectionField[]>(fields);
   const [message, setMessage] = useState('');
   const [saving, setSaving] = useState(false);
+  const [isActive, setIsActive] = useState(section.is_active);
 
   useEffect(() => {
     setSavedFields(fields);
     setValues(Object.fromEntries(fields.map((field) => [field.field_key, field.field_type === 'json' ? JSON.stringify(field.field_json ?? {}, null, 2) : field.field_value ?? ''])));
     setMessage('');
-  }, [fields, section.id]);
+    setIsActive(section.is_active);
+  }, [fields, section.id, section.is_active]);
 
   const dirtyKeys = useMemo(() => savedFields.filter((field) => values[field.field_key] !== (field.field_type === 'json' ? JSON.stringify(field.field_json ?? {}, null, 2) : field.field_value ?? '')).map((field) => field.field_key), [savedFields, values]);
 
@@ -114,7 +116,7 @@ export function SectionEditor({ section, fields }: { section: PageSection; field
   }
 
   async function move(delta:number){if(!supabase)return;setSaving(true);const next=Math.max(0,section.order_index+delta);const{error}=await supabase.from('page_sections').update({order_index:next}).eq('id',section.id);setSaving(false);setMessage(error?`Erro Supabase: ${error.message}`:'Ordem actualizada. Recarregue o CMS para confirmar a nova posição.');}
-  async function toggle(){if(!supabase)return;setSaving(true);const{error}=await supabase.from('page_sections').update({is_active:!section.is_active}).eq('id',section.id);setSaving(false);setMessage(error?`Erro Supabase: ${error.message}`:`Secção ${section.is_active?'ocultada':'publicada'} com sucesso.`);}
+  async function toggle(){if(!supabase)return;setSaving(true);const next=!isActive;const{error}=await supabase.from('page_sections').update({is_active:next}).eq('id',section.id);setSaving(false);if(error){setMessage(`Erro Supabase: ${error.message}`);return;}setIsActive(next);setMessage(`Secção ${next?'publicada':'ocultada'} com sucesso.`);}
 
   const guidance=sectionGuidance[section.section_key];
 
