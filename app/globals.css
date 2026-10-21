@@ -4896,3 +4896,7 @@ body:has(.festival-site dialog[open]) {
  .festival-site .scenery-control { bottom: 84px; }
  .festival-site > a[aria-label="WhatsApp"] { bottom: 84px; }
 }
+
+/* One viewport-sized brush layer follows visitors through every public section. */
+.site-pigment-interaction { position: fixed; inset: 0; z-index: 30; pointer-events: none; overflow: hidden; }
+.site-pigment-interaction .pigment-canvas { mask-image: none; }

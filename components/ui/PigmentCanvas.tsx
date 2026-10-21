@@ -2,14 +2,13 @@
 import { useEffect, useRef } from "react";
 
 /** Original pigment field: responds to movement and taps without blocking page controls. */
-export function PigmentCanvas() {
+export function PigmentCanvas({ page = false }: { page?: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const element = canvas.current,
       context = element?.getContext("2d");
     if (!element || !context) return;
     const host = element.parentElement!,
-      hero = host.closest<HTMLElement>(".festival-hero"),
       site = host.closest<HTMLElement>(".festival-site");
     const fiti = Boolean(site?.classList.contains("fiti-site"));
     const trail: { x: number; y: number; age: number }[] = [];
@@ -28,7 +27,7 @@ export function PigmentCanvas() {
       seed = (seed * 16807) % 2147483647;
       return (seed - 1) / 2147483646;
     };
-    const points = Array.from({ length: 1800 }, (_, i) => {
+    const points = page ? [] : Array.from({ length: 1800 }, (_, i) => {
       const right = i % 2 === 0;
       return {
         x: (right ? 0.92 : 0.08) + (random() - 0.5) * 0.37,
@@ -45,6 +44,7 @@ export function PigmentCanvas() {
       if (!context || !width || !height) return;
       context.clearRect(0, 0, width, height);
       context.globalCompositeOperation = "source-over";
+      if (!page) {
       const drift = Math.sin(time * 0.18) * 0.015;
       for (let patch = 0; patch < 10; patch++) {
         const right = patch % 2 === 0;
@@ -149,6 +149,7 @@ export function PigmentCanvas() {
         context.fillStyle = glow;
         context.fillRect(0, 0, width, height);
       }
+      }
       if (!reduced.matches) {
         for (const mark of trail) {
           context.globalAlpha = Math.max(0, .38 * (1 - mark.age));
@@ -186,6 +187,7 @@ export function PigmentCanvas() {
       if (
         disposed ||
         !visible ||
+        document.hidden ||
         reduced.matches ||
         site?.dataset.motionPaused === "true"
       )
@@ -204,17 +206,19 @@ export function PigmentCanvas() {
         last = now;
         draw();
       }
-      frame = requestAnimationFrame(animate);
+      if (!page || trail.length || burst) frame = requestAnimationFrame(animate);
     }
     function sync() {
       cancelAnimationFrame(frame);
+      frame = 0;
       last = performance.now();
       draw();
       if (
         !disposed &&
         visible &&
         !reduced.matches &&
-        site?.dataset.motionPaused !== "true"
+        site?.dataset.motionPaused !== "true" &&
+        (!page || trail.length > 0 || burst !== null) && !document.hidden
       )
         frame = requestAnimationFrame(animate);
     }
@@ -229,7 +233,8 @@ export function PigmentCanvas() {
       sync();
     }
     function move(event: PointerEvent) {
-      if (reduced.matches || site?.dataset.motionPaused === "true") return;
+      if (reduced.matches || site?.dataset.motionPaused === "true" || document.hidden) return;
+      if (event.target instanceof Element && event.target.closest("a,button,input,textarea,select,summary,dialog,[contenteditable=true]")) { pointer.active = false; return; }
       const rect = host.getBoundingClientRect();
       pointer.x = (event.clientX - rect.left) / rect.width;
       pointer.y = (event.clientY - rect.top) / rect.height;
@@ -240,6 +245,7 @@ export function PigmentCanvas() {
         trail.push({x, y, age: 0});
         if (trail.length > 28) trail.shift();
       }
+      if (page && !frame) { last = performance.now(); frame = requestAnimationFrame(animate); }
     }
     function leave() {
       pointer.active = false;
@@ -249,12 +255,18 @@ export function PigmentCanvas() {
         reduced.matches ||
         site?.dataset.motionPaused === "true" ||
         (event.target instanceof Element &&
-          event.target.closest("a,button,input,select,summary,dialog"))
+          event.target.closest("a,button,input,textarea,select,summary,dialog,[contenteditable=true]"))
       )
         return;
       move(event);
       burst = { x: pointer.x * width, y: pointer.y * height, age: 0 };
     }
+    function clearOnScroll() {
+      if (!page) return;
+      trail.length = 0; burst = null; pointer.active = false;
+      sync();
+    }
+    const target = page ? site : null;
     const size = new ResizeObserver(resize);
     size.observe(host);
     const intersection = new IntersectionObserver((entries) => {
@@ -269,9 +281,11 @@ export function PigmentCanvas() {
         attributeFilter: ["data-motion-paused"],
       });
     reduced.addEventListener("change", sync);
-    hero?.addEventListener("pointermove", move, { passive: true });
-    hero?.addEventListener("pointerleave", leave);
-    hero?.addEventListener("pointerdown", tap);
+    target?.addEventListener("pointermove", move, { passive: true });
+    target?.addEventListener("pointerleave", leave);
+    target?.addEventListener("pointerdown", tap);
+    if (page) window.addEventListener("scroll", clearOnScroll, { passive: true });
+    document.addEventListener("visibilitychange", sync);
     resize();
     return () => {
       disposed = true;
@@ -280,10 +294,12 @@ export function PigmentCanvas() {
       intersection.disconnect();
       mutation.disconnect();
       reduced.removeEventListener("change", sync);
-      hero?.removeEventListener("pointermove", move);
-      hero?.removeEventListener("pointerleave", leave);
-      hero?.removeEventListener("pointerdown", tap);
+      window.removeEventListener("scroll", clearOnScroll);
+      document.removeEventListener("visibilitychange", sync);
+      target?.removeEventListener("pointermove", move);
+      target?.removeEventListener("pointerleave", leave);
+      target?.removeEventListener("pointerdown", tap);
     };
-  }, []);
+  }, [page]);
   return <canvas ref={canvas} className="pigment-canvas" aria-hidden="true" />;
 }

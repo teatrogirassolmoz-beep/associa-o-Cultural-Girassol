@@ -29,6 +29,8 @@ export function LivingBackdrop({ page = false }: { page?: boolean }) {
     };
   }, [page]);
   return (
+    <>
+    {page && <div className="site-pigment-interaction" aria-hidden="true"><PigmentCanvas page /></div>}
     <div
       ref={layer}
       className={`living-backdrop ${page ? "living-backdrop-page" : "living-backdrop-hero"}`}
@@ -41,5 +43,6 @@ export function LivingBackdrop({ page = false }: { page?: boolean }) {
 
       </div>
     </div>
+    </>
   );
 }
