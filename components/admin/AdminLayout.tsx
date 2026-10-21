@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AdminSidebar, adminAreas, adminAreaLabel } from "./AdminSidebar";
 export function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -32,6 +33,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
               ))}
             </select>
           </label>
+          <Link href="/manual/manual-utilizacao-cms.html" prefetch={false} target="_blank" rel="noreferrer" className="mb-4 inline-block text-sm text-sun underline lg:hidden">Manual de utilização ↗</Link>
           {children}
         </main>
       </div>

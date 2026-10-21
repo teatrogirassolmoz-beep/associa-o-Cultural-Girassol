@@ -316,3 +316,9 @@ As opções de **Identidade Visual** para símbolo de fundo (ficheiro, activaç�
 ### Campos do CMS actual
 
 Os editores de Página inicial e FITI apresentam apenas os campos usados pelos componentes actuais, definidos em `lib/cmsFields.ts`. Campos e secções do site antigo ficam fora do painel, mas os registos existentes são preservados. Nomes antigos equivalentes (por exemplo, `primary_button_label` e `primary_button_text`) são apresentados num único controlo com o nome actual. Antes da primeira gravação, o valor antigo é aproveitado; depois, a chave actual tem prioridade na leitura pública, incluindo quando é apagada intencionalmente. Guardar uma secção não apaga nem regrava os campos retirados. Ao acrescentar um novo campo público, actualize a lista de campos activos e a respectiva definição em `lib/data.ts`.
+
+## Manual de utilização
+
+O [manual completo do CMS](docs/MANUAL_UTILIZACAO_CMS.md) está disponível no painel administrativo e nas versões [HTML](public/manual/manual-utilizacao-cms.html) e [PDF](public/manual/manual-utilizacao-cms.pdf), com capturas de demonstração sem dados privados.
+
+Para regenerar os formatos HTML e PDF após editar o Markdown: `python scripts/gerar-manual.py` (requer `reportlab` e fontes DejaVu no ambiente de documentação; não altera as dependências do site).

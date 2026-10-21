@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
@@ -54,5 +55,6 @@ export function AdminSidebar() {
         </div>
       </details>)}
     </nav>
+    <Link href="/manual/manual-utilizacao-cms.html" prefetch={false} target="_blank" rel="noreferrer" className="mt-4 rounded-xl border border-sun/30 px-3 py-3 text-sm font-bold text-sun hover:bg-sun/10">Manual de utilização ↗</Link>
   </aside>;
 }
