@@ -38,20 +38,7 @@ export function LivingBackdrop({ page = false }: { page?: boolean }) {
       <div className="future-parallax">
         <div className="aurora aurora-one" />
         <div className="aurora aurora-two" />
-        <div className="future-grid" />
-        <div className="future-horizon" />
-        <div className="future-stars">
-          {Array.from({ length: 14 }, (_, i) => (
-            <i
-              key={i}
-              style={{
-                left: `${(i * 37 + 9) % 100}%`,
-                top: `${(i * 23 + 13) % 100}%`,
-                animationDelay: `${-i * 0.7}s`,
-              }}
-            />
-          ))}
-        </div>
+
       </div>
     </div>
   );

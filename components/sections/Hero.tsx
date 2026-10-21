@@ -104,9 +104,9 @@ export function Hero() {
         <StageArtwork />
       </div>
       <div className="hero-bottom">
-        <span className="future-index">01 — O FUTURO TEM RAÍZES</span>
+        <span className="future-index">TEATRO VIVO. CULTURA EM MOVIMENTO.</span>
         <Link href="#quem-somos">
-          Entre no nosso universo <ArrowDown size={18} />
+          Conheça a nossa história <ArrowDown size={18} />
         </Link>
         <span>DESDE 1987</span>
       </div>

@@ -4,7 +4,7 @@ import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
 import { useThemeSettings } from "@/hooks/useThemeSettings";
 import { ArrowDown, ArrowUpRight, Asterisk } from "lucide-react";
-import { MozambiqueMap } from "@/components/art/MozambiqueMap";
+import { StageArtwork } from "@/components/ui/StageArtwork";
 import { useSection, text } from "@/components/publicCms";
 export function FitiHero() {
   const { settings } = useThemeSettings();
@@ -85,7 +85,7 @@ export function FitiHero() {
             </Link>
           </div>
         </div>
-        <div className="fiti-hero-map"><MozambiqueMap /><p>DAQUI, PARA TODOS OS PALCOS.</p><a href="#programacao">Descobrir a programação ↗</a></div>
+        <StageArtwork fiti />
       </div>
       <div className="hero-bottom">
         <Link href="/">← Associação Girassol</Link>
