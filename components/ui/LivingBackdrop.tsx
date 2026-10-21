@@ -1,15 +1,14 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 
-/** Painted scenery, independent from the text and from the CMS content. */
 export function LivingBackdrop({ page = false }: { page?: boolean }) {
   const layer = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (page || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (page) return;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
     function move(event: PointerEvent) {
-      if (event.pointerType === "touch") return;
+      if (reduced.matches || event.pointerType === "touch") return;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         layer.current?.style.setProperty(
@@ -34,32 +33,24 @@ export function LivingBackdrop({ page = false }: { page?: boolean }) {
       className={`living-backdrop ${page ? "living-backdrop-page" : "living-backdrop-hero"}`}
       aria-hidden="true"
     >
-      <div className="paint-parallax">
-        <span className="paint-cloud paint-cloud-coral" />
-        <span className="paint-cloud paint-cloud-sun" />
-        <span className="paint-cloud paint-cloud-lilac" />
-        <svg
-          className="paint-ribbon"
-          viewBox="0 0 1440 900"
-          preserveAspectRatio="none"
-        >
-          <path d="M-120 720C170 300 300 1030 650 620S1060 70 1560 280" />
-          <path d="M-100 780C170 360 300 1090 650 680S1060 130 1560 340" />
-        </svg>
-        <svg className="paint-doodles" viewBox="0 0 1440 900">
-          <g
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-          >
-            <path d="M90 140l12-28m-4 42 30-10m-43 6-21-15M1200 650q-80 30 0 60t0 60M620 70q30-30 60 0t60 0" />
-            <circle cx="1350" cy="180" r="20" />
-            <path d="m530 770 12-24 12 24 26 4-19 19 4 26-23-12-23 12 4-26-19-19z" />
-          </g>
-        </svg>
+      <div className="future-parallax">
+        <div className="aurora aurora-one" />
+        <div className="aurora aurora-two" />
+        <div className="future-grid" />
+        <div className="future-horizon" />
+        <div className="future-stars">
+          {Array.from({ length: 14 }, (_, i) => (
+            <i
+              key={i}
+              style={{
+                left: `${(i * 37 + 9) % 100}%`,
+                top: `${(i * 23 + 13) % 100}%`,
+                animationDelay: `${-i * 0.7}s`,
+              }}
+            />
+          ))}
+        </div>
       </div>
-      <div className="paint-grain" />
     </div>
   );
 }

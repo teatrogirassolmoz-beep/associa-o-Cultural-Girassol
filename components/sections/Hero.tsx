@@ -3,12 +3,14 @@ import Link from "next/link";
 import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
 import { useThemeSettings } from "@/hooks/useThemeSettings";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Asterisk } from "lucide-react";
 import { StageArtwork } from "@/components/ui/StageArtwork";
 import { useSection, text } from "@/components/publicCms";
 export function Hero() {
   const { settings } = useThemeSettings();
   const f = useSection("home_hero");
+  const title = text(f.title, "Associação Cultural Girassol");
+  const isDefaultTitle = title === "Associação Cultural Girassol";
   return (
     <section id="inicio" className="festival-hero">
       <LivingBackdrop />
@@ -23,6 +25,10 @@ export function Hero() {
         />
       )}
       <div className="hero-layout">
+        <div className="future-manifesto" aria-hidden="true">
+          <span>HUMANO POR NATUREZA.</span>
+          <span>EXTRAORDINÁRIO POR ESCOLHA.</span>
+        </div>
         <div className="hero-copy">
           {settings.hero_logo_url ? (
             <ManagedLogo
@@ -36,7 +42,29 @@ export function Hero() {
             <span />
             {text(f.eyebrow, "Teatro • juventude • memória")}
           </p>
-          <h1>{text(f.title, "Associação Cultural Girassol")}</h1>
+          <h1
+            className={
+              isDefaultTitle
+                ? "future-title future-title-brand"
+                : "future-title"
+            }
+          >
+            {isDefaultTitle ? (
+              <>
+                <span className="future-title-prefix">
+                  Associação Cultural{" "}
+                </span>
+                <span className="future-title-name">
+                  Giras<span>sol</span>
+                  <i aria-hidden="true">
+                    <Asterisk />
+                  </i>
+                </span>
+              </>
+            ) : (
+              title
+            )}
+          </h1>
           <p className="hero-subtitle">
             {text(
               f.subtitle,
@@ -76,7 +104,7 @@ export function Hero() {
         <StageArtwork />
       </div>
       <div className="hero-bottom">
-        <span>ARTE QUE CRIA PONTES.</span>
+        <span className="future-index">01 — ENTRE NO IMPREVISÍVEL</span>
         <Link href="#quem-somos">
           Entre no nosso universo <ArrowDown size={18} />
         </Link>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
 import { useThemeSettings } from "@/hooks/useThemeSettings";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Asterisk } from "lucide-react";
 import { StageArtwork } from "@/components/ui/StageArtwork";
 import { useSection, text } from "@/components/publicCms";
 export function FitiHero() {
@@ -23,6 +23,10 @@ export function FitiHero() {
         />
       )}
       <div className="hero-layout">
+        <div className="future-manifesto" aria-hidden="true">
+          <span>O PALCO NÃO TEM LIMITES.</span>
+          <span>O ENCONTRO TAMBÉM NÃO.</span>
+        </div>
         <div className="hero-copy">
           <p className="hero-eyebrow">
             <span />
@@ -37,7 +41,10 @@ export function FitiHero() {
             />
           ) : null}
           <p className="fiti-wordmark" aria-hidden="true">
-            FITI<span>↗</span>
+            FI<span>TI</span>
+            <i aria-hidden="true">
+              <Asterisk />
+            </i>
           </p>
           <h1>
             {text(f.title, "FITI – Festival Internacional Teatro de Inverno")}
