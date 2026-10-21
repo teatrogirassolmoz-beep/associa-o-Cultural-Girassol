@@ -54,6 +54,7 @@ export function PublicFiti() {
         <Navbar settings={settings as any} />
         <main className="public-content relative z-10">
           {sections.map((s) => {
+            if (s.section_key === "fiti_partners") return null;
             const Component = map[s.section_key];
             return Component ? (
               <Fragment key={s.section_key}>
@@ -65,7 +66,8 @@ export function PublicFiti() {
           {!sections.some((s) => s.section_key === "fiti_contact") && (
             <Members fiti />
           )}
-        </main>
+          {sections.some((s) => s.section_key === "fiti_partners") && <FitiPartners />}
+      </main>
         <a
           aria-label="WhatsApp"
           className="fixed bottom-20 right-4 z-40 rounded-full bg-sun px-5 py-3 font-bold text-black shadow-2xl shadow-sun/30"

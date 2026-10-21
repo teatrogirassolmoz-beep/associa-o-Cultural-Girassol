@@ -35,7 +35,8 @@ const sectionGuidance: Record<string, { text: string; target?: string; targetLab
   home_impact: { text: 'Aqui edita apenas o título de apresentação. Os números e indicadores são geridos em Conteúdos → Impacto.', target: 'Impacto', targetLabel: 'Abrir Impacto' },
   home_gallery: { text: 'Aqui edita apenas o título de apresentação. As fotografias são geridas em Conteúdos → Galeria.', target: 'Galeria', targetLabel: 'Abrir Galeria' },
   home_news: { text: 'Aqui edita apenas o título de apresentação. As notícias completas são criadas em Conteúdos → Notícias.', target: 'Notícias', targetLabel: 'Abrir Notícias' },
-  home_partners: { text: 'Aqui edita apenas o título de apresentação. Os logotipos e dados são geridos em Conteúdos → Parceiros.', target: 'Parceiros', targetLabel: 'Abrir Parceiros' },
+  home_partners: { text: 'Esta faixa aparece no fim do conteúdo, antes do rodapé. Edite aqui o título. Em Conteúdos → Parceiros, carregue os logótipos, indique as ligações e a ordem e active Página inicial ou FITI para escolher onde aparecem.', target: 'Parceiros', targetLabel: 'Abrir Parceiros' },
+  fiti_partners: { text: 'A faixa de logótipos aparece no fim do FITI. Os parceiros, imagens, ligações e ordem são geridos em Conteúdos → Parceiros; active a opção FITI para os mostrar nesta página.', target: 'Parceiros', targetLabel: 'Abrir Parceiros' },
   home_contact: { text: 'Edite aqui o título da área. Email, WhatsApp e localização são geridos em Site e identidade → Aparência; redes sociais em Redes sociais.' },
 };
 

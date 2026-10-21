@@ -4900,3 +4900,39 @@ body:has(.festival-site dialog[open]) {
 /* One viewport-sized brush layer follows visitors through every public section. */
 .site-pigment-interaction { position: fixed; inset: 0; z-index: 30; pointer-events: none; overflow: hidden; }
 .site-pigment-interaction .pigment-canvas { mask-image: none; }
+
+/* A permanent partner area near the end of each page, with a continuous logo roll. */
+.festival-site .public-content > section.partner-conveyor { padding: 48px 0 54px; overflow: hidden; border-block: 1px solid #7f39343d; }
+.partner-conveyor-heading { max-width: 1300px; margin: 0 auto 28px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.partner-conveyor-heading .festival-eyebrow { margin-bottom: 10px; }
+.partner-conveyor-heading h2 { font: clamp(35px, 4vw, 58px)/1 var(--font-festival), sans-serif; color: #532940; }
+.partner-motion-toggle { display: inline-flex; gap: 8px; align-items: center; border: 1px solid #86394760; border-radius: 24px; padding: 10px 15px; font-size: 11px; color: #532940; flex-shrink: 0; }
+.partner-conveyor-window { overflow: hidden; }
+.partner-conveyor-track { display: flex; width: max-content; }
+.partner-conveyor.is-moving .partner-conveyor-track { animation: partner-roll 36s linear infinite; }
+.partner-conveyor-copy { display: flex; align-items: stretch; gap: 22px; padding-right: 22px; min-width: 100vw; justify-content: space-around; }
+.partner-conveyor-tile { flex: 0 0 210px; width: 210px; min-height: 144px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 18px 20px 12px; background: #ffdf79; border: 1px solid #86394735; border-radius: 6px; color: #532940; }
+.fiti-site .partner-conveyor-tile { background: #ffca8b; }
+.partner-conveyor-tile > img { width: 100%; height: 76px; object-fit: contain; }
+.partner-name-mark { display: flex; align-items: center; justify-content: center; height: 76px; font: 28px/1.1 var(--font-festival), sans-serif; text-align: center; }
+.partner-tile-caption { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 12px; font-size: 9px; text-align: center; line-height: 1.5; }
+.partner-tile-caption > svg { flex-shrink: 0; }
+.partner-conveyor a:hover { border-color: #a51c63; background: #ffe996; }
+.partner-conveyor:is(:hover,.is-paused) .partner-conveyor-track, .festival-site[data-motion-paused="true"] .partner-conveyor-track { animation-play-state: paused; }
+.partner-conveyor-window:focus-within { overflow-x: auto; }
+.partner-conveyor-window:focus-within .partner-conveyor-track { animation: none; }
+.partner-conveyor-empty { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; max-width: 1244px; padding: 24px 28px; margin: auto; border-block: 1px solid #86394735; color: #532940; }
+.partner-conveyor-empty p { font-size: 14px; }
+.partner-conveyor-empty button { font-size: 12px; text-decoration: underline; }
+@keyframes partner-roll { to { transform: translateX(-50%); } }
+@media(max-width:700px) {
+ .partner-conveyor-heading { padding-inline: 20px; }
+ .partner-conveyor-copy { gap: 14px; padding-right: 14px; }
+ .partner-conveyor-tile { flex-basis: 170px; width: 170px; padding: 16px; min-height: 132px; }
+ .partner-conveyor-tile > img { height: 65px; }
+ .partner-motion-toggle { padding: 10px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .partner-conveyor-window { overflow-x: auto; }
+ .partner-conveyor-copy[aria-hidden="true"] { display: none; }
+}

@@ -50,6 +50,7 @@ export function PublicHome() {
       <Navbar settings={settings as any} />
       <main className="public-content relative z-10">
         {sections.map((s) => {
+          if (s.section_key === "home_partners") return null;
           const Component = map[s.section_key];
           return Component ? (
             <Fragment key={s.section_key}>
@@ -60,6 +61,7 @@ export function PublicHome() {
           ) : null;
         })}
         {!sections.some((s) => s.section_key === "home_contact") && <Members />}
+        {sections.some((s) => s.section_key === "home_partners") && <Partners />}
       </main>
       <a
         aria-label="WhatsApp"
