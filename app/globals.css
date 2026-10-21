@@ -4857,3 +4857,42 @@ body:has(.festival-site dialog[open]) {
 .fiti-site .festival-day-agenda { background: #ffb65d; }
 .fiti-site .schedule-filters :is(input,select) { background: #ffdf77 !important; }
 .festival-site .scenery-control { background: #ffdc58; }
+
+/* The notices become a floating cultural capsule, detached from the footer. */
+.floating-notices {
+  left: 50%; right: auto; bottom: max(20px, env(safe-area-inset-bottom));
+  transform: translateX(-50%); width: min(720px, calc(100% - 40px));
+  height: 54px; border: 1px solid #9c3a554f; border-radius: 28px;
+  box-shadow: 0 10px 32px #65233b28, 0 2px 0 #fff3ab inset;
+  background: #ffdb52; font-family: inherit; color: #532940;
+}
+.floating-notices .ribbon-label { border-radius: 28px 0 0 28px; padding: 0 16px; gap: 8px; background: #a51c63; color: #fff9ed; font-family: inherit; font-size: 10px; font-weight: 800; }
+.floating-notices .ribbon-copy a { font-family: inherit; font-size: 11px; padding: 16px 20px; }
+.floating-notices .ribbon-pause, .ribbon-minimise { width: 38px; flex-shrink: 0; display: grid; place-items: center; background: transparent; border: 0; color: #532940; }
+.ribbon-minimise { border-radius: 0 28px 28px 0; margin-right: 7px; }
+.floating-notices-dot { width: 7px; height: 7px; background: #ffdb52; border-radius: 50%; }
+.floating-notices [hidden] { display: none; }
+.floating-notices.is-compact { width: auto; height: 46px; }
+.floating-notices.is-compact .ribbon-label { border-radius: 28px; }
+.floating-notices-panel { position: absolute; bottom: 66px; left: 0; width: 100%; max-height: min(480px, 65dvh); overflow-y: auto; border: 1px solid #9c3a5555; border-radius: 18px; background: #ffd953; padding: 24px; box-shadow: 0 12px 45px #65233b30; color: #532940; }
+.is-compact .floating-notices-panel { width: min(440px, calc(100vw - 40px)); left: 50%; transform: translateX(-50%); }
+.floating-notices-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.floating-notices-heading p { font-size: 10px; letter-spacing: .12em; font-weight: 800; }
+.floating-notices-heading button { padding: 7px; }
+.floating-notices-title { font: 34px/1.1 var(--font-festival), sans-serif; margin: 12px 0 20px; }
+.floating-notices-panel nav a { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 15px 0; border-top: 1px solid #9c3a5540; font-size: 13px; line-height: 1.6; }
+.floating-notices-panel nav a svg { flex-shrink: 0; }
+.floating-notices-panel nav a:hover { text-decoration: underline; }
+.floating-notices:has(.floating-notices-panel) .ribbon-track { animation-play-state: paused; }
+.fiti-site .floating-notices, .fiti-site .floating-notices-panel { background: #ffb36e; }
+@media(max-width:700px) {
+ .floating-notices { width: calc(100% - 24px); bottom: max(14px, env(safe-area-inset-bottom)); height: 50px; }
+ .floating-notices .ribbon-label { padding: 0 12px; font-size: 9px; gap: 5px; }
+ .floating-notices .ribbon-label > svg { display: none; }
+ .floating-notices .ribbon-copy a { font-size: 10px; padding-inline: 14px; }
+ .floating-notices .ribbon-pause, .ribbon-minimise { width: 30px; }
+ .floating-notices-panel { padding: 20px; bottom: 61px; }
+ .floating-notices-title { font-size: 29px; }
+ .festival-site .scenery-control { bottom: 84px; }
+ .festival-site > a[aria-label="WhatsApp"] { bottom: 84px; }
+}
