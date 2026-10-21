@@ -29,6 +29,7 @@ export const companies = [{name:'Companhias e artistas em actualização',countr
 export const workshops = [{title:'Formação em actualização',trainer:'Formadores a anunciar',date:'Datas a anunciar',time:'Horários a anunciar',venue:'Locais a anunciar',vacancies:'Sujeitas a inscrição',target:'Actores, técnicos, produtores, estudantes e jovens criadores'}];
 export const archive = ['2025','2024','2023'].map(year=>({year,theme:'Memória FITI',dates:'Arquivo em organização',locations:'Maputo e espaços parceiros',countries:'Moçambique e convidados internacionais',companies:'Companhias participantes documentadas no arquivo institucional'}));
 
+import { isCurrentField } from "./cmsFields";
 import { editorialFields } from "./editorialFields";
 import { presentationDefaults } from "./presentation";
 import type { MediaAsset, NavigationItem, Page, PageSection, SectionField, ThemeSettings } from '@/types/cms';
@@ -85,6 +86,9 @@ const projectEditorial:[string,string,string][]=[['side_note','Frase de apoio','
 for(const [name,label,value] of projectEditorial)cmsFallbackFields.home_projects.push(field('home_projects',name,label,value,'text',300+cmsFallbackFields.home_projects.length));
 cmsFallbackFields.fiti_about.push(field('fiti_about','institutional_note','Nota institucional',mandatoryFitiPhrase,'textarea',300));
 cmsFallbackFields.home_what_we_do.push(field('home_what_we_do','cards','Áreas de actuação',JSON.stringify(whatWeDo),'textarea',300));
+for(const section of ['home_hero','fiti_hero'])cmsFallbackFields[section].push(field(section,'background_video_url','Vídeo opcional da abertura (URL)','','url',400));
+cmsFallbackFields.fiti_press.push(field('fiti_press','cards','Cartões de imprensa (JSON)',JSON.stringify(['Informações oficiais','Materiais de divulgação','Contactos de imprensa'].map(title=>({title,description:'A organização disponibiliza conteúdos institucionais mediante pedido e confirmação dos dados de contacto.'}))),'textarea',400));
+for(const [section,fields] of Object.entries(cmsFallbackFields))cmsFallbackFields[section]=fields.filter(f=>isCurrentField(section,f.field_key));
 export const cmsFallbackTheme: ThemeSettings = {primary_color:'#F7B500',secondary_color:'#111111',accent_color:'#F97316',background_color:'#050505',text_color:'#ffffff',card_color:'#18181b',button_style:'rounded',dominant_yellow_enabled:true,animated_background_enabled:true,animated_logo_enabled:true,background_motion_intensity:'medium',particles_enabled:true,stage_lights_enabled:true,border_radius:'1.5rem',font_heading:'Playfair Display',font_body:'Inter',background_type:'mixed',gradient_from:'#F7B500',gradient_to:'#050505',background_image_url:'',background_video_url:'',site_logo_url:'',site_logo_alt:'Associação Cultural Girassol',fiti_logo_url:'',fiti_logo_alt:'FITI – Festival Internacional Teatro de Inverno',favicon_url:'',...presentationDefaults,footer_logo_url:'',navbar_logo_url:'',hero_logo_url:'',animated_logo_url:'',animated_logo_opacity:0.08,animated_logo_speed:42,overlay_opacity:0.55};
 export const cmsFallbackNavigation: NavigationItem[] = [
   ...[['#inicio','Início'],['#quem-somos','Quem Somos'],['#historia','História'],['#projectos','Projectos'],['#impacto','Impacto'],['#galeria','Galeria'],['#noticias','Notícias'],['#parceiros','Parceiros'],['#contacto','Contacto'],['/fiti','FITI']].map(([url,label],i)=>({id:`main-${i}`,location:'main_menu' as const,label,url,order_index:i+1,is_active:true,is_external:false})),

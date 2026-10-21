@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import type { PageSection, SectionField } from '@/types/cms';
+import { cmsFallbackFields } from '@/lib/data';
+import { selectEditableFields } from '@/lib/cmsFields';
 import { supabase } from '@/lib/supabase';
 import { EditableField } from './EditableField';
 import { WhatWeDoCardsField } from './WhatWeDoCardsField';
@@ -61,18 +63,19 @@ export async function saveSectionField({ sectionId, fieldKey, fieldLabel, fieldT
 }
 
 export function SectionEditor({ section, fields }: { section: PageSection; fields: SectionField[] }) {
+  const editableFields=useMemo(()=>selectEditableFields(section.section_key,fields,cmsFallbackFields[section.section_key]??[]),[fields,section.section_key]);
   const [values, setValues] = useState<Record<string, string>>({});
-  const [savedFields, setSavedFields] = useState<SectionField[]>(fields);
+  const [savedFields, setSavedFields] = useState<SectionField[]>(editableFields);
   const [message, setMessage] = useState('');
   const [saving, setSaving] = useState(false);
   const [isActive, setIsActive] = useState(section.is_active);
 
   useEffect(() => {
-    setSavedFields(fields);
-    setValues(Object.fromEntries(fields.map((field) => [field.field_key, field.field_type === 'json' ? JSON.stringify(field.field_json ?? {}, null, 2) : field.field_value ?? ''])));
+    setSavedFields(editableFields);
+    setValues(Object.fromEntries(editableFields.map((field) => [field.field_key, field.field_type === 'json' ? JSON.stringify(field.field_json ?? {}, null, 2) : field.field_value ?? ''])));
     setMessage('');
     setIsActive(section.is_active);
-  }, [fields, section.id, section.is_active]);
+  }, [editableFields, section.id, section.is_active]);
 
   const dirtyKeys = useMemo(() => savedFields.filter((field) => values[field.field_key] !== (field.field_type === 'json' ? JSON.stringify(field.field_json ?? {}, null, 2) : field.field_value ?? '')).map((field) => field.field_key), [savedFields, values]);
 
