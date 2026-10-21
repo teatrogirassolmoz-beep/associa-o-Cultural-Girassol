@@ -296,3 +296,5 @@ Testes de datas, filtros, repetições, fuso e exportação de calendário:
 ```bash
 node --test tests/fitiCalendar.test.mjs tests/community.test.mjs
 ```
+
+O destaque do FITI na página inicial e a abertura do festival incluem o contorno geográfico de Moçambique, com Maputo assinalado. Fonte do contorno: Natural Earth (domínio público), distribuído por [datasets/geo-countries](https://github.com/datasets/geo-countries). O SVG local é simplificado para apresentação editorial; não representa locais de espectáculos. Os dias do calendário mostram horários e títulos em ecrãs largos e indicadores de categoria em telemóveis, mantendo a agenda detalhada acessível ao seleccionar uma data.

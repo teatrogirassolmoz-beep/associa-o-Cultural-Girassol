@@ -4621,3 +4621,73 @@ body:has(.festival-site dialog[open]) {
     font-size: 9px;
   }
 }
+
+/* FITI: a festival with a territory, and a programme you can read at a glance. */
+.fiti-spotlight {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: .8fr 1.2fr; align-items: center;
+  gap: 5%; padding: 70px max(6vw, 24px) 95px;
+  background: radial-gradient(ellipse at 15% 50%, #5e226b 0, transparent 55%), #170c32;
+  color: #fff9ed; border-block: 1px solid #ffffff20;
+}
+.fiti-spotlight::after { content: "FITI"; position: absolute; z-index: -1; right: -1%; bottom: -14%; font: 450px/.8 var(--font-festival), sans-serif; color: #ffffff03; pointer-events: none; }
+.fiti-spotlight-map { position: relative; max-width: 360px; width: 100%; margin: auto; }
+.mozambique-art { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 24px #ed28952a); }
+.fiti-spotlight-map > span { display: block; font-size: 11px; letter-spacing: .2em; text-align: center; color: #ffcf58; }
+.fiti-spotlight-copy { max-width: 700px; }
+.fiti-spotlight-copy h2 { font: clamp(76px, 9vw, 148px)/.88 var(--font-festival), sans-serif; letter-spacing: -.025em; margin: 22px 0; color: #fff9ed; }
+.fiti-spotlight-copy h2 em { font-style: normal; color: #ffcd38; }
+.fiti-spotlight-copy > p:not(.festival-eyebrow) { max-width: 520px; color: #decee8; line-height: 1.8; }
+.fiti-spotlight-copy > .fiti-spotlight-name { font-size: 21px; font-weight: 700; color: #fff9ed !important; line-height: 1.3 !important; margin-bottom: 18px; }
+.fiti-spotlight-index { position: absolute; bottom: 25px; right: 6vw; font-size: 10px; letter-spacing: .16em; color: #d9bddc; }
+.fiti-hero-map { width: min(100%, 430px); justify-self: center; text-align: center; position: relative; }
+.fiti-hero-map .mozambique-art { max-height: 530px; }
+.fiti-hero-map p { font-size: 11px; letter-spacing: .18em; color: #ffda72; margin: 14px 0; }
+.fiti-hero-map a { display: inline-block; color: #fff9ed; font-size: 13px; padding: 10px 0; border-bottom: 1px solid #ffcd38; }
+.festival-calendar-layout { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 26px; }
+.festival-calendar { background: linear-gradient(145deg, #30204a, #211237); padding: 20px; border-radius: 14px; box-shadow: 0 20px 60px #08031533; }
+.calendar-intro { padding: 6px 10px 20px; border-bottom: 1px solid #ffffff15; margin-bottom: 8px; }
+.calendar-intro > span { font-size: 9px; letter-spacing: .18em; color: #ffda72; }
+.calendar-intro p { font: 27px/1.2 var(--font-festival), sans-serif; margin-top: 6px; color: #fff9ed; }
+.festival-calendar td { height: 94px; }
+.festival-calendar td > button { min-height: 94px; align-items: stretch; justify-content: flex-start; padding: 9px 5px; border-radius: 7px; background: #ffffff03; transition: background .2s, border-color .2s; }
+.festival-calendar td > button > span { font-size: 20px; font-weight: 600; text-align: left; padding-left: 3px; }
+.festival-calendar td > button > small { margin-top: auto; padding: 0 3px; }
+.calendar-cell-previews { display: grid; gap: 3px; min-width: 0; }
+.calendar-cell-previews > span { display: block; min-width: 0; font-size: 8px; line-height: 1.5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-left: 2px solid #ec2896; background: #ec28961a; padding: 2px 3px; text-align: left; color: #fff4fa; }
+.calendar-cell-previews > span[data-tone="gold"] { border-color: #ffcf38; background: #ffcf381a; }
+.calendar-cell-previews > span[data-tone="green"] { border-color: #4cdb9d; background: #4cdb9d1a; }
+.calendar-cell-previews > span[data-tone="blue"] { border-color: #60b6ff; background: #60b6ff1a; }
+.calendar-cell-previews > span[data-tone="orange"] { border-color: #ffa75c; background: #ffa75c1a; }
+.calendar-cell-previews b { display: block; font-size: 8px; }
+.calendar-cell-previews em { font-style: normal; font-size: 8px; text-align: left; }
+.festival-day-agenda { padding: 20px; border: 1px solid #ffffff20; border-radius: 14px; background: #ffffff03; min-width: 0; }
+.festival-day-agenda > header { border-bottom: 1px solid #ffffff20; padding-bottom: 18px; }
+@media(max-width: 1000px) { .festival-calendar-layout { grid-template-columns: 1fr; } }
+@media(max-width: 700px) {
+ .fiti-spotlight { grid-template-columns: 1fr; gap: 30px; padding-block: 40px 75px; }
+ .fiti-spotlight-map { max-width: 190px; }
+ .fiti-spotlight-copy h2 { font-size: 92px; }
+ .fiti-spotlight-copy .hero-actions { margin-top: 24px; }
+ .fiti-hero-map { max-width: 260px; }
+ .fiti-hero-map .mozambique-art { max-height: 330px; }
+ .festival-calendar { padding: 10px 5px; border-radius: 10px; }
+ .festival-calendar table { border-spacing: 3px; }
+ .festival-calendar td { height: 64px; }
+ .festival-calendar td > button { min-height: 64px; padding: 6px 2px; gap: 3px; }
+ .festival-calendar td > button > span { font-size: 17px; }
+ .calendar-cell-previews > span { height: 4px; padding: 0; font-size: 0; border-left: 0; background: #ec2896; border-radius: 2px; }
+ .calendar-cell-previews > span[data-tone="gold"] { background: #ffcf38; }
+ .calendar-cell-previews > span[data-tone="green"] { background: #4cdb9d; }
+ .calendar-cell-previews > span[data-tone="blue"] { background: #60b6ff; }
+ .calendar-cell-previews > span[data-tone="orange"] { background: #ffa75c; }
+ .calendar-cell-previews b, .calendar-cell-previews em { display: none; }
+ .festival-day-agenda { padding: 16px; }
+}
+.festival-site .public-content > section.fiti-spotlight {
+ background: radial-gradient(ellipse at 15% 50%, #5e226b 0, transparent 55%), #170c32;
+ color: #fff9ed;
+}
+.festival-site .public-content > section.fiti-spotlight:before { display: none; }
+.fiti-spotlight .festival-button { background: #ffcd38; color: #241137; box-shadow: none; }
+.fiti-spotlight .festival-button-outline { background: transparent; color: #fff9ed; border-color: #ffffff70; }

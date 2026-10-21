@@ -6,6 +6,7 @@ import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { MotionControl } from "@/components/ui/MotionControl";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { FitiSpotlight } from "@/components/sections/FitiSpotlight";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { MissionVision } from "@/components/sections/MissionVision";
@@ -54,6 +55,7 @@ export function PublicHome() {
             <Fragment key={s.section_key}>
               {s.section_key === "home_contact" && <Members />}
               <Component />
+              {s.section_key === "home_hero" && <FitiSpotlight />}
             </Fragment>
           ) : null;
         })}

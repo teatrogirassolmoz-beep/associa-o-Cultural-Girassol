@@ -387,6 +387,7 @@ export function Program() {
             {view === "calendar" && month ? (
               <div className="festival-calendar-layout">
                 <div className="festival-calendar">
+                  <div className="calendar-intro"><span>O SEU ROTEIRO / FITI</span><p>Cada dia, um novo encontro.</p></div>
                   <table>
                     <caption className="sr-only">
                       Calendário de{" "}
@@ -423,10 +424,8 @@ export function Program() {
                       {monthGrid(month).map((week, i) => (
                         <tr key={i}>
                           {week.map((key, j) => {
-                            const count = key
-                              ? dated.filter((event) => event.date === key)
-                                  .length
-                              : 0;
+                            const cellEvents = key ? dated.filter((event) => event.date === key) : [];
+                            const count = cellEvents.length;
                             return (
                               <td key={key ?? `empty-${j}`}>
                                 {key && (
@@ -446,6 +445,7 @@ export function Program() {
                                     onClick={() => selectDay(key)}
                                   >
                                     <span>{Number(key.slice(-2))}</span>
+                                    <div className="calendar-cell-previews" aria-hidden="true">{cellEvents.slice(0, 2).map(event => <span key={event.id} data-tone={categoryTone(event.category)}><b>{event.time || "A confirmar"}</b>{event.title}</span>)}{count > 2 && <em>+{count - 2} actividades</em>}</div>
                                     {count > 0 && (
                                       <small>
                                         <i />
