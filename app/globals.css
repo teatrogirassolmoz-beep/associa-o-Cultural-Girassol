@@ -2941,3 +2941,1683 @@ body:has(.festival-site dialog[open]) {
     transition: none;
   }
 }
+
+/* FITI programme: hierarchy informed by the supplied Circuito screenshots. */
+.fiti-site {
+  --festival-night: #1b1038;
+  --festival-paper: #fffcf5;
+  --festival-pink: #ed2895;
+  --festival-gold: #ffc528;
+}
+.fiti-site .festival-nav {
+  background: #1b1038f5;
+  border-color: #ffffff22;
+  color: #fff8e8;
+}
+.fiti-site .festival-brand > span,
+.fiti-site .festival-nav-links > a {
+  color: #fff8e8;
+}
+.fiti-site .festival-brand img {
+  mix-blend-mode: normal;
+  background: white;
+  border-radius: 2px;
+}
+.fiti-site .area-menu-trigger {
+  color: white;
+  border-color: #ffffff66;
+  background: transparent;
+}
+.fiti-site .area-menu-trigger:hover {
+  background: #ffffff15;
+}
+.fiti-site .festival-nav-links .nav-fiti {
+  background: #ffc528;
+  color: #1b1038;
+}
+.fiti-site .festival-hero-fiti {
+  background: #1b1038;
+  color: white;
+}
+.fiti-site .festival-hero-fiti .aurora-one {
+  opacity: 0.3;
+  background: conic-gradient(
+    from 100deg,
+    #a5f4ef00,
+    #34b3a6,
+    #9846aa,
+    #ee4a9b,
+    #a5f4ef00
+  );
+}
+.fiti-site .festival-hero-fiti .aurora-two {
+  opacity: 0.17;
+}
+.fiti-site .festival-hero-fiti .future-stars i {
+  background: #ffc528;
+}
+.fiti-site .festival-hero-fiti .future-manifesto,
+.fiti-site .festival-hero-fiti .hero-eyebrow,
+.fiti-site .festival-hero-fiti .hero-bottom {
+  color: #f3c65b !important;
+  border-color: #ffffff22;
+}
+.fiti-site .festival-hero-fiti .hero-copy h1 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  color: #fff9ed;
+  font-size: clamp(35px, 4vw, 55px);
+  line-height: 1.05;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+}
+.fiti-site .festival-hero-fiti .hero-subtitle {
+  color: #f5d895 !important;
+  font-size: 20px;
+}
+.fiti-site .festival-hero-fiti .hero-description {
+  color: #d7cce9 !important;
+}
+.fiti-site .festival-hero-fiti .fiti-wordmark {
+  color: #fff4d9;
+}
+.fiti-site .festival-hero-fiti .fiti-wordmark > span {
+  -webkit-text-stroke-color: #ffc528;
+}
+.fiti-site .festival-hero-fiti .festival-button {
+  background: #ffc528;
+  color: #23103d;
+}
+.fiti-site .festival-hero-fiti .festival-button-outline {
+  background: transparent;
+  color: #fff9ed;
+  border-color: #ffffff77;
+}
+.fiti-site .festival-hero-fiti .hero-bottom a {
+  color: #fff4d9;
+}
+.fiti-site .festival-hero-fiti .portal-coordinate,
+.fiti-site .festival-hero-fiti .portal-orbit-word,
+.fiti-site .festival-hero-fiti .portal-heart small {
+  color: #d5bfdc;
+}
+.fiti-site .festival-hero-fiti .portal-console {
+  background: #2c1c4ee6;
+  border-color: #ffffff33;
+}
+.fiti-site .festival-hero-fiti .portal-console > p,
+.fiti-site .festival-hero-fiti .portal-console small {
+  color: #eee0ff;
+}
+.fiti-site .festival-hero-fiti .portal-console button {
+  background: #ffffff0a;
+  color: #ffda73;
+  border-color: #ffffff44;
+}
+.fiti-site .public-content > section:not(.festival-hero) .font-display {
+  font-family: var(--font-festival), Impact, sans-serif;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  font-size: clamp(45px, 5vw, 73px);
+}
+.fiti-site .public-content > section.fiti-program-section,
+.fiti-site .public-content > section.fiti-workshops-section {
+  background: #1b1038;
+  color: #fff9ef;
+  padding: 90px 0;
+  overflow: visible;
+}
+.fiti-site .public-content > section.fiti-program-section:before,
+.fiti-site .public-content > section.fiti-workshops-section:before {
+  display: none;
+}
+.festival-section-inner {
+  max-width: 1300px;
+  padding: 0 28px;
+  margin: auto;
+}
+.festival-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 50px;
+  margin-bottom: 40px;
+}
+.festival-section-heading h2 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(58px, 7vw, 98px);
+  line-height: 1;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #fff9ef;
+  max-width: 850px;
+}
+.festival-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 750;
+  color: #ffca47;
+  margin-bottom: 18px;
+}
+.festival-edition-label {
+  max-width: 300px;
+  padding-bottom: 5px;
+}
+.festival-edition-label > span {
+  font-family: var(--font-festival), Impact, sans-serif;
+  color: #ed2895;
+  font-size: 27px;
+}
+.festival-edition-label > p,
+.festival-section-heading > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d9cce5;
+  max-width: 330px;
+}
+.schedule-filters {
+  display: flex;
+  align-items: end;
+  gap: 15px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #ffffff25;
+  flex-wrap: wrap;
+}
+.schedule-filters > label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 650;
+  color: #dfd0eb;
+}
+.schedule-filters .schedule-search {
+  flex: 1;
+  position: relative;
+  min-width: 240px;
+}
+.schedule-search > svg {
+  position: absolute;
+  left: 15px;
+  bottom: 14px;
+  color: #efc45e;
+}
+.fiti-site .schedule-filters :is(input, select) {
+  background: #2a1c47 !important;
+  color: #fff8ed !important;
+  border: 1px solid #ffffff33 !important;
+  border-radius: 2px !important;
+  padding: 12px 14px;
+  min-height: 47px;
+  font-size: 12px;
+}
+.fiti-site .schedule-search input {
+  padding-left: 43px;
+  width: 100%;
+}
+.schedule-search input::placeholder {
+  color: #bfb0cd;
+}
+.schedule-filters select {
+  max-width: 240px;
+  min-width: 180px;
+}
+.schedule-clear {
+  font-size: 11px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #ffc528;
+  padding: 14px 0;
+}
+.schedule-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 28px 0 15px;
+}
+.schedule-month-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.schedule-month-nav h3 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  min-width: 240px;
+  text-align: center;
+  color: #fff7e8;
+}
+.schedule-month-nav button {
+  border: 1px solid #ffffff44;
+  padding: 8px;
+  color: #ffe5a0;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.schedule-month-nav button:hover {
+  background: #ffffff1a;
+}
+.schedule-month-nav button:disabled {
+  opacity: 0.3;
+}
+.schedule-view-toggle {
+  display: flex;
+  border: 1px solid #ffffff44;
+  border-radius: 3px;
+  padding: 3px;
+  gap: 3px;
+}
+.schedule-view-toggle > button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 11px;
+  padding: 10px 16px;
+  color: #d8c5e5;
+}
+.schedule-view-toggle > button[aria-pressed="true"] {
+  background: #ffc528;
+  color: #27123f;
+  font-weight: 750;
+}
+.schedule-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  font-size: 10px;
+  color: #b9a3cb;
+  margin-bottom: 24px;
+}
+.schedule-meta > button {
+  margin-left: auto;
+  color: #ffcf61;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.festival-days-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  align-items: baseline;
+  padding: 14px 0;
+  margin: 0 0 28px;
+  scrollbar-width: thin;
+  scrollbar-color: #8b6aab transparent;
+}
+.festival-days-strip > button {
+  color: #ffc528;
+  padding: 8px 8px 10px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 650;
+}
+.festival-days-strip > button:first-child {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 23px;
+  letter-spacing: 0.4px;
+}
+.festival-days-strip strong {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 29px;
+  font-weight: 400;
+  line-height: 1;
+}
+.festival-days-strip span {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.festival-days-strip > button[aria-pressed="true"] {
+  border-color: #fff9ed;
+  color: #fff9ed;
+}
+.festival-calendar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+.festival-calendar {
+  border: 1px solid #ffffff2a;
+  padding: 24px;
+  background: #24163f;
+  min-width: 0;
+}
+.festival-calendar table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  table-layout: fixed;
+}
+.festival-calendar th {
+  font-size: 10px;
+  font-weight: 750;
+  text-transform: uppercase;
+  color: #e1cde8;
+  padding: 10px 0 14px;
+}
+.festival-calendar abbr {
+  text-decoration: none;
+}
+.festival-calendar td {
+  vertical-align: top;
+  padding: 0;
+  height: 61px;
+}
+.festival-calendar td > button {
+  min-height: 61px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ffffff12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #bba6cf;
+  font-size: 15px;
+  border-radius: 2px;
+}
+.festival-calendar td > button:hover {
+  background: #ffffff12;
+  border-color: #ffe19a66;
+}
+.festival-calendar td > button[data-has-events="true"] {
+  background: #ffffff0a;
+  color: #ffda72;
+  border-color: #a280c544;
+  font-weight: 750;
+}
+.festival-calendar td > button[aria-pressed="true"] {
+  background: #b91c72;
+  color: white;
+  border-color: #ed2895;
+}
+.festival-calendar td > button[aria-current="date"] {
+  box-shadow: inset 0 -3px 0 #ffc528;
+}
+.festival-calendar td small {
+  font-size: 8px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.festival-calendar td i {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.calendar-legend {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  color: #c4acd1;
+  margin-top: 16px;
+  line-height: 1.5;
+  flex-wrap: wrap;
+}
+.calendar-legend > i {
+  width: 6px;
+  height: 6px;
+  background: #ffda72;
+  border-radius: 50%;
+}
+.calendar-legend > span {
+  width: 100%;
+  padding-left: 13px;
+  color: #a68eb8;
+}
+.festival-day-agenda {
+  min-width: 0;
+}
+.festival-day-agenda > header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ffffff2a;
+  padding-bottom: 18px;
+  margin-bottom: 8px;
+}
+.festival-day-agenda > header > span {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 72px;
+  line-height: 1;
+  color: #ed2895;
+}
+.festival-day-agenda > header p {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #c59ed3;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.festival-day-agenda > header h3 {
+  font-size: 13px;
+  text-transform: capitalize;
+  color: #fff1dc;
+}
+.festival-event {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 18px;
+  padding: 24px 0;
+  border-bottom: 1px solid #ffffff20;
+  min-width: 0;
+}
+.festival-event:nth-of-type(2n) {
+  background: #ffffff05;
+}
+.festival-event-visual {
+  position: relative;
+  width: 90px;
+  height: 110px;
+  overflow: hidden;
+  background: #36214e;
+  align-self: start;
+}
+.festival-event-visual > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.festival-event-visual > span {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  background: #26163f88;
+  color: #f9eaca;
+  font-size: 7px;
+  padding: 3px;
+  text-align: center;
+}
+.festival-event-kicker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 10px;
+  color: #d4bedf;
+  line-height: 1.4;
+}
+.festival-event-kicker > span:first-child {
+  background: #d9258d;
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 6px;
+  text-transform: uppercase;
+}
+.festival-event-workshop .festival-event-kicker > span:first-child {
+  background: #ffca36;
+  color: #27103f;
+}
+.festival-event-copy h4 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  color: #fff9ed;
+  font-size: 27px;
+  line-height: 1.05;
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+}
+.festival-event-artist {
+  color: #ecdef1;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.festival-event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 10px;
+  color: #d2bedf;
+  margin-top: 12px;
+}
+.festival-event-meta > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.4;
+}
+.festival-event-extra {
+  font-size: 10px;
+  color: #b79bc9;
+  margin-top: 8px;
+}
+.festival-event-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.festival-event-links > button,
+.festival-event-links > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 750;
+  color: #ffc528;
+}
+.schedule-day-empty {
+  padding: 32px 0;
+  color: #d4bfdc;
+}
+.schedule-day-empty h4 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 31px;
+  line-height: 1.15;
+  color: #e5c6e9;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+.schedule-day-empty p {
+  font-size: 12px;
+  line-height: 1.8;
+  max-width: 360px;
+}
+.schedule-day-empty > button {
+  color: #ffcc52;
+  font-size: 12px;
+  margin-top: 18px;
+  text-decoration: underline;
+}
+.festival-agenda-list {
+  padding-top: 10px;
+}
+.festival-agenda-day {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 24px;
+  margin-bottom: 35px;
+}
+.festival-agenda-day > header {
+  padding-top: 24px;
+}
+.festival-agenda-day > header strong {
+  display: block;
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 1;
+  color: #ed2895;
+}
+.festival-agenda-day > header span {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #f7e8fb;
+  display: block;
+  line-height: 1.8;
+  max-width: 90px;
+  margin-top: 6px;
+}
+.festival-agenda-day .festival-event {
+  grid-template-columns: 150px minmax(0, 1fr);
+  padding: 28px 22px;
+  gap: 28px;
+}
+.festival-agenda-day .festival-event-visual {
+  width: 150px;
+  height: 170px;
+}
+.festival-agenda-day .festival-event-copy h4 {
+  font-size: 33px;
+}
+.festival-agenda-day .festival-event-meta {
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.festival-agenda-day .festival-event-artist {
+  font-size: 15px;
+}
+.festival-agenda-day .festival-event-links > button,
+.festival-agenda-day .festival-event-links > a {
+  font-size: 12px;
+}
+.schedule-pending {
+  border-top: 1px solid #ffffff2a;
+  margin-top: 38px;
+  padding-top: 28px;
+}
+.schedule-pending > h3 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  color: #f6c3de;
+  font-size: 35px;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+}
+.schedule-pending > p {
+  font-size: 12px;
+  color: #c6b0d3;
+  margin: 10px 0 15px;
+}
+.schedule-notice {
+  padding: 32px;
+  border: 1px solid #ffffff33;
+  background: #ffffff05;
+  color: #d8c4e5;
+}
+.schedule-notice h3 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 35px;
+  font-weight: 400;
+  color: #ffde8a;
+  margin-bottom: 12px;
+}
+.schedule-notice p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.schedule-notice button {
+  color: #ffd167;
+  margin-top: 16px;
+  text-decoration: underline;
+  font-size: 12px;
+}
+.festival-event-dialog {
+  width: min(720px, calc(100% - 28px));
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  border: 1px solid #c9b2db;
+  background: #fffaf1;
+  color: #25103b;
+  border-radius: 4px;
+  padding: 65px 38px 36px;
+}
+.festival-event-dialog::backdrop {
+  background: #130a2acc;
+  backdrop-filter: blur(9px);
+}
+.festival-event-dialog > h3 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.05;
+  padding-right: 20px;
+}
+.festival-event-dialog .dialog-close {
+  color: #492363;
+  border-color: #a281b044;
+}
+.event-dialog-category {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ad2075;
+  line-height: 1.7;
+  margin-top: 16px;
+}
+.festival-event-dialog dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #b799c144;
+}
+.festival-event-dialog dt {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #92658c;
+  margin-bottom: 8px;
+}
+.festival-event-dialog dd {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #503657;
+}
+.event-dialog-synopsis {
+  font-size: 15px;
+  line-height: 1.9;
+  white-space: pre-line;
+  margin-top: 30px;
+  color: #503657;
+}
+.event-dialog-timezone {
+  margin-top: 24px;
+  color: #80607f;
+  font-size: 10px;
+  line-height: 1.8;
+}
+.event-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 27px;
+}
+.festival-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  background: #ffc528;
+  color: #221036;
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 24px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  padding: 15px 22px;
+  letter-spacing: 0.4px;
+}
+.festival-register:hover {
+  background: #ffdc70;
+}
+.event-dialog-actions > button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #7d4287;
+  font-size: 11px;
+  padding: 12px 0;
+}
+.festival-workshop {
+  padding: 32px 10px;
+  border-top: 1px solid #ffffff2a;
+}
+.festival-workshop:nth-child(2n) {
+  background: #ffffff07;
+}
+.workshop-date {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-bottom: 18px;
+}
+.workshop-date > strong {
+  font-family: var(--font-festival), Impact, sans-serif;
+  color: #ed2895;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+.workshop-date > span {
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #efdfed;
+}
+.workshop-body {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 260px;
+  gap: 24px;
+  align-items: start;
+}
+.workshop-portrait {
+  width: 120px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  background: #32204b;
+}
+.workshop-portrait > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.workshop-portrait > span {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  text-align: center;
+  background: #1b103899;
+  font-size: 7px;
+  color: #fff1cf;
+  padding: 3px;
+}
+.workshop-category {
+  font-size: 10px;
+  color: #d8bcdf;
+  font-weight: 750;
+  margin-bottom: 7px;
+}
+.workshop-category:before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #ed2895;
+  margin-right: 8px;
+}
+.workshop-copy h3 {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #fff9ef;
+  line-height: 1.1;
+  letter-spacing: 0.3px;
+}
+.workshop-trainer {
+  font-size: 15px;
+  color: #f3e7f7;
+  line-height: 1.8;
+  margin: 10px 0;
+}
+.workshop-copy > p:not(.workshop-category):not(.workshop-trainer) {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #dfcfe9;
+  margin-top: 10px;
+}
+.workshop-copy details {
+  font-size: 12px;
+  color: #e4cfeb;
+  margin-top: 15px;
+}
+.workshop-copy summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffc528;
+  cursor: pointer;
+  list-style: none;
+  font-size: 11px;
+  font-weight: 750;
+}
+.workshop-copy summary::-webkit-details-marker {
+  display: none;
+}
+.workshop-copy details > p {
+  margin-top: 13px;
+  line-height: 1.9;
+}
+.workshop-copy details[open] summary svg {
+  transform: rotate(180deg);
+}
+.workshop-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding-left: 10px;
+}
+.workshop-actions .festival-register {
+  font-size: 22px;
+  padding: 16px 14px;
+}
+.workshop-actions > a:not(.festival-register) {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffc528;
+}
+.workshop-empty {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #d7c2df;
+  border-top: 1px solid #ffffff22;
+  padding-top: 30px;
+}
+.fiti-site footer {
+  background: #1b1038;
+  color: #ffefa9;
+}
+.fiti-site footer [class*="text-zinc"] {
+  color: #cbb2d5;
+}
+.fiti-site footer :is(.text-white, .text-sun) {
+  color: #ffc528;
+}
+@media (max-width: 1050px) {
+  .festival-calendar-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .festival-calendar {
+    padding: 12px;
+  }
+  .festival-calendar td {
+    height: 55px;
+  }
+  .festival-calendar td > button {
+    min-height: 55px;
+  }
+  .festival-event {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .festival-event-visual {
+    width: 70px;
+    height: 90px;
+  }
+  .workshop-body {
+    grid-template-columns: 95px minmax(0, 1fr);
+    gap: 20px;
+  }
+  .workshop-portrait {
+    width: 95px;
+    height: 125px;
+  }
+  .workshop-actions {
+    grid-column: 2;
+    padding-left: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .workshop-actions .festival-register {
+    font-size: 20px;
+  }
+  .schedule-month-nav h3 {
+    font-size: 35px;
+    min-width: 200px;
+  }
+  .schedule-view-toggle > button {
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+  .schedule-filters select {
+    min-width: 160px;
+    max-width: 220px;
+  }
+}
+@media (max-width: 720px) {
+  .fiti-site .public-content > section.fiti-program-section,
+  .fiti-site .public-content > section.fiti-workshops-section {
+    padding: 60px 0;
+  }
+  .festival-section-inner {
+    padding: 0 18px;
+  }
+  .festival-section-heading {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .festival-section-heading h2 {
+    font-size: 65px;
+    letter-spacing: 0.1px;
+    overflow-wrap: anywhere;
+  }
+  .festival-edition-label {
+    margin-top: 23px;
+    max-width: 360px;
+  }
+  .festival-section-heading > p {
+    margin-top: 22px;
+    max-width: 350px;
+  }
+  .festival-eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.3px;
+    margin-bottom: 15px;
+  }
+  .schedule-filters {
+    gap: 13px;
+    padding-bottom: 22px;
+  }
+  .schedule-filters .schedule-search {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .schedule-filters > label:not(.schedule-search) {
+    flex: 1;
+    min-width: 0;
+  }
+  .schedule-filters select {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    font-size: 11px !important;
+    padding: 12px 8px !important;
+  }
+  .schedule-filters > label {
+    font-size: 10px;
+  }
+  .schedule-toolbar {
+    align-items: start;
+    flex-direction: column;
+    gap: 19px;
+    margin-top: 25px;
+  }
+  .schedule-month-nav {
+    width: 100%;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .schedule-month-nav h3 {
+    min-width: 0;
+    font-size: 36px;
+  }
+  .schedule-month-nav button {
+    padding: 7px;
+  }
+  .schedule-view-toggle {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .schedule-view-toggle > button {
+    flex: 1;
+    justify-content: center;
+    font-size: 11px;
+    padding: 12px;
+  }
+  .schedule-meta {
+    font-size: 9px;
+    gap: 10px 16px;
+    margin-bottom: 15px;
+  }
+  .schedule-meta > button {
+    margin-left: 0;
+  }
+  .festival-days-strip {
+    gap: 7px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+  }
+  .festival-days-strip > button {
+    padding: 7px 8px 10px;
+  }
+  .festival-days-strip > button:first-child {
+    font-size: 20px;
+  }
+  .festival-days-strip strong {
+    font-size: 26px;
+  }
+  .festival-days-strip span {
+    font-size: 8px;
+  }
+  .festival-calendar-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .festival-calendar {
+    padding: 10px 7px;
+  }
+  .festival-calendar table {
+    border-spacing: 3px;
+  }
+  .festival-calendar td {
+    height: 49px;
+  }
+  .festival-calendar td > button {
+    min-height: 49px;
+    font-size: 13px;
+    gap: 5px;
+  }
+  .festival-calendar th {
+    font-size: 9px;
+    padding-bottom: 12px;
+  }
+  .calendar-legend {
+    font-size: 8px;
+    margin-top: 12px;
+    padding: 0 6px 5px;
+  }
+  .festival-event {
+    grid-template-columns: 85px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .festival-event-visual {
+    width: 85px;
+    height: 106px;
+  }
+  .festival-event-copy h4 {
+    font-size: 27px;
+  }
+  .festival-event-artist {
+    font-size: 12px;
+  }
+  .festival-event-meta {
+    font-size: 10px;
+  }
+  .festival-day-agenda > header > span {
+    font-size: 64px;
+  }
+  .festival-day-agenda > header h3 {
+    font-size: 12px;
+  }
+  .festival-agenda-day {
+    grid-template-columns: 43px minmax(0, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+  .festival-agenda-day > header strong {
+    font-size: 48px;
+  }
+  .festival-agenda-day > header span {
+    font-size: 8px;
+    max-width: 42px;
+    overflow-wrap: anywhere;
+  }
+  .festival-agenda-day .festival-event {
+    grid-template-columns: 65px minmax(0, 1fr);
+    gap: 12px;
+    padding: 22px 6px;
+  }
+  .festival-agenda-day .festival-event-visual {
+    width: 65px;
+    height: 85px;
+  }
+  .festival-agenda-day .festival-event-copy h4 {
+    font-size: 25px;
+  }
+  .festival-agenda-day .festival-event-artist {
+    font-size: 11px;
+  }
+  .festival-agenda-day .festival-event-meta {
+    flex-direction: column;
+    gap: 7px;
+    font-size: 10px;
+  }
+  .festival-agenda-day .festival-event-links > button,
+  .festival-agenda-day .festival-event-links > a {
+    font-size: 10px;
+  }
+  .schedule-notice {
+    padding: 24px 18px;
+  }
+  .schedule-notice h3 {
+    font-size: 30px;
+  }
+  .festival-event-dialog {
+    padding: 60px 24px 28px;
+  }
+  .festival-event-dialog > h3 {
+    font-size: 38px;
+  }
+  .festival-event-dialog dl {
+    gap: 20px 15px;
+  }
+  .festival-event-dialog dd {
+    font-size: 12px;
+  }
+  .event-dialog-synopsis {
+    font-size: 14px;
+  }
+  .event-dialog-actions {
+    gap: 12px;
+  }
+  .festival-register {
+    font-size: 22px;
+    padding: 15px 18px;
+  }
+  .workshop-date {
+    gap: 7px 12px;
+    margin-bottom: 16px;
+  }
+  .workshop-date > strong {
+    font-size: 27px;
+  }
+  .workshop-date > span {
+    font-size: 9px;
+  }
+  .festival-workshop {
+    padding: 28px 5px;
+  }
+  .workshop-body {
+    grid-template-columns: 75px minmax(0, 1fr);
+    gap: 15px;
+  }
+  .workshop-portrait {
+    width: 75px;
+    height: 100px;
+  }
+  .workshop-copy h3 {
+    font-size: 27px;
+  }
+  .workshop-category {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+  .workshop-trainer {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .workshop-copy > p:not(.workshop-category):not(.workshop-trainer) {
+    font-size: 12px;
+  }
+  .workshop-actions {
+    grid-column: 1/-1;
+    gap: 16px;
+    padding-top: 2px;
+  }
+  .workshop-actions .festival-register {
+    font-size: 22px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .workshop-actions > a:not(.festival-register) {
+    font-size: 11px;
+  }
+  .fiti-site .festival-hero-fiti .hero-copy h1 {
+    font-size: 36px;
+  }
+  .fiti-site .festival-hero-fiti .hero-subtitle {
+    font-size: 18px;
+  }
+}
+@media (max-width: 360px) {
+  .festival-section-inner {
+    padding: 0 14px;
+  }
+  .festival-section-heading h2 {
+    font-size: 58px;
+  }
+  .festival-calendar {
+    padding: 8px 4px;
+  }
+  .festival-calendar td {
+    height: 44px;
+  }
+  .festival-calendar td > button {
+    min-height: 44px;
+  }
+  .festival-agenda-day .festival-event {
+    grid-template-columns: 1fr;
+  }
+  .festival-agenda-day .festival-event-visual {
+    width: 100px;
+    height: 100px;
+  }
+  .festival-event-dialog dl {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* A fixed festival menu and a living, pigment-filled stage. */
+.festival-nav {
+  background: #1a1035f2;
+  border-bottom: 1px solid #ffffff22;
+  color: #fff8ed;
+}
+.festival-nav-inner {
+  max-width: 1500px;
+  min-height: 82px;
+  gap: 24px;
+}
+.festival-brand {
+  gap: 11px;
+}
+.festival-brand > span {
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 25px;
+  letter-spacing: 1px;
+  color: #fff7e6;
+}
+.festival-brand small {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 650;
+  letter-spacing: 1px;
+  font-size: 7px;
+  color: #dfcfeb;
+}
+.festival-brand img {
+  mix-blend-mode: normal;
+  background: #fffdf8;
+  max-height: 48px;
+  border-radius: 2px;
+}
+.festival-primary-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 27px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.festival-primary-links > a {
+  font-size: 12px;
+  font-weight: 750;
+  color: #f9eefb;
+  position: relative;
+  padding: 14px 0;
+}
+.festival-primary-links > a:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background: #ffc528;
+  left: 0;
+  right: 100%;
+  bottom: 7px;
+  transition: right 0.2s;
+}
+.festival-primary-links > a:hover:after {
+  right: 0;
+}
+.festival-primary-links > a:hover {
+  color: #ffd677;
+}
+.festival-nav-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff2e0;
+  color: #fff3dc;
+  font-family: var(--font-festival), Impact, sans-serif;
+  text-transform: uppercase;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  padding: 11px 18px;
+  line-height: 1;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+.festival-nav-register:hover {
+  background: #ffc528;
+  border-color: #ffc528;
+  color: #221039;
+}
+.area-menu-trigger {
+  background: transparent;
+  color: #fff4e9;
+  border: 1px solid #ffffff44;
+  border-radius: 0;
+  padding: 11px;
+  gap: 8px;
+}
+.area-menu-trigger > span {
+  font-size: 10px;
+}
+.area-menu-trigger:hover {
+  background: #ffffff13;
+}
+.festival-brand {
+  margin-right: 0;
+}
+.festival-hero {
+  background: #170e32;
+  color: #fff5e4;
+}
+.festival-hero .aurora-one {
+  opacity: 0.2;
+  background: conic-gradient(
+    from 70deg,
+    #3c119900,
+    #71208b,
+    #1d839a,
+    #9e2176,
+    #e3651e,
+    #3c119900
+  );
+}
+.festival-hero .aurora-two {
+  opacity: 0.19;
+  background: radial-gradient(ellipse, #4b2298, #2b8dba88, transparent 70%);
+}
+.festival-hero .future-grid,
+.festival-hero .future-horizon {
+  display: none;
+}
+.festival-hero .future-stars {
+  opacity: 0.5;
+}
+.pigment-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: linear-gradient(transparent, black 18%, black 85%, transparent);
+}
+.festival-hero .hero-layout,
+.festival-hero .hero-bottom {
+  z-index: 2;
+}
+.festival-hero .future-manifesto {
+  color: #d2afd2;
+  border-color: #ffffff22;
+}
+.festival-hero .hero-copy h1 {
+  color: #fff7e7;
+}
+.festival-hero .future-title-name > span {
+  -webkit-text-stroke-color: #ffb94c;
+}
+.festival-hero .future-title-prefix {
+  color: #e0bcdf;
+}
+.festival-hero .hero-eyebrow {
+  color: #ffd263 !important;
+}
+.festival-hero .hero-subtitle {
+  color: #f4d6b4 !important;
+}
+.festival-hero .hero-description {
+  color: #d2bcd8 !important;
+}
+.festival-hero .hero-bottom {
+  color: #ddc0db;
+  border-color: #ffffff22;
+}
+.festival-hero .hero-bottom a,
+.festival-hero .hero-bottom .future-index {
+  color: #f5e1d4;
+}
+.festival-hero .festival-button {
+  background: #ffcb35;
+  color: #2b103e;
+}
+.festival-hero .festival-button-outline {
+  background: #ffffff05;
+  border-color: #ffffff66;
+  color: #fff7df;
+}
+.festival-hero .portal-coordinate,
+.festival-hero .portal-orbit-word,
+.festival-hero .portal-heart small {
+  color: #d9b5da;
+}
+.festival-hero .portal-console {
+  background: #2b1748b3;
+  border-color: #ffffff33;
+}
+.festival-hero .portal-console > p,
+.festival-hero .portal-console small {
+  color: #ecd4f3;
+}
+.festival-hero .portal-console button {
+  background: #ffffff08;
+  border-color: #ffffff44;
+  color: #ffcd61;
+}
+.festival-hero .hero-video {
+  mix-blend-mode: screen;
+  opacity: 0.17;
+}
+.festival-hero .hero-eyebrow > span {
+  box-shadow: 0 0 12px #ff974944;
+}
+@media (max-width: 1190px) {
+  .festival-nav-inner {
+    gap: 16px;
+  }
+  .festival-primary-links {
+    gap: 17px;
+  }
+  .festival-primary-links > a {
+    font-size: 11px;
+  }
+  .festival-brand > span {
+    font-size: 22px;
+  }
+  .festival-nav-register {
+    padding: 10px 14px;
+    font-size: 20px;
+  }
+}
+@media (max-width: 980px) {
+  .festival-primary-links > a:nth-child(n + 4) {
+    display: none;
+  }
+  .festival-primary-links {
+    gap: 18px;
+  }
+  .festival-nav-inner {
+    gap: 14px;
+  }
+  .festival-nav-register {
+    margin-left: 0;
+  }
+  .area-menu-trigger > span {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .festival-nav-inner {
+    min-height: 74px;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  .festival-brand {
+    margin-right: auto;
+    gap: 8px;
+  }
+  .festival-brand img {
+    max-height: 40px;
+    max-width: 44px;
+  }
+  .festival-brand > span {
+    font-size: 21px;
+    letter-spacing: 0.8px;
+  }
+  .festival-brand small {
+    font-size: 6px;
+    letter-spacing: 0.4px;
+  }
+  .festival-primary-links {
+    display: none;
+  }
+  .festival-nav-register {
+    font-size: 19px;
+    padding: 10px 12px;
+  }
+  .area-menu-trigger {
+    padding: 9px;
+    border-color: #ffffff44;
+  }
+  .area-menu-trigger > span {
+    display: none;
+  }
+  .pigment-canvas {
+    opacity: 0.9;
+  }
+  .festival-hero .future-manifesto {
+    font-size: 6px;
+    gap: 15px;
+  }
+  .festival-hero .future-manifesto > span:last-child {
+    max-width: 170px;
+  }
+}
+@media (max-width: 360px) {
+  .festival-brand > span {
+    font-size: 18px;
+  }
+  .festival-brand small {
+    font-size: 5px;
+  }
+  .festival-brand img {
+    max-height: 35px;
+    max-width: 37px;
+  }
+  .festival-nav-register {
+    font-size: 17px;
+    padding: 9px;
+  }
+  .festival-nav-inner {
+    gap: 8px;
+  }
+}
+.festival-category-filters {
+  display: flex;
+  align-items: baseline;
+  gap: 26px;
+  flex-wrap: wrap;
+  padding: 23px 0 5px;
+}
+.festival-category-filters > button {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: #e93a99;
+  border-bottom: 3px solid transparent;
+  padding-bottom: 9px;
+  font-family: var(--font-festival), Impact, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 0.3px;
+}
+.festival-category-filters > button:first-child {
+  color: #fff3de;
+}
+.festival-category-filters > button small {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: currentColor;
+}
+.festival-category-filters > button[aria-pressed="true"] {
+  border-color: currentColor;
+}
+.festival-category-filters > button[data-tone="workshop"],
+.festival-category-filters > button[data-tone="ceremony"] {
+  color: #ffc528;
+}
+.festival-category-filters > button[data-tone="talk"] {
+  color: #54c77c;
+}
+.festival-category-filters > button[data-tone="dance"] {
+  color: #ff9540;
+}
+.festival-category-filters > button[data-tone="music"] {
+  color: #53abed;
+}
+.festival-event-kicker[data-tone="talk"] > span:first-child {
+  background: #4ec375;
+  color: #122e22;
+}
+.festival-event-kicker[data-tone="dance"] > span:first-child {
+  background: #ff9643;
+  color: #331325;
+}
+.festival-event-kicker[data-tone="music"] > span:first-child {
+  background: #339be3;
+  color: #fff;
+}
+.festival-event-kicker[data-tone="ceremony"] > span:first-child {
+  background: #ffc528;
+  color: #27103f;
+}
+@media (max-width: 720px) {
+  .festival-category-filters {
+    gap: 16px 20px;
+    padding-top: 20px;
+  }
+  .festival-category-filters > button {
+    font-size: 24px;
+  }
+  .festival-category-filters > button small {
+    font-size: 9px;
+  }
+}

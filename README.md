@@ -258,7 +258,7 @@ Os formulários públicos gravam directamente no Supabase através do cliente p�
 
 ## Membros e avisos do site
 
-O novo menu **Explorar áreas** organiza a Associação, o universo FITI e as formas de participação. A identidade pública combina lavanda, violeta eléctrico, ciano e coral, com fundos luminosos e interfaces translúcidas. O movimento respeita a preferência do dispositivo por animações reduzidas. A abertura inclui um campo de luz em movimento, uma grelha em perspectiva e uma escultura digital que reage ao rato. O botão “Mudar energia” alterna entre Pulso solar, Órbita líquida e Campo magnético. A escultura pára quando sai do ecrã ou quando o movimento é desactivado. O botão “Pausar movimento” permite parar o cenário sem interromper a navegação; a faixa de avisos mantém o seu próprio controlo de pausa.
+O novo menu **Explorar áreas** organiza a Associação, o universo FITI e as formas de participação. A identidade pública combina lavanda, violeta eléctrico, ciano e coral, com fundos luminosos e interfaces translúcidas. O movimento respeita a preferência do dispositivo por animações reduzidas. A abertura inclui um campo de luz em movimento, um campo de pigmentos que reage ao rato e ao toque e uma escultura digital interactiva. O botão “Mudar energia” alterna entre Pulso solar, Órbita líquida e Campo magnético. A escultura pára quando sai do ecrã ou quando o movimento é desactivado. O botão “Pausar movimento” permite parar o cenário sem interromper a navegação; a faixa de avisos mantém o seu próprio controlo de pausa.
 
 No CMS autenticado, abra **Conteúdos → Membros** para adicionar, editar ou remover perfis. Cada perfil tem nome, função, área (Associação ou FITI), URL da fotografia e biografia. Pode carregar a fotografia na **Media Library** e copiar o URL público para o perfil. Publique apenas fotografias e biografias autorizadas. Sem perfis, o site apresenta uma mensagem de preparação; não cria pessoas fictícias. Na página pública, os visitantes podem filtrar, pesquisar e abrir biografias.
 
@@ -274,4 +274,25 @@ Para executar os testes das listas, perfis e validação de links:
 
 ```bash
 node --test tests/community.test.mjs
+```
+
+
+## Calendário interactivo do FITI
+
+A programação tem uma vista de calendário mensal e uma agenda cronológica, filtros por categoria e local, pesquisa por artista/espectáculo e acesso rápido aos dias com actividades. No calendário, as teclas de seta mudam de dia; Home/End vão ao início/fim da semana e Page Up/Page Down mudam de mês. Os detalhes abrem numa janela que pode ser fechada com Escape.
+
+O calendário reúne `fiti_program` e `fiti_workshops` da edição activa mais recente em `fiti_editions`. Não usa eventos de edições antigas nem os conteúdos do site de referência. As repetições de um espectáculo em datas diferentes são preservadas. Sem programação, o calendário continua navegável e apresenta um estado de preparação, sem inventar eventos ou datas oficiais.
+
+No CMS, abra **Gestão do FITI → Edições FITI**, crie/active a edição, e depois preencha **Programação FITI** e **Oficinas FITI**. Seleccione a edição em cada registo, publique a data e a hora local de Moçambique e deixe a actividade activa. Para actividades em vários dias, crie um registo por data. Datas vazias são guardadas como nulas e ficam em “Datas por confirmar”. Pode usar categorias como Teatro, Dança, Música, Seminário ou Debate. Os links de reserva/inscrição são opcionais. As fotografias da programação continuam a ser configuradas pelo campo Imagem; as composições sem fotografia são identificadas como ilustrações.
+
+“Adicionar à minha agenda” descarrega um ficheiro `.ics` com o fuso `Africa/Maputo` (UTC+2). Uma hora não confirmada é exportada apenas como data, sem inventar horários; a hora final só é incluída quando existe uma duração reconhecida em minutos. Os ficheiros são gerados no navegador, compatíveis com exportação estática/GitHub Pages.
+
+O menu fixo adapta-se à Associação ou ao FITI e mantém os atalhos adicionais do CMS no botão Menu. O fundo de pigmentos responde ao movimento e ao toque fora dos controlos, respeita a pausa e a preferência por movimento reduzido e interrompe a animação fora do ecrã.
+
+A fonte condensada dos títulos do FITI é **Bebas Neue**, distribuída por `@fontsource/bebas-neue` 5.3.0, alojada localmente em `app/fonts`. A licença SIL Open Font License acompanha o ficheiro; não é necessário carregar fontes de serviços externos.
+
+Testes de datas, filtros, repetições, fuso e exportação de calendário:
+
+```bash
+node --test tests/fitiCalendar.test.mjs tests/community.test.mjs
 ```

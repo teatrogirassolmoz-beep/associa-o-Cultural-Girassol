@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { PigmentCanvas } from "./PigmentCanvas";
 
 export function LivingBackdrop({ page = false }: { page?: boolean }) {
   const layer = useRef<HTMLDivElement>(null);
@@ -33,6 +34,7 @@ export function LivingBackdrop({ page = false }: { page?: boolean }) {
       className={`living-backdrop ${page ? "living-backdrop-page" : "living-backdrop-hero"}`}
       aria-hidden="true"
     >
+      {!page && <PigmentCanvas />}
       <div className="future-parallax">
         <div className="aurora aurora-one" />
         <div className="aurora aurora-two" />

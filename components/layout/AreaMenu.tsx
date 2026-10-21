@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 const groups = [
@@ -20,6 +21,7 @@ const groups = [
       ["O festival", "/fiti#sobre"],
       ["Edição actual", "/fiti#edicao"],
       ["Programação", "/fiti#programacao"],
+      ["Seminários", "/fiti?pesquisa=seminario#programacao"],
       ["Companhias", "/fiti#companhias"],
       ["Oficinas", "/fiti#oficinas"],
       ["Equipa FITI", "/fiti#membros"],
@@ -44,17 +46,25 @@ export function AreaMenu({
   links: { label: string; href: string }[];
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
-  const knownDestinations = new Set(groups.flatMap(group => group.links.map(([, href]) => href)));
-  const extraLinks = links.filter((link, index) => !knownDestinations.has(link.href) && links.findIndex(other => other.href === link.href) === index);
+  const onFiti = usePathname().replace(/\/$/, "").endsWith("/fiti");
+  const knownDestinations = new Set(
+    groups.flatMap((group) => group.links.map(([, href]) => href)),
+  );
+  const extraLinks = links.filter(
+    (link, index) =>
+      !knownDestinations.has(link.href) &&
+      links.findIndex((other) => other.href === link.href) === index,
+  );
   return (
     <>
       <button
         type="button"
         className="area-menu-trigger"
+        aria-label="Menu"
         onClick={() => dialog.current?.showModal()}
         aria-haspopup="dialog"
       >
-        <span>Explorar áreas</span>
+        <span>Menu</span>
         <Menu size={21} />
       </button>
       <dialog
@@ -84,16 +94,31 @@ export function AreaMenu({
             <div key={group.title}>
               <p className="area-group-number">0{i + 1}</p>
               <h3>{group.title}</h3>
-              {group.links.map(([label, href]) => (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => dialog.current?.close()}
-                >
-                  {label}
-                  <ArrowUpRight size={16} />
-                </Link>
-              ))}
+              {group.links.map(([label, href]) =>
+                href.includes("?pesquisa=") ? (
+                  <a
+                    key={href}
+                    href={
+                      onFiti
+                        ? "?pesquisa=seminario#programacao"
+                        : "./fiti/?pesquisa=seminario#programacao"
+                    }
+                    onClick={() => dialog.current?.close()}
+                  >
+                    {label}
+                    <ArrowUpRight size={16} />
+                  </a>
+                ) : (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => dialog.current?.close()}
+                  >
+                    {label}
+                    <ArrowUpRight size={16} />
+                  </Link>
+                ),
+              )}
             </div>
           ))}
         </nav>

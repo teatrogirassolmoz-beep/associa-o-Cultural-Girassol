@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { FitiHero } from "@/components/fiti/FitiHero";
 import { FitiAbout } from "@/components/fiti/FitiAbout";
 import { CurrentEdition } from "@/components/fiti/CurrentEdition";
+import { FitiScheduleProvider } from "@/components/fiti/FitiScheduleContext";
 import { Program } from "@/components/fiti/Program";
 import { Companies } from "@/components/fiti/Companies";
 import { Workshops } from "@/components/fiti/Workshops";
@@ -46,36 +47,38 @@ export function PublicFiti() {
   );
   const { settings } = useThemeSettings();
   return (
-    <div className="festival-site">
-      <LivingBackdrop page />
-      <MotionControl />
-      <Navbar settings={settings as any} />
-      <main className="public-content relative z-10">
-        {sections.map((s) => {
-          const Component = map[s.section_key];
-          return Component ? (
-            <Fragment key={s.section_key}>
-              {s.section_key === "fiti_contact" && <Members fiti />}
-              <Component />
-            </Fragment>
-          ) : null;
-        })}
-        {!sections.some((s) => s.section_key === "fiti_contact") && (
-          <Members fiti />
-        )}
-      </main>
-      <a
-        aria-label="WhatsApp"
-        className="fixed bottom-20 right-4 z-40 rounded-full bg-sun px-5 py-3 font-bold text-black shadow-2xl shadow-sun/30"
-        href={text(
-          (settings as any).whatsapp_url || (settings as any).whatsapp,
-          "https://wa.me/?text=Olá%20Associação%20Cultural%20Girassol",
-        )}
-      >
-        WhatsApp
-      </a>
-      <Footer settings={settings as any} />
-      <AnnouncementRibbon />
-    </div>
+    <FitiScheduleProvider>
+      <div className="festival-site fiti-site">
+        <LivingBackdrop page />
+        <MotionControl />
+        <Navbar settings={settings as any} />
+        <main className="public-content relative z-10">
+          {sections.map((s) => {
+            const Component = map[s.section_key];
+            return Component ? (
+              <Fragment key={s.section_key}>
+                {s.section_key === "fiti_contact" && <Members fiti />}
+                <Component />
+              </Fragment>
+            ) : null;
+          })}
+          {!sections.some((s) => s.section_key === "fiti_contact") && (
+            <Members fiti />
+          )}
+        </main>
+        <a
+          aria-label="WhatsApp"
+          className="fixed bottom-20 right-4 z-40 rounded-full bg-sun px-5 py-3 font-bold text-black shadow-2xl shadow-sun/30"
+          href={text(
+            (settings as any).whatsapp_url || (settings as any).whatsapp,
+            "https://wa.me/?text=Olá%20Associação%20Cultural%20Girassol",
+          )}
+        >
+          WhatsApp
+        </a>
+        <Footer settings={settings as any} />
+        <AnnouncementRibbon />
+      </div>
+    </FitiScheduleProvider>
   );
 }

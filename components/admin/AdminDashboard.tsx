@@ -65,6 +65,7 @@ function slugify(value: string) {
 
 function coerceValue(tableName: string, key: string, value: unknown) {
   if (value === undefined) return undefined;
+  if (key === 'date' && ['fiti_program','fiti_workshops'].includes(tableName) && (value === '' || value === null)) return null;
   if (booleanFields.has(key)) return value === true || value === 'true';
   if (numberFields.has(key) || (key === 'year' && numericYearTables.has(tableName))) return value === '' || value === null ? null : Number(value);
   return value;
@@ -277,6 +278,7 @@ export function AdminDashboard(){
 <section id={manager.area} key={manager.area} className={`${activeArea===manager.area?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
 <h2 className="font-display text-3xl text-sun">{manager.area}</h2>
 <p className="mt-2 text-zinc-300">Listagem, criação, edição, activação/desactivação e remoção ligadas ao Supabase, com dados institucionais de fallback quando a tabela estiver vazia.</p>
+{(manager.area==='Programação FITI'||manager.area==='Oficinas FITI')&&<div className="mt-4 rounded-2xl border border-sun/20 bg-sun/5 p-4 text-sm text-zinc-300"><p><b className="text-sun">Calendário público:</b> seleccione a edição activa, preencha a data e a hora local de Moçambique e marque a actividade como activa. As actividades sem data aparecem em “Datas por confirmar”. Para actividades em vários dias, crie um registo por data.</p><p className="mt-2">Em Programação FITI, use categorias como Teatro, Dança, Música, Seminário ou Debate. Pode repetir o mesmo espectáculo em datas diferentes. Os links de reserva e inscrição são opcionais.</p><a href="../fiti/#programacao" target="_blank" rel="noreferrer" className="mt-2 inline-block font-bold text-sun underline">Ver calendário no site</a></div>}
 {manager.area==='Notícias'&&<div className="mt-4 rounded-2xl border border-sun/20 bg-sun/5 p-4 text-sm text-zinc-300"><p><b className="text-sun">Como publicar uma notícia:</b> preencha Título, Resumo, Conteúdo e Categoria; carregue a fotografia na <a href="#Media Library" className="font-semibold text-sun underline decoration-sun/40 underline-offset-4">Media Library</a>, cole o URL em Imagem e seleccione “Publicado”.</p><p className="mt-2 text-zinc-400">O slug é criado automaticamente quando ficar vazio. A data apresentada no site corresponde ao momento em que a notícia foi criada.</p></div>}
 <CollectionManager title={manager.area} table={manager.table} fields={manager.fields} fallbackRows={manager.fallbackRows as unknown as Row[]} />
 </section>)}<section id="Imprensa" className={`${activeArea==='Imprensa'?'':'hidden'} rounded-3xl border border-white/10 bg-zinc-950 p-5`}>
