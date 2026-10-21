@@ -2,9 +2,11 @@
 import Link from "next/link";
 import { ArrowUpRight, Pause, Play, ChevronUp, Minus, X } from "lucide-react";
 import { useId, useRef, useState } from "react";
+import { usePresentation } from "@/components/ui/SitePresentation";
 import { announcements } from "@/lib/community";
 import { useThemeSettings } from "@/hooks/useThemeSettings";
 export function AnnouncementRibbon() {
+  const presentation = usePresentation();
   const { settings } = useThemeSettings();
   const items = announcements(settings.announcement_items);
   const [paused, setPaused] = useState(false);
@@ -12,20 +14,20 @@ export function AnnouncementRibbon() {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const panelId = useId();
-  if (!items.length) return null;
+  if (!items.length || presentation.notices_mode === "hidden") return null;
   return (
     <aside
-      className={`announcement-ribbon floating-notices ${paused ? "is-paused" : ""} ${compact ? "is-compact" : ""}`}
+      className={`announcement-ribbon floating-notices ${presentation.notices_mode === "bar" ? "notices-bar" : ""} ${paused || presentation.notices_motion_enabled !== "true" ? "is-paused" : ""} ${compact ? "is-compact" : ""}`}
       onKeyDown={(event) => { if (event.key === "Escape" && open) { setOpen(false); trigger.current?.focus(); } }}
       aria-label="Avisos e oportunidades"
     >
       {open && <div id={panelId} className="floating-notices-panel">
-        <div className="floating-notices-heading"><p>O QUE ESTÁ EM CENA</p><button type="button" aria-label="Fechar lista de avisos" onClick={() => { setOpen(false); trigger.current?.focus(); }}><X size={18}/></button></div>
-        <p className="floating-notices-title">Há sempre algo a acontecer.</p>
+        <div className="floating-notices-heading"><p>{presentation.notices_heading}</p><button type="button" aria-label="Fechar lista de avisos" onClick={() => { setOpen(false); trigger.current?.focus(); }}><X size={18}/></button></div>
+        <p className="floating-notices-title">{presentation.notices_title}</p>
         <nav aria-label="Avisos disponíveis">{items.map((item, i) => <Link key={i} href={item.href} onClick={() => setOpen(false)}><span>{item.label}</span><ArrowUpRight size={18}/></Link>)}</nav>
       </div>}
       <button type="button" ref={trigger} className="ribbon-label" aria-expanded={open} aria-controls={open ? panelId : undefined} aria-label={compact ? "Abrir avisos Em cena" : "Ver todos os avisos"} onClick={() => { setCompact(false); setOpen(!open); }}>
-        <span className="floating-notices-dot" aria-hidden="true"/> EM CENA <ChevronUp size={16} aria-hidden="true" />
+        <span className="floating-notices-dot" aria-hidden="true"/> {presentation.notices_label} <ChevronUp size={16} aria-hidden="true" />
       </button>
       <div className="ribbon-window" hidden={compact}>
         <div className="ribbon-track">

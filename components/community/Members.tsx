@@ -2,9 +2,11 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Search, Users, X } from "lucide-react";
-import { memberProfiles, type MemberProfile } from "@/lib/community";
+import { usePresentation } from "@/components/ui/SitePresentation";
+import { memberProfiles, safePublicHref, type MemberProfile } from "@/lib/community";
 import { useThemeSettings } from "@/hooks/useThemeSettings";
 export function Members({ fiti = false }: { fiti?: boolean }) {
+  const presentation=usePresentation();
   const { settings } = useThemeSettings();
   const profiles = memberProfiles(settings.member_profiles);
   const [filter, setFilter] = useState(fiti ? "fiti" : "todos");
@@ -30,16 +32,13 @@ export function Members({ fiti = false }: { fiti?: boolean }) {
       <div className="mx-auto max-w-7xl px-4">
         <div className="members-heading">
           <div>
-            <p className="editorial-eyebrow">O NOSSO COLECTIVO</p>
+            <p className="editorial-eyebrow">{presentation.members_eyebrow}</p>
             <h2>
-              O palco começa
-              <br />
-              nas <em>pessoas.</em>
+              {presentation.members_title}
             </h2>
           </div>
           <p>
-            As vozes, os rostos e as histórias de quem constrói a Associação
-            Cultural Girassol e dá vida ao FITI.
+            {presentation.members_intro}
           </p>
         </div>
         <div className="members-toolbar">
@@ -121,26 +120,22 @@ export function Members({ fiti = false }: { fiti?: boolean }) {
             <div className="members-empty-art" aria-hidden="true">
               <Users size={64} />
               <span>
-                JUNTOS,
-                <br />
-                FAZEMOS
-                <br />
-                <b>ACONTECER.</b>
+                {presentation.members_empty_art}
               </span>
             </div>
             <div>
               <h3>
                 {profiles.length
                   ? "Nenhum perfil encontrado"
-                  : "Uma comunidade em cena"}
+                  : presentation.members_empty_title}
               </h3>
               <p>
                 {profiles.length
                   ? "Experimente outro nome ou escolha uma das áreas."
-                  : "Os perfis dos membros da Associação e da equipa FITI estão em preparação. Em breve, conheça os seus rostos e percursos."}
+                  : presentation.members_empty_text}
               </p>
-              <Link href="#contacto">
-                Fale com a organização <ArrowUpRight size={18} />
+              <Link href={safePublicHref(presentation.members_contact_link)||"#contacto"}>
+                {presentation.members_contact_label} <ArrowUpRight size={18} />
               </Link>
             </div>
           </div>

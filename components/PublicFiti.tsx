@@ -1,4 +1,6 @@
 "use client";
+import { SitePresentation } from "@/components/ui/SitePresentation";
+import { resolvePresentation } from "@/lib/presentation";
 import { Fragment, type ComponentType } from "react";
 import { Members } from "@/components/community/Members";
 import { AnnouncementRibbon } from "@/components/community/AnnouncementRibbon";
@@ -46,19 +48,21 @@ export function PublicFiti() {
     (q) => q.eq("page_slug", "fiti").eq("is_active", true).order("order_index"),
   );
   const { settings } = useThemeSettings();
+  const presentation = resolvePresentation(settings);
   return (
     <FitiScheduleProvider>
-      <div className="festival-site fiti-site">
+      <SitePresentation fiti>
         <LivingBackdrop page />
         <MotionControl />
         <Navbar settings={settings as any} />
         <main className="public-content relative z-10">
           {sections.map((s) => {
-            if (s.section_key === "fiti_partners") return null;
+            if (s.section_key === "fiti_partners" && presentation.partners_placement !== "section") return null;
             const Component = map[s.section_key];
             return Component ? (
               <Fragment key={s.section_key}>
-                {s.section_key === "fiti_contact" && <Members fiti />}
+                {s.section_key === "fiti_contact" && presentation.partners_placement === "before_contact" && sections.some(item => item.section_key === "fiti_partners") && <FitiPartners />}
+              {s.section_key === "fiti_contact" && <Members fiti />}
                 <Component />
               </Fragment>
             ) : null;
@@ -66,7 +70,7 @@ export function PublicFiti() {
           {!sections.some((s) => s.section_key === "fiti_contact") && (
             <Members fiti />
           )}
-          {sections.some((s) => s.section_key === "fiti_partners") && <FitiPartners />}
+          {sections.some((s) => s.section_key === "fiti_partners") && (presentation.partners_placement === "end" || (presentation.partners_placement === "before_contact" && !sections.some(s => s.section_key === "fiti_contact"))) && <FitiPartners />}
       </main>
         <a
           aria-label="WhatsApp"
@@ -80,7 +84,7 @@ export function PublicFiti() {
         </a>
         <Footer settings={settings as any} />
         <AnnouncementRibbon />
-      </div>
+      </SitePresentation>
     </FitiScheduleProvider>
   );
 }

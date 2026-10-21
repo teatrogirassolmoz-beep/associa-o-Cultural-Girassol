@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { safePublicHref } from "@/lib/community";
 import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
 import { FitiLogo } from "@/components/ui/FitiLogo";
@@ -23,8 +24,8 @@ export function FitiHero() {
       )}
       <div className="hero-layout">
         <div className="future-manifesto" aria-hidden="true">
-          <span>UMA INICIATIVA DA ASSOCIAÇÃO GIRASSOL.</span>
-          <span>O TEATRO MOÇAMBICANO ENCONTRA O MUNDO.</span>
+          <span>{text(f.manifesto_left,"UMA INICIATIVA DA ASSOCIAÇÃO GIRASSOL.")}</span>
+          <span>{text(f.manifesto_right,"O TEATRO MOÇAMBICANO ENCONTRA O MUNDO.")}</span>
         </div>
         <div className="hero-copy">
           <p className="hero-eyebrow">
@@ -81,10 +82,10 @@ export function FitiHero() {
       </div>
       <div className="hero-bottom">
         <Link href="/">← Associação Girassol</Link>
-        <Link href="#sobre">
-          Descubra o festival <ArrowDown size={18} />
+        <Link href={safePublicHref(f.bottom_link_url)||"#sobre"}>
+          {text(f.bottom_link_text,"Descubra o festival")} <ArrowDown size={18} />
         </Link>
-        <span>TEATRO SEM FRONTEIRAS</span>
+        <span>{text(f.bottom_signature,"TEATRO SEM FRONTEIRAS")}</span>
       </div>
     </section>
   );

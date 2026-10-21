@@ -21,7 +21,7 @@ export function FitiAbout() {
             .map((p) => (
               <p key={p}>{p}</p>
             ))}
-          <p className="font-semibold text-sun">{mandatoryFitiPhrase}</p>
+          <p className="font-semibold text-sun">{text(f.institutional_note,mandatoryFitiPhrase)}</p>
         </div>
       </div>
     </section>

@@ -24,9 +24,7 @@ export function Projects() {
             <h2>{text(f.section_title, "Projectos")}</h2>
           </div>
           <p>
-            Ideias que saem do papel.
-            <br />
-            <em>Arte que entra na vida.</em>
+            {text(f.side_note,"Ideias que saem do papel. Arte que entra na vida.")}
           </p>
         </header>
         <div className="art-project-grid">
@@ -59,33 +57,31 @@ export function Projects() {
                           <>
                             {String(i + 1).padStart(2, "0")}
                             <span>
-                              CRIAÇÃO
-                              <br />
-                              EM MOVIMENTO.
+                              {text(f.art_phrase,"CRIAÇÃO EM MOVIMENTO.")}
                             </span>
                           </>
                         )}
                       </div>
                       <span className="art-illustration-label">
-                        COMPOSIÇÃO ORIGINAL
+                        {text(f.illustration_label,"COMPOSIÇÃO ORIGINAL")}
                       </span>
                     </>
                   )}
                   <span className="art-project-number">
-                    GIRASSOL / {String(i + 1).padStart(2, "0")}
+                    {text(f.brand_label,"GIRASSOL")} / {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <div className="art-project-copy">
                   <h3>{project.title}</h3>
                   <details>
                     <summary>
-                      Sobre o projecto <Plus size={16} />
+                      {text(f.details_label,"Sobre o projecto")} <Plus size={16} />
                     </summary>
                     <p>{project.description}</p>
                   </details>
                   {project.link && (
                     <Link href={project.link} className="art-project-link">
-                      {isFiti ? "Entre no universo FITI" : "Explorar projecto"}
+                      {isFiti ? text(f.fiti_link_label,"Entre no universo FITI") : text(f.project_link_label,"Explorar projecto")}
                       <ArrowUpRight size={18} />
                     </Link>
                   )}

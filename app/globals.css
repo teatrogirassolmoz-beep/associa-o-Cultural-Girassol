@@ -4936,3 +4936,40 @@ body:has(.festival-site dialog[open]) {
  .partner-conveyor-window { overflow-x: auto; }
  .partner-conveyor-copy[aria-hidden="true"] { display: none; }
 }
+
+/* Values below are supplied by the presentation settings in the CMS. */
+.festival-site.cms-presentation { --vivid-ink: var(--cms-ink); --vivid-muted: var(--cms-ink); --vivid-accent: var(--cms-accent); --section-panel: var(--cms-panel); --vivid-paper: var(--cms-section-1); color: var(--cms-ink); background: var(--cms-section-1); }
+.festival-site.cms-presentation .festival-hero { background: var(--cms-hero); }
+.festival-site.cms-presentation .public-content > section:not(.festival-hero) { background: var(--cms-section-1) !important; }
+.festival-site.cms-presentation .public-content > section:not(.festival-hero):nth-of-type(3n + 2) { background: var(--cms-section-2) !important; }
+.festival-site.cms-presentation .public-content > section:not(.festival-hero):nth-of-type(3n + 3) { background: var(--cms-section-3) !important; }
+.festival-site.cms-presentation .public-content > section:not(.festival-hero) :is(p,h2,h3,h4,label,.text-white,.text-zinc-100,.text-zinc-200,.text-zinc-300,.text-zinc-400,.text-zinc-500) { color: var(--cms-ink); }
+.festival-site.cms-presentation .festival-nav { background: var(--cms-nav); }
+.festival-site.cms-presentation :is(.festival-brand > span,.festival-brand small,.festival-primary-links > a,.area-menu-trigger,.festival-return,.cultural-art-caption,.cultural-scene-tabs button) { color: var(--cms-ink); }
+.festival-site.cms-presentation :is(.festival-nav-register,.festival-primary-links > .nav-fiti-highlight,.festival-hero .festival-button:not(.festival-button-outline),.festival-hero .home-fiti-entry,.fiti-spotlight .festival-button:not(.festival-button-outline)) { background: var(--cms-accent); border-color: var(--cms-accent); color: #fff9ed; }
+.festival-site.cms-presentation .cultural-scene-tabs button[aria-pressed="true"] { color: var(--cms-accent); border-color: var(--cms-accent); }
+.festival-site.cms-presentation :is(.festival-return,.area-menu-trigger,.area-menu,.festival-calendar,.festival-day-agenda,.partner-conveyor-tile,.floating-notices,.floating-notices-panel) { background: var(--cms-panel); }
+.festival-site.cms-presentation footer { background: var(--cms-footer); }
+.festival-site.cms-presentation footer :is(p,a,h3,svg) { color: var(--cms-ink); }
+.cms-presentation .partner-conveyor.is-moving .partner-conveyor-track { animation-duration: var(--partner-duration); }
+.cms-presentation .ribbon-track { animation-duration: var(--notice-duration); }
+.cms-presentation .notices-bar:not(.is-compact) { width: 100%; left: 0; bottom: 0; transform: none; border-radius: 0; }
+.cms-presentation .notices-bar:not(.is-compact) .ribbon-label { border-radius: 0; }
+.cms-presentation .notices-bar .floating-notices-panel { width: min(720px,calc(100vw - 24px)); left: 50%; transform: translateX(-50%); }
+.cms-presentation .cultural-paper-back span { max-width: 100%; }
+.cms-presentation .cultural-sticker { padding: 12px; }
+
+.festival-site.cms-presentation .fiti-spotlight-copy :is(h2,p,.fiti-spotlight-name), .festival-site.cms-presentation .fiti-spotlight-map > span, .festival-site.cms-presentation .fiti-spotlight-index { color: var(--cms-ink) !important; }
+.festival-site.cms-presentation :is(.area-menu,.floating-notices,.floating-notices-panel,.partner-conveyor-tile,.partner-conveyor-heading h2,.partner-motion-toggle) { color: var(--cms-ink); }
+.festival-site.cms-presentation .area-menu :is(h2,h3,p,a,button,em) { color: var(--cms-ink); }
+.festival-site.cms-presentation .area-menu-grid > .area-menu-fiti a:first-of-type { background: var(--cms-accent); color: #fff9ed; }
+.cms-presentation[data-background-motion="false"] :is(.aurora,.future-title-name > i,.fiti-wordmark i) { animation: none; }
+.cms-presentation .festival-primary-links { min-width: 0; }
+.cms-presentation .festival-primary-links > a { min-width: 0; max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+.cms-presentation :is(.festival-nav-register,.festival-return) { max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
+@media(max-width:700px) { .cms-presentation .festival-return { max-width: 130px; } .cms-presentation .festival-nav-register { max-width: 140px; } }
+.festival-site.cms-presentation :is(.ribbon-label,.schedule-view-toggle button[aria-pressed="true"],.festival-calendar td > button[aria-pressed="true"],.calendar-legend > i) { background: var(--cms-accent); color: #fff9ed; border-color: var(--cms-accent); }
+.festival-site.cms-presentation .public-content > section:not(.festival-hero) .shadow-glow { background: var(--cms-accent); color: #fff9ed; }
+.cms-background-watermark { position: absolute; width: min(32vw,360px); height: min(32vw,360px); right: 5%; top: 12%; object-fit: contain; animation: cms-watermark-drift 42s ease-in-out infinite alternate; }
+@keyframes cms-watermark-drift { to { transform: translate(-28px,65px) rotate(12deg); } }
+.cms-presentation[data-background-motion="false"] .cms-background-watermark, .cms-presentation[data-motion-paused="true"] .cms-background-watermark { animation-play-state: paused; }

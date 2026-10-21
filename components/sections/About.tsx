@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { safePublicHref } from "@/lib/community";
 import { ArtPoster } from "@/components/art/ArtPoster";
 import { useSection, text, img } from "@/components/publicCms";
 import { aboutText, cmsEmptyState } from "@/lib/data";
@@ -40,26 +41,18 @@ export function About() {
               <ArtPoster title="Corpo, voz e criação teatral" />
             )}
             <span className="identity-art-stamp">
-              GIRASSOL
-              <br />
-              CORPO.
-              <br />
-              VOZ.
-              <br />
-              <em>PRESENÇA.</em>
+              {text(about.art_stamp,"GIRASSOL / CORPO. VOZ. PRESENÇA.")}
             </span>
           </div>
           <p className="identity-art-caption">
             {showImage
               ? text(about.image_caption, "Associação Cultural Girassol")
-              : "Composição original · O nosso universo criativo"}
+              : text(about.art_caption,"Composição original · O nosso universo criativo")}
           </p>
           <div className="identity-year">
-            <strong>1987</strong>
+            <strong>{text(about.founding_year,"1987")}</strong>
             <span>
-              UMA HISTÓRIA QUE
-              <br />
-              CONTINUA EM MOVIMENTO.
+              {text(about.year_caption,"UMA HISTÓRIA QUE CONTINUA EM MOVIMENTO.")}
             </span>
           </div>
         </div>
@@ -75,12 +68,10 @@ export function About() {
           </div>
           <div className="identity-signature">
             <span>
-              Teatro. Juventude.
-              <br />
-              <em>Memória viva.</em>
+              {text(about.signature,"Teatro. Juventude. Memória viva.")}
             </span>
-            <Link href="#historia">
-              Percorra a nossa história <ArrowUpRight size={18} />
+            <Link href={safePublicHref(about.history_link)||"#historia"}>
+              {text(about.history_button,"Percorra a nossa história")} <ArrowUpRight size={18} />
             </Link>
           </div>
         </div>

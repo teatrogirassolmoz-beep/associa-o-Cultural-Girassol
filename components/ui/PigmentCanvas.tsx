@@ -1,8 +1,12 @@
 "use client";
+import { usePresentation } from "./SitePresentation";
 import { useEffect, useRef } from "react";
 
 /** Original pigment field: responds to movement and taps without blocking page controls. */
 export function PigmentCanvas({ page = false }: { page?: boolean }) {
+  const presentation = usePresentation();
+  const strength = Number(presentation.cursor_strength);
+  const brushHome = presentation.home_brush_color, brushFiti = presentation.fiti_brush_color;
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const element = canvas.current,
@@ -153,11 +157,11 @@ export function PigmentCanvas({ page = false }: { page?: boolean }) {
       if (!reduced.matches) {
         for (const mark of trail) {
           context.globalAlpha = Math.max(0, .38 * (1 - mark.age));
-          context.fillStyle = fiti ? "#b32985" : "#e95f21";
+          context.fillStyle = fiti ? brushFiti : brushHome;
           for (let petal = 0; petal < 5; petal++) {
             const angle = petal * Math.PI * 2 / 5;
             context.beginPath();
-            context.ellipse(mark.x + Math.cos(angle) * 13, mark.y + Math.sin(angle) * 13, 22, 9, angle, 0, Math.PI * 2);
+            context.ellipse(mark.x + Math.cos(angle) * 13, mark.y + Math.sin(angle) * 13, 22 * strength, 9 * strength, angle, 0, Math.PI * 2);
             context.fill();
           }
         }
@@ -165,7 +169,7 @@ export function PigmentCanvas({ page = false }: { page?: boolean }) {
       if (burst && !reduced.matches) {
         for (let i = 0; i < 48; i++) {
           const angle = i * 2.399,
-            r = burst.age * 220 * (0.45 + (i % 5) * 0.13);
+            r = burst.age * 220 * strength * (0.45 + (i % 5) * 0.13);
           context.globalAlpha = Math.max(0, (1 - burst.age) * 0.95);
           context.fillStyle = ["#ffbd48", "#ef2699", "#42d8cf"][i % 3];
           context.beginPath();
@@ -300,6 +304,6 @@ export function PigmentCanvas({ page = false }: { page?: boolean }) {
       target?.removeEventListener("pointerleave", leave);
       target?.removeEventListener("pointerdown", tap);
     };
-  }, [page]);
+  }, [page, strength, brushHome, brushFiti]);
   return <canvas ref={canvas} className="pigment-canvas" aria-hidden="true" />;
 }

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { safePublicHref } from "@/lib/community";
 import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
 import { GirassolLogo } from "@/components/ui/GirassolLogo";
@@ -26,8 +27,8 @@ export function Hero() {
       )}
       <div className="hero-layout">
         <div className="future-manifesto" aria-hidden="true">
-          <span>MAPUTO. MOÇAMBIQUE.</span>
-          <span>TEATRO, JUVENTUDE E MEMÓRIA DESDE 1987.</span>
+          <span>{text(f.manifesto_left,"MAPUTO. MOÇAMBIQUE.")}</span>
+          <span>{text(f.manifesto_right,"TEATRO, JUVENTUDE E MEMÓRIA DESDE 1987.")}</span>
         </div>
         <div className="hero-copy">
           <ManagedLogo settingKey="hero_logo_url" fallbackKeys={["site_logo_url"]} alt="Associação Cultural Girassol" className="hero-official-logo" fallback={<GirassolLogo />} />
@@ -98,11 +99,11 @@ export function Hero() {
         <StageArtwork />
       </div>
       <div className="hero-bottom">
-        <span className="future-index">TEATRO VIVO. CULTURA EM MOVIMENTO.</span>
-        <Link href="#quem-somos">
-          Conheça a nossa história <ArrowDown size={18} />
+        <span className="future-index">{text(f.bottom_signature,"TEATRO VIVO. CULTURA EM MOVIMENTO.")}</span>
+        <Link href={safePublicHref(f.bottom_link_url)||"#quem-somos"}>
+          {text(f.bottom_link_text,"Conheça a nossa história")} <ArrowDown size={18} />
         </Link>
-        <span>DESDE 1987</span>
+        <span>{text(f.bottom_note,"DESDE 1987")}</span>
       </div>
     </section>
   );

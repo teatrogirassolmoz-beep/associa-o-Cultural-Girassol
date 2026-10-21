@@ -4,6 +4,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { GirassolLogo } from "@/components/ui/GirassolLogo";
 import { FitiLogo } from "@/components/ui/FitiLogo";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
+import { usePresentation } from "@/components/ui/SitePresentation";
+import { safePublicHref } from "@/lib/community";
 import { AreaMenu } from "./AreaMenu";
 import type { ThemeSettings } from "@/types/cms";
 import { usePublicNavigation } from "@/hooks/usePublicNavigation";
@@ -13,31 +15,11 @@ export function Navbar({ settings }: { settings?: ThemeSettings }) {
   const fiti = pathname.replace(/\/$/, "").endsWith("/fiti");
   const { data: links } = usePublicNavigation("main_menu"),
     { data: fitiLinks } = usePublicNavigation("fiti_menu");
-  const primaryDefaults = fiti
-    ? [
-        ["Programação", "/fiti#programacao"],
-        ["Seminários", "/fiti?pesquisa=seminario#programacao"],
-        ["Oficinas", "/fiti#oficinas"],
-        ["Companhias", "/fiti#companhias"],
-        ["O festival", "/fiti#sobre"],
-        ["Parceiros", "/fiti#parceiros"],
-      ]
-    : [
-        ["Associação", "/#quem-somos"],
-        ["Projectos", "/#projectos"],
-        ["Pessoas", "/#membros"],
-        ["Galeria", "/#galeria"],
-        ["FITI", "/fiti"],
-      ];
-  const normaliseHref = (href: string) =>
-    (href.startsWith("#") ? `/${href}` : href).replace(/\/(?=#|$)/g, "");
-  const stored = fiti ? fitiLinks : links;
-  const primary = primaryDefaults.map(([label, href]) => {
-    const entry = stored.find(
-      (item) => normaliseHref(item.url) === normaliseHref(href),
-    );
-    return [entry?.label || label, href];
-  });
+  const config = usePresentation();
+  const stored = (fiti ? fitiLinks : links).filter(item=>safePublicHref(item.url));
+  const highlighted = !fiti && config.fiti_menu_highlight === 'true' ? stored.find(item=>item.url.replace(/\/$/,'')==='/fiti') : undefined;
+  const visible = highlighted ? [...stored.filter(item=>item!==highlighted).slice(0,5),highlighted] : stored.slice(0,6);
+  const primary = visible.map(item=>[item.label,item.url.startsWith('#')?`${fiti?'/fiti':'/'}${item.url}`:item.url]);
   return (
     <header className="festival-nav">
       <div className="festival-nav-inner">
@@ -62,38 +44,23 @@ export function Navbar({ settings }: { settings?: ThemeSettings }) {
             fallback={fiti ? <FitiLogo compact /> : <GirassolLogo compact />}
           />
           <span>
-            {fiti ? "FITI" : "GIRASSOL"}
+            {fiti ? config.fiti_brand_label : config.home_brand_label}
             <small>
-              {fiti ? "TEATRO EM MOÇAMBIQUE" : "ASSOCIAÇÃO CULTURAL"}
+              {fiti ? config.fiti_brand_subtitle : config.home_brand_subtitle}
             </small>
           </span>
         </Link>
-        {fiti && <Link href="/" className="festival-return">← Associação<span> Girassol</span></Link>}
+        {fiti && <Link href="/" className="festival-return">{config.association_return_label}</Link>}
         <nav
           aria-label="Navegação principal"
           className="festival-primary-links"
         >
-          {primary.map(([label, href]) =>
-            href.includes("?pesquisa=") ? (
-              <a href="?pesquisa=seminario#programacao" key={href}>
-                {label}
-              </a>
-            ) : (
-              <Link href={href} key={href} className={href === "/fiti" ? "nav-fiti-highlight" : undefined}>
-                {label}
-              </Link>
-            ),
-          )}
+          {primary.map(([label,href])=><Link href={href} key={href} className={href.replace(/\/$/,'')==='/fiti'&&config.fiti_menu_highlight==='true'?'nav-fiti-highlight':undefined} onClick={event=>{if(href.includes('?')){event.preventDefault();window.location.assign(event.currentTarget.href);}}}>{label}</Link>)}
         </nav>
-        <Link href={fiti ? "/fiti#formularios" : "/fiti"} className="festival-nav-register">
-          {fiti ? "Inscrições" : "Entrar no FITI"}
+        <Link href={safePublicHref(fiti ? config.fiti_nav_cta_link : config.home_nav_cta_link) || (fiti ? "/fiti#formularios" : "/fiti")} className="festival-nav-register">
+          {fiti ? config.fiti_nav_cta : config.home_nav_cta}
         </Link>
-        <AreaMenu
-          links={[...links, ...fitiLinks].map((link) => ({
-            label: link.label,
-            href: link.url.startsWith("#") ? `/${link.url}` : link.url,
-          }))}
-        />
+        <AreaMenu />
       </div>
     </header>
   );

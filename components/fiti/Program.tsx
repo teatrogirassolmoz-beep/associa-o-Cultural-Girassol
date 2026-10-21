@@ -18,7 +18,8 @@ import {
   RotateCcw,
   ArrowUpRight,
 } from "lucide-react";
-import { useSection, text } from "@/components/publicCms";
+import { usePublicSection } from "@/hooks/usePublicSection";
+import { bool, text } from "@/components/publicCms";
 import { useFitiSchedule } from "./FitiScheduleContext";
 import { FestivalEvent } from "./FestivalEvent";
 import {
@@ -45,12 +46,14 @@ function todayInMaputo() {
   return `${get("year")}-${get("month")}-${get("day")}`;
 }
 export function Program() {
-  const fields = useSection("fiti_program");
+  const { data: fields, loading: sectionLoading } = usePublicSection("fiti_program");
+  const initialViewApplied = useRef(false);
   const { events, edition, loading, error, refresh } = useFitiSchedule();
   const [today, setToday] = useState<string | null>(null),
     [monthChoice, setMonthChoice] = useState<string | null>(null),
     [dayChoice, setDayChoice] = useState<string | null>(null);
   const [view, setView] = useState<"calendar" | "agenda">("calendar");
+  useEffect(() => { if (!sectionLoading && !initialViewApplied.current) { setView(fields.layout_style === "agenda" ? "agenda" : "calendar"); initialViewApplied.current = true; } }, [sectionLoading, fields.layout_style]);
   const [query, setQuery] = useState(""),
     [category, setCategory] = useState(""),
     [venue, setVenue] = useState("");
@@ -191,6 +194,7 @@ export function Program() {
             </p>
           </div>
         </header>
+        {bool(fields.filters_enabled, true) && <>
         <div className="schedule-filters">
           <label className="schedule-search">
             <Search size={18} />
@@ -270,6 +274,7 @@ export function Program() {
             </button>
           ))}
         </div>
+        </>}
         {error ? (
           <div className="schedule-notice" role="alert">
             <h3>Não foi possível carregar a programação.</h3>

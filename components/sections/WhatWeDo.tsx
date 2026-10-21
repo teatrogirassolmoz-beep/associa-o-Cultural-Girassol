@@ -27,9 +27,7 @@ export function WhatWeDo() {
             <h2>{text(f.section_title, "O que fazemos")}</h2>
           </div>
           <p>
-            O mesmo impulso.
-            <br />
-            <em>Muitas formas de expressão.</em>
+            {text(f.side_note,"O mesmo impulso. Muitas formas de expressão.")}
           </p>
         </header>
         <div className="art-practice-list">

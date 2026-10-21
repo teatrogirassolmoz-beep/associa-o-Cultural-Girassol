@@ -4,6 +4,7 @@ import type { ChangeEvent } from 'react';
 import type { SectionField } from '@/types/cms';
 
 const selectOptions: Record<string, string[]> = {
+  layout_style: ['calendar','agenda'],
   background_motion_intensity: ['low', 'medium', 'high'],
   background_type: ['mixed', 'gradient', 'image', 'video', 'none'],
   button_style: ['rounded', 'square', 'pill'],
@@ -12,6 +13,7 @@ const selectOptions: Record<string, string[]> = {
 export function EditableField({ field, onChange, controlled = false }: { field: SectionField; onChange?: (value: string) => void; controlled?: boolean }) {
   const common = {
     name: field.field_key,
+    "aria-label": field.field_label,
     ...(controlled ? { value: field.field_value ?? '' } : { defaultValue: field.field_value ?? '' }),
     onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => onChange?.(e.target.value),
     className: 'mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none focus:border-sun',
@@ -30,7 +32,7 @@ export function EditableField({ field, onChange, controlled = false }: { field: 
       ) : field.field_type === 'select' ? (
         <select {...common}>
           {(selectOptions[field.field_key] ?? [field.field_value]).map((option) => (
-            <option key={option} value={option}>{option}</option>
+            <option key={option} value={option}>{({calendar:'Calendário',agenda:'Agenda'} as Record<string,string>)[option]||option}</option>
           ))}
         </select>
       ) : field.field_type === 'color' ? (
