@@ -24,8 +24,8 @@ export function FitiHero() {
       )}
       <div className="hero-layout">
         <div className="future-manifesto" aria-hidden="true">
-          <span>O PALCO NÃO TEM LIMITES.</span>
-          <span>O ENCONTRO TAMBÉM NÃO.</span>
+          <span>UMA INICIATIVA DA ASSOCIAÇÃO GIRASSOL.</span>
+          <span>O TEATRO MOÇAMBICANO ENCONTRA O MUNDO.</span>
         </div>
         <div className="hero-copy">
           <p className="hero-eyebrow">

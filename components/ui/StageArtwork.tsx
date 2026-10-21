@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Orbit, Asterisk } from "lucide-react";
+import { ArrowUpRight, Orbit } from "lucide-react";
+
+import { BrandSun } from "@/components/art/BrandSun";
 
 const dimensions = ["Pulso solar", "Órbita líquida", "Campo magnético"];
 
@@ -30,7 +32,7 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
         ? ["#ff5f87", "#7b3cff", "#00cbbc"]
         : dimension === 2
           ? ["#fd782b", "#5333ff", "#da45ff"]
-          : ["#7245ff", "#ee4fbd", "#00c9cf"];
+          : ["#ef8a40", "#9851d5", "#00bca7"];
 
     function project(u: number, v: number, time: number) {
       const major =
@@ -240,12 +242,11 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
         <canvas ref={canvas} aria-hidden="true" className="portal-canvas" />
         <div className="portal-heart" aria-hidden="true">
           <span>
-            G
-            <span>
-              <Asterisk />
-            </span>
+            <BrandSun />
           </span>
-          <small>{fiti ? "FITI / ENCONTRO" : "ARTE / EM EXPANSÃO"}</small>
+          <small>
+            {fiti ? "FITI / TEATRO SEM FRONTEIRAS" : "GIRASSOL / TEATRO VIVO"}
+          </small>
         </div>
       </div>
       <span className="portal-orbit-word" aria-hidden="true">

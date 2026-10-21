@@ -26,8 +26,8 @@ export function Hero() {
       )}
       <div className="hero-layout">
         <div className="future-manifesto" aria-hidden="true">
-          <span>HUMANO POR NATUREZA.</span>
-          <span>EXTRAORDINÁRIO POR ESCOLHA.</span>
+          <span>MAPUTO. MOÇAMBIQUE.</span>
+          <span>TEATRO, JUVENTUDE E MEMÓRIA DESDE 1987.</span>
         </div>
         <div className="hero-copy">
           {settings.hero_logo_url ? (
@@ -104,7 +104,7 @@ export function Hero() {
         <StageArtwork />
       </div>
       <div className="hero-bottom">
-        <span className="future-index">01 — ENTRE NO IMPREVISÍVEL</span>
+        <span className="future-index">01 — O FUTURO TEM RAÍZES</span>
         <Link href="#quem-somos">
           Entre no nosso universo <ArrowDown size={18} />
         </Link>

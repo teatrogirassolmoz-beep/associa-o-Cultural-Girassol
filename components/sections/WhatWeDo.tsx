@@ -1,3 +1,62 @@
-'use client';
-import { whatWeDo } from '@/lib/data'; import { Card } from '@/components/ui/Card'; import { SectionTitle } from '@/components/ui/SectionTitle'; import { Theater } from 'lucide-react'; import { useSection, text } from '@/components/publicCms';
-export function WhatWeDo(){const f=useSection('home_what_we_do');let items:any[]=whatWeDo;try{if(f.cards) items=JSON.parse(String(f.cards));}catch{}return <section id="o-que-fazemos" className="py-16 md:py-20"><div className="mx-auto max-w-7xl px-4"><SectionTitle eyebrow={text(f.eyebrow,'O que fazemos')} title={text(f.section_title,'Arte com impacto social')}/><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{items.map(t=><Card key={t.title}><Theater className="mb-4 text-sun"/><h3 className="text-xl font-bold text-white">{t.title}</h3><p className="mt-2 text-zinc-400">{t.description}</p></Card>)}</div></div></section>}
+"use client";
+import { ArrowUpRight } from "lucide-react";
+import { whatWeDo } from "@/lib/data";
+import { readList } from "@/lib/community";
+import { useSection, text } from "@/components/publicCms";
+
+export function WhatWeDo() {
+  const f = useSection("home_what_we_do");
+  const parsed = readList<{ title?: unknown; description?: unknown } | null>(
+    f.cards,
+    whatWeDo,
+  ).filter(
+    (row): row is { title: string; description: string } =>
+      !!row &&
+      typeof row.title === "string" &&
+      typeof row.description === "string",
+  );
+  const items = parsed;
+  return (
+    <section id="o-que-fazemos" className="art-practices py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-4">
+        <header className="art-section-heading">
+          <div>
+            <p className="editorial-eyebrow">
+              {text(f.eyebrow, "AS NOSSAS LINGUAGENS")}
+            </p>
+            <h2>{text(f.section_title, "O que fazemos")}</h2>
+          </div>
+          <p>
+            O mesmo impulso.
+            <br />
+            <em>Muitas formas de expressão.</em>
+          </p>
+        </header>
+        <div className="art-practice-list">
+          {items.map((item, i) => (
+            <details
+              key={`${item.title}-${i}`}
+              open={i === 0}
+              className="art-practice"
+            >
+              <summary>
+                <span className="art-practice-index">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3>{item.title}</h3>
+                <span className="art-practice-symbol" aria-hidden="true">
+                  {["✺", "↗", "⊙", "∿", "+", "◇"][i % 6]}
+                </span>
+                <ArrowUpRight size={24} />
+              </summary>
+              <div className="art-practice-body">
+                <p>{item.description}</p>
+                <span aria-hidden="true">GIRASSOL / ARTE EM ACÇÃO</span>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

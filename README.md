@@ -264,6 +264,10 @@ No CMS autenticado, abra **Conteúdos → Membros** para adicionar, editar ou re
 
 Em **Conteúdos → Avisos**, escreva os textos da faixa inferior e os respectivos links. Pode apontar para `/fiti#formularios`, `/fiti#programacao`, notícias ou páginas externas HTTP(S). Guardar uma lista vazia oculta a faixa. Os visitantes podem pausar a animação; o movimento também pára ao passar o cursor ou usar o teclado.
 
+A direcção artística combina o palco futurista com composições originais sobre corpo, voz, formação e encontro, o motivo do girassol e a história documentada da Associação desde 1987. As ilustrações não representam fotografias de espectáculos ou cartazes oficiais de edições do FITI. As imagens publicadas no CMS têm prioridade sobre as composições de fallback.
+
+Em **Homepage → Quem somos**, pode editar o título e o texto institucional e adicionar o URL e a legenda de uma fotografia carregada na Media Library. Os novos campos opcionais são gravados em `section_fields`, sem exigir uma nova tabela. As imagens de projectos e da galeria continuam nas respectivas áreas do CMS. Os projectos têm detalhes expansíveis, e as áreas de actuação são apresentadas como um programa de palco interactivo.
+
 Os perfis e avisos são guardados nas chaves `member_profiles` e `announcement_items` da tabela existente `theme_settings`, através das permissões de administrador já configuradas. Não é necessária uma tabela nova. Sem Supabase configurado, a área de membros e os avisos de navegação funcionam com estado local inicial; a edição persistente exige configurar o Supabase conforme as instruções acima. Os formulários sem ligação não apresentam confirmações falsas de envio.
 
 Para executar os testes das listas, perfis e validação de links:

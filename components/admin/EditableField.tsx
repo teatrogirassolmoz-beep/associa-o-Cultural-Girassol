@@ -9,10 +9,10 @@ const selectOptions: Record<string, string[]> = {
   button_style: ['rounded', 'square', 'pill'],
 };
 
-export function EditableField({ field, onChange }: { field: SectionField; onChange?: (value: string) => void }) {
+export function EditableField({ field, onChange, controlled = false }: { field: SectionField; onChange?: (value: string) => void; controlled?: boolean }) {
   const common = {
     name: field.field_key,
-    defaultValue: field.field_value,
+    ...(controlled ? { value: field.field_value ?? '' } : { defaultValue: field.field_value ?? '' }),
     onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => onChange?.(e.target.value),
     className: 'mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none focus:border-sun',
   };
