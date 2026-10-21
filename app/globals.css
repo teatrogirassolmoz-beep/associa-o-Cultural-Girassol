@@ -4831,3 +4831,29 @@ body:has(.festival-site dialog[open]) {
 .festival-site .area-menu-grid > .area-menu-fiti { background: #ffd678; padding: 18px; border: 2px solid #a51c63; box-shadow: 5px 5px 0 #ec8b6a; }
 .festival-site .area-menu-grid > .area-menu-fiti h3 { color: #a51c63; }
 .festival-site .area-menu-grid > .area-menu-fiti a:first-of-type { background: #a51c63; color: #fff9ed; padding: 12px; margin-bottom: 10px; font-weight: 800; }
+
+/* Colour continues through the whole site, including the former white sections. */
+.festival-site { --section-panel: #ffc65c; --vivid-paper: #ffcf36; }
+.festival-site.fiti-site { --section-panel: #ffb75c; --vivid-paper: #ffad76; }
+.festival-site:not(.fiti-site) .public-content > section:not(.festival-hero) { background: #ffd83e !important; }
+.festival-site:not(.fiti-site) .public-content > section:not(.festival-hero):nth-of-type(3n + 2) { background: #ffac62 !important; }
+.festival-site:not(.fiti-site) .public-content > section:not(.festival-hero):nth-of-type(3n + 3) { background: #7bd6b0 !important; }
+.festival-site.fiti-site .public-content > section:not(.festival-hero) { background: #ffaf70 !important; }
+.festival-site.fiti-site .public-content > section:not(.festival-hero):nth-of-type(3n + 2) { background: #ffd33e !important; }
+.festival-site.fiti-site .public-content > section:not(.festival-hero):nth-of-type(3n + 3) { background: #f69eb3 !important; }
+.festival-site .public-content > section:not(.festival-hero) :is(p,.text-zinc-300,.text-zinc-400,.text-zinc-500) { color: #532940; }
+.festival-site .public-content > section:not(.festival-hero) :is([class*="bg-zinc-"],[class*="bg-white/"],.member-card,.member-empty,.schedule-notice) { background: var(--section-panel); border-color: #923f3b40; }
+.festival-site .public-content > section:not(.festival-hero) :is(input,textarea,select) { background: #ffdf77; color: #532940; }
+.festival-site .festival-nav { background: #ffd53af7; }
+.festival-site.fiti-site .festival-nav { background: #ffb277f7; }
+.festival-site .area-menu-trigger, .festival-site .festival-return { background: #ffdd62; }
+.festival-site .area-menu { background: #ffd849; }
+.festival-site.fiti-site .area-menu { background: #ffb978; }
+.festival-site .festival-hero .festival-button-outline, .festival-site .fiti-spotlight .festival-button-outline { background: #ffdf69; }
+.fiti-site .festival-calendar { background: #ffda59; }
+.fiti-site .festival-calendar td > button { background: #ffbd58; }
+.fiti-site .festival-calendar td > button[data-has-events="true"] { background: #ffad44; }
+.fiti-site .festival-calendar td > button[aria-pressed="true"] { background: #a51c63; color: #fff9ed; }
+.fiti-site .festival-day-agenda { background: #ffb65d; }
+.fiti-site .schedule-filters :is(input,select) { background: #ffdf77 !important; }
+.festival-site .scenery-control { background: #ffdc58; }
