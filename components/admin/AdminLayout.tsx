@@ -1,3 +1,40 @@
-'use client';
-import { AdminSidebar } from './AdminSidebar';
-export function AdminLayout({children}:{children:React.ReactNode}){return <div className="min-h-screen bg-black p-4 text-white"><div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[280px_1fr]"><AdminSidebar/><main>{children}</main></div></div>}
+"use client";
+import { useEffect, useState } from "react";
+import { AdminSidebar, adminAreas } from "./AdminSidebar";
+export function AdminLayout({ children }: { children: React.ReactNode }) {
+  const [area, setArea] = useState("Dashboard");
+  useEffect(() => {
+    const sync = () =>
+      setArea(decodeURIComponent(location.hash.slice(1)) || "Dashboard");
+    sync();
+    addEventListener("hashchange", sync);
+    return () => removeEventListener("hashchange", sync);
+  }, []);
+  return (
+    <div className="min-h-screen bg-black p-4 text-white">
+      <div className="mx-auto flex max-w-7xl gap-6">
+        <AdminSidebar />
+        <main className="min-w-0 flex-1">
+          <label className="mb-6 block text-sm lg:hidden">
+            Área do CMS
+            <select
+              aria-label="Área do CMS"
+              className="mt-2 w-full rounded-xl border border-white/20 bg-zinc-900 p-3 text-white"
+              value={area}
+              onChange={(event) => {
+                location.hash = event.target.value;
+              }}
+            >
+              {adminAreas.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}

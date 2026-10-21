@@ -33,6 +33,8 @@ export function Contact({ sectionKey = 'home_contact' }: { sectionKey?: string }
 
   async function onSubmit(data: Form) {
     setError('');
+    setOk(false);
+    if (!supabase) { setError('O envio de mensagens está temporariamente indisponível. Utilize os contactos da organização.'); return; }
     if (supabase) {
       const result = await supabase.from('contact_messages').insert(data);
       if (result.error) { setError('Não foi possível registar a mensagem. Tente novamente ou use os contactos rápidos.'); return; }

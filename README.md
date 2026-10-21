@@ -255,3 +255,19 @@ Os formulários públicos gravam directamente no Supabase através do cliente p�
 7. Confirmar na caixa de debug que `theme_settings carregado` está como `sim` e que `site_logo_url`, `hero_logo_url`, `footer_logo_url`, `fiti_logo_url` ou `animated_logo_url` mostram o URL guardado.
 8. Confirmar na mesma caixa que o `ManagedLogo` correspondente indica `imagem real`, a `key usada` correcta e o URL público esperado.
 9. Actualizar a página. O logotipo deve mudar sem deploy novo, sem hardcode e sem imagem adicionada ao GitHub. Se aparecer `fallback`, verificar a mensagem exacta do Diagnóstico: RLS, bucket `site-media`, URL vazio, utilizador sem admin ou erro real devolvido pelo Supabase.
+
+## Membros e avisos do site
+
+O novo menu **Explorar áreas** organiza a Associação, o universo FITI e as formas de participação. A identidade pública usa violeta, amarelo girassol, coral, verde e fundos claros. O movimento respeita a preferência do dispositivo por animações reduzidas.
+
+No CMS autenticado, abra **Conteúdos → Membros** para adicionar, editar ou remover perfis. Cada perfil tem nome, função, área (Associação ou FITI), URL da fotografia e biografia. Pode carregar a fotografia na **Media Library** e copiar o URL público para o perfil. Publique apenas fotografias e biografias autorizadas. Sem perfis, o site apresenta uma mensagem de preparação; não cria pessoas fictícias. Na página pública, os visitantes podem filtrar, pesquisar e abrir biografias.
+
+Em **Conteúdos → Avisos**, escreva os textos da faixa inferior e os respectivos links. Pode apontar para `/fiti#formularios`, `/fiti#programacao`, notícias ou páginas externas HTTP(S). Guardar uma lista vazia oculta a faixa. Os visitantes podem pausar a animação; o movimento também pára ao passar o cursor ou usar o teclado.
+
+Os perfis e avisos são guardados nas chaves `member_profiles` e `announcement_items` da tabela existente `theme_settings`, através das permissões de administrador já configuradas. Não é necessária uma tabela nova. Sem Supabase configurado, a área de membros e os avisos de navegação funcionam com estado local inicial; a edição persistente exige configurar o Supabase conforme as instruções acima. Os formulários sem ligação não apresentam confirmações falsas de envio.
+
+Para executar os testes das listas, perfis e validação de links:
+
+```bash
+node --test tests/community.test.mjs
+```

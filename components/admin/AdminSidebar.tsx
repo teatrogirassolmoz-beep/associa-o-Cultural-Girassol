@@ -12,7 +12,7 @@ const groups = [
   },
   {
     label: 'Conteúdos',
-    items: ['Galeria', 'Notícias', 'Projectos', 'Timeline', 'Impacto', 'Parceiros'],
+    items: ['Membros', 'Avisos', 'Galeria', 'Notícias', 'Projectos', 'Timeline', 'Impacto', 'Parceiros'],
   },
   {
     label: 'Gestão do FITI',
@@ -23,6 +23,8 @@ const groups = [
     items: ['Contactos', 'Imprensa', 'Formulários', 'Diagnóstico', 'Definições'],
   },
 ] as const;
+
+export const adminAreas = [...primaryItems, ...groups.flatMap(group => [...group.items])];
 
 const linkClass = 'block rounded-xl px-3 py-2 text-zinc-300 transition hover:bg-white/5 hover:text-sun focus:bg-white/5 focus:text-sun focus:outline-none';
 

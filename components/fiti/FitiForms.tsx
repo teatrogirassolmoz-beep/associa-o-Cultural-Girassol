@@ -46,6 +46,7 @@ export function FitiForms() {
   async function submit(data: App) {
     setError('');
     setOk(false);
+    if (!supabase) { setError('As candidaturas online ainda não estão disponíveis. Contacte a organização para obter informações.'); return; }
     if (supabase) {
       const result = await supabase.from('fiti_applications').insert(data);
       if (result.error) {
@@ -61,6 +62,7 @@ export function FitiForms() {
   return <section id="formularios" className="py-16 md:py-20">
     <div className="mx-auto max-w-4xl px-4">
       <SectionTitle eyebrow={text(fields.eyebrow, 'Formulários FITI')} title={text(fields.section_title, 'Inscrições e pedidos')} />
+      {!supabase && <p role="status" className="mb-6 rounded-2xl border border-current p-4 text-sm">As candidaturas online ainda não estão disponíveis. Consulte os contactos da organização para obter informações sobre participação e prazos.</p>}
       <form onSubmit={handleSubmit(submit)} className="grid gap-4 rounded-3xl border border-white/10 bg-zinc-900/70 p-6 md:grid-cols-2">
         <label className="block text-sm text-zinc-200 md:col-span-2">Tipo de pedido
           <select className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white" {...typeRegistration} onChange={(event) => { void typeRegistration.onChange(event); setOk(false); setError(''); }}>
