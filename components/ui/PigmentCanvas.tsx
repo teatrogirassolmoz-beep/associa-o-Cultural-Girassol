@@ -11,6 +11,8 @@ export function PigmentCanvas() {
     const host = element.parentElement!,
       hero = host.closest<HTMLElement>(".festival-hero"),
       site = host.closest<HTMLElement>(".festival-site");
+    const fiti = Boolean(site?.classList.contains("fiti-site"));
+    const trail: { x: number; y: number; age: number }[] = [];
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     let width = 0,
       height = 0,
@@ -42,13 +44,13 @@ export function PigmentCanvas() {
     function draw() {
       if (!context || !width || !height) return;
       context.clearRect(0, 0, width, height);
-      context.globalCompositeOperation = "screen";
+      context.globalCompositeOperation = "source-over";
       const drift = Math.sin(time * 0.18) * 0.015;
       for (let patch = 0; patch < 10; patch++) {
         const right = patch % 2 === 0;
         const cx = width * (right ? 1.02 : -0.02),
           cy = height * (0.1 + (patch % 5) * 0.21);
-        context.globalAlpha = 0.08;
+        context.globalAlpha = fiti ? 0.17 : 0.14;
         context.fillStyle = [
           "#7a169e",
           "#0b78aa",
@@ -100,7 +102,7 @@ export function PigmentCanvas() {
               0,
               1 - Math.abs(y - pointer.y * height) / 250,
             );
-            x += (pointer.x - 0.5) * 15 * influence;
+            x += (pointer.x - 0.5) * 105 * influence;
           }
           if (n === 0) context.moveTo(x, y);
           else context.lineTo(x, y);
@@ -120,9 +122,9 @@ export function PigmentCanvas() {
           pointer.active &&
           !reduced.matches &&
           site?.dataset.motionPaused !== "true" &&
-          distance < 180
+          distance < 250
         ) {
-          const force = (1 - distance / 180) * 19;
+          const force = (1 - distance / 250) * 65;
           x += (dx / Math.max(distance, 1)) * force;
           y += (dy / Math.max(distance, 1)) * force;
         }
@@ -141,23 +143,35 @@ export function PigmentCanvas() {
           pointer.y * height,
           190,
         );
-        glow.addColorStop(0, "#e434891d");
+        glow.addColorStop(0, fiti ? "#ffca3860" : "#e4348950");
         glow.addColorStop(1, "#e4348900");
         context.globalAlpha = 1;
         context.fillStyle = glow;
         context.fillRect(0, 0, width, height);
       }
+      if (!reduced.matches) {
+        for (const mark of trail) {
+          context.globalAlpha = Math.max(0, .38 * (1 - mark.age));
+          context.fillStyle = fiti ? "#b32985" : "#e95f21";
+          for (let petal = 0; petal < 5; petal++) {
+            const angle = petal * Math.PI * 2 / 5;
+            context.beginPath();
+            context.ellipse(mark.x + Math.cos(angle) * 13, mark.y + Math.sin(angle) * 13, 22, 9, angle, 0, Math.PI * 2);
+            context.fill();
+          }
+        }
+      }
       if (burst && !reduced.matches) {
         for (let i = 0; i < 48; i++) {
           const angle = i * 2.399,
-            r = burst.age * 120 * (0.45 + (i % 5) * 0.13);
-          context.globalAlpha = Math.max(0, (1 - burst.age) * 0.65);
+            r = burst.age * 220 * (0.45 + (i % 5) * 0.13);
+          context.globalAlpha = Math.max(0, (1 - burst.age) * 0.95);
           context.fillStyle = ["#ffbd48", "#ef2699", "#42d8cf"][i % 3];
           context.beginPath();
           context.arc(
             burst.x + Math.cos(angle) * r,
             burst.y + Math.sin(angle) * r,
-            1.5 + (i % 3),
+            3 + (i % 3) * 2,
             0,
             Math.PI * 2,
           );
@@ -179,6 +193,10 @@ export function PigmentCanvas() {
       if (now - last > 49) {
         const delta = Math.min(now - last, 90) / 1000;
         time += delta;
+        for (let i = trail.length - 1; i >= 0; i--) {
+          trail[i].age += delta * .8;
+          if (trail[i].age >= 1) trail.splice(i, 1);
+        }
         if (burst) {
           burst.age += delta;
           if (burst.age > 1) burst = null;
@@ -216,6 +234,12 @@ export function PigmentCanvas() {
       pointer.x = (event.clientX - rect.left) / rect.width;
       pointer.y = (event.clientY - rect.top) / rect.height;
       pointer.active = true;
+      const x = pointer.x * width, y = pointer.y * height;
+      const previous = trail[trail.length - 1];
+      if (!previous || Math.hypot(previous.x - x, previous.y - y) > 15) {
+        trail.push({x, y, age: 0});
+        if (trail.length > 28) trail.shift();
+      }
     }
     function leave() {
       pointer.active = false;

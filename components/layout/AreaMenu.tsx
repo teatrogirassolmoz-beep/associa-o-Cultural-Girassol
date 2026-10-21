@@ -18,6 +18,7 @@ const groups = [
   {
     title: "Universo FITI",
     links: [
+      ["Entrar no FITI", "/fiti"],
       ["O festival", "/fiti#sobre"],
       ["Edição actual", "/fiti#edicao"],
       ["Programação", "/fiti#programacao"],
@@ -91,7 +92,7 @@ export function AreaMenu({
         </h2>
         <nav aria-label="Todas as áreas" className="area-menu-grid">
           {groups.map((group, i) => (
-            <div key={group.title}>
+            <div key={group.title} className={group.title === "Universo FITI" ? "area-menu-fiti" : undefined}>
               <p className="area-group-number">0{i + 1}</p>
               <h3>{group.title}</h3>
               {group.links.map(([label, href]) =>

@@ -79,7 +79,7 @@ export function Navbar({ settings }: { settings?: ThemeSettings }) {
                 {label}
               </a>
             ) : (
-              <Link href={href} key={href}>
+              <Link href={href} key={href} className={href === "/fiti" ? "nav-fiti-highlight" : undefined}>
                 {label}
               </Link>
             ),

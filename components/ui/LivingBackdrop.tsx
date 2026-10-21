@@ -34,7 +34,7 @@ export function LivingBackdrop({ page = false }: { page?: boolean }) {
       className={`living-backdrop ${page ? "living-backdrop-page" : "living-backdrop-hero"}`}
       aria-hidden="true"
     >
-      {!page && <PigmentCanvas />}
+      {!page && <><PigmentCanvas /><div className="culture-cutouts"><i/><i/><i/></div><span className="pigment-interaction-hint">Mova o rato ou toque — dê cor ao palco.</span></>}
       <div className="future-parallax">
         <div className="aurora aurora-one" />
         <div className="aurora aurora-two" />

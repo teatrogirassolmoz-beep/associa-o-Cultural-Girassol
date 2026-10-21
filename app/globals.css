@@ -3140,12 +3140,12 @@ body:has(.festival-site dialog[open]) {
   position: absolute;
   left: 15px;
   bottom: 14px;
-  color: #efc45e;
+  color: #a51c63;
 }
 .fiti-site .schedule-filters :is(input, select) {
-  background: #2a1c47 !important;
-  color: #fff8ed !important;
-  border: 1px solid #ffffff33 !important;
+  background: #fff9e8 !important;
+  color: #532246 !important;
+  border: 1px solid #b8614255 !important;
   border-radius: 2px !important;
   padding: 12px 14px;
   min-height: 47px;
@@ -3156,7 +3156,7 @@ body:has(.festival-site dialog[open]) {
   width: 100%;
 }
 .schedule-search input::placeholder {
-  color: #bfb0cd;
+  color: #76564a;
 }
 .schedule-filters select {
   max-width: 240px;
@@ -4750,3 +4750,84 @@ body:has(.festival-site dialog[open]) {
  .cultural-poster-title strong { font-size: 42px; }
  .cultural-poster-logo, .cultural-poster-logo > img { height: 36px; margin-bottom: 4px; }
 }
+
+/* Two cultural identities: sunflower paper for Girassol, coral print for FITI. */
+.festival-site { --vivid-ink: #44202b; --vivid-muted: #694130; --vivid-paper: #fff3c4; --vivid-base: #ffd632; --vivid-accent: #a81b65; background: #fff8dc; color: var(--vivid-ink); }
+.festival-site.fiti-site { --vivid-ink: #532246; --vivid-muted: #70334c; --vivid-paper: #fff1d7; --vivid-base: #ff9567; --vivid-accent: #a41162; background: #fff0d6; }
+.festival-site .festival-hero { background: #ffda32; color: var(--vivid-ink); }
+.festival-site.fiti-site .festival-hero-fiti { background: #ff9869; color: var(--vivid-ink); }
+.festival-site .festival-hero .aurora-one { background: radial-gradient(ellipse, #ffe98f, #fba53370, transparent 70%); opacity: .7; }
+.festival-site .festival-hero .aurora-two { background: radial-gradient(ellipse, #ffab4688, #fff7c4, transparent 70%); opacity: .6; }
+.festival-site.fiti-site .festival-hero .aurora-one { background: radial-gradient(ellipse, #ffc335, #ed568b70, transparent 70%); }
+.festival-site.fiti-site .festival-hero .aurora-two { background: radial-gradient(ellipse, #f6639470, #ffd680, transparent 70%); }
+.festival-site .festival-hero :is(.hero-copy h1, .fiti-wordmark, .hero-subtitle, .hero-description, .hero-eyebrow, .future-title-prefix, .future-manifesto, .hero-bottom, .hero-bottom a, .future-index) { color: var(--vivid-ink) !important; }
+.festival-site .festival-hero .future-title-name > span, .festival-site.fiti-site .festival-hero .fiti-wordmark > span { -webkit-text-stroke-color: var(--vivid-accent); }
+.festival-site .festival-hero :is(.future-manifesto, .hero-bottom) { border-color: #6c302b35; }
+.festival-site .festival-hero .festival-button { background: #a51c63; color: #fff9ed; border-color: #a51c63; }
+.festival-site .festival-hero .festival-button-outline { background: #fff5d9; color: var(--vivid-ink); border-color: #71372a70; }
+.festival-site .festival-hero .home-fiti-entry { background: #a51c63; color: #fff9ed; border-color: #a51c63; box-shadow: 5px 5px 0 #6d2e2820; }
+.festival-site .cultural-art-caption { color: var(--vivid-ink); }
+.festival-site .cultural-scene-tabs { border-color: #6c302b55; }
+.festival-site .cultural-scene-tabs button { color: var(--vivid-ink); }
+.festival-site .cultural-scene-tabs button[aria-pressed="true"] { color: #8a134d; border-color: #a51c63; font-weight: 800; }
+.festival-site .cultural-map { background: #ffcf38; }
+.festival-site .cultural-map text { fill: #532246; }
+.culture-cutouts { position: absolute; inset: 0; overflow: hidden; opacity: .19; }
+.culture-cutouts i { position: absolute; width: 310px; height: 310px; background: #ef6a20; left: -120px; top: 22%; border-radius: 38% 62% 70% 30% / 60% 35% 65% 40%; transform: rotate(-20deg); }
+.culture-cutouts i:nth-child(2) { background: #e3417c; left: auto; right: -160px; top: 8%; width: 500px; height: 500px; }
+.culture-cutouts i:nth-child(3) { background: #74aa58; left: 30%; top: 85%; width: 250px; height: 250px; }
+.fiti-site .culture-cutouts i { background: #b51e71; border-radius: 0; transform: rotate(-25deg); width: 120px; height: 650px; left: -20px; top: 12%; }
+.fiti-site .culture-cutouts i:nth-child(2) { background: #ffdc32; left: auto; right: 2%; top: -15%; width: 160px; }
+.fiti-site .culture-cutouts i:nth-child(3) { background: #d9425b; left: 42%; top: 80%; width: 100px; }
+.pigment-interaction-hint { position: absolute; bottom: 94px; left: 50%; transform: translateX(-50%); z-index: 2; font-size: 10px; letter-spacing: .02em; color: #713425; background: #fff8d5d9; padding: 7px 12px; border-radius: 30px; white-space: nowrap; }
+.festival-site .festival-nav { background: #fff5cef5; color: var(--vivid-ink); border-color: #a9443a33; }
+.festival-site.fiti-site .festival-nav { background: #ffe1c8f5; }
+.festival-site .festival-brand > span, .festival-site .festival-primary-links > a { color: var(--vivid-ink); }
+.festival-site .festival-primary-links > a:hover { color: #a51c63; }
+.festival-site .festival-primary-links > .nav-fiti-highlight { background: #a51c63; color: #fff9ed; border-radius: 3px; padding: 9px 16px; transform: rotate(-3deg); font-weight: 850; }
+.festival-site .festival-primary-links > .nav-fiti-highlight:after { display: none; }
+.festival-site .festival-nav-register { background: #a51c63; color: #fff9ed; border-color: #a51c63; box-shadow: 3px 3px 0 #f0ab34; }
+.festival-site .area-menu-trigger { background: #fff8e2; border-color: #71372a66; color: var(--vivid-ink); }
+.festival-site .festival-return { color: var(--vivid-ink); border-color: #71372a66; background: #fff4d2; }
+.festival-site .public-content > section.fiti-spotlight { background: #ffd73b; color: var(--vivid-ink); }
+.festival-site .fiti-spotlight-copy :is(h2, p, .fiti-spotlight-name), .festival-site .fiti-spotlight-map > span, .festival-site .fiti-spotlight-index { color: var(--vivid-ink) !important; }
+.festival-site .fiti-spotlight .festival-button { background: #a51c63; color: white; }
+.festival-site .fiti-spotlight .festival-button-outline { background: #fff5d5; color: var(--vivid-ink); border-color: #71372a66; }
+.festival-site .fiti-spotlight .mozambique-art text { fill: #532246; }
+.fiti-site .public-content > section.fiti-program-section { background: #fff0b0; color: var(--vivid-ink); }
+.fiti-site .public-content > section.fiti-workshops-section { background: #ffc595; color: var(--vivid-ink); }
+.fiti-site :is(.fiti-program-section, .fiti-workshops-section) :is(h2,h3,h4,p,label,select,input,.festival-event-artist,.festival-event-meta,.festival-event-time,.festival-agenda-day > header span,.schedule-meta,.calendar-legend,.calendar-legend > span,.calendar-intro > span,.festival-category-filters button,.festival-days-strip > button,.workshop-date,.workshop-time,.workshop-title,.workshop-description) { color: var(--vivid-ink); }
+.fiti-site :is(.fiti-program-section, .fiti-workshops-section) :is(input,select) { background: #fff9e8; border-color: #71372a50; }
+.fiti-site .festival-calendar { background: #fff8db; border-color: #b86c3245; box-shadow: 0 15px 35px #a6581612; }
+.fiti-site .festival-calendar th { color: #774c35; }
+.fiti-site .festival-calendar td > button { background: #f6e7b9; border-color: #9d6e3425; color: #71543b; }
+.fiti-site .festival-calendar td > button[data-has-events="true"] { background: #ffd45d; color: #532246; border-color: #ce832a; }
+.fiti-site .festival-calendar td > button[aria-pressed="true"] { background: #a51c63; color: #fff9ed; border-color: #a51c63; }
+.fiti-site .calendar-cell-previews > span { color: #532246; }
+.fiti-site .festival-day-agenda { background: #ffdb8260; border-color: #b86c3245; }
+.fiti-site .calendar-intro, .fiti-site .festival-day-agenda > header, .fiti-site .festival-event, .fiti-site .schedule-filters { border-color: #9d6e3435; }
+.fiti-site :is(.schedule-view-toggle button,.schedule-month-nav button,.schedule-clear,.schedule-meta button,.festival-event-links button,.festival-event-links a,.schedule-day-empty button,.festival-workshop a,.festival-workshop summary,.schedule-notice button) { color: #98154f; border-color: #b8614244; }
+.fiti-site .schedule-view-toggle button[aria-pressed="true"] { background: #a51c63; color: white; }
+.fiti-site .festival-days-strip > button { color: #98154f; }
+.fiti-site .festival-days-strip > button[aria-pressed="true"] { color: #532246; border-color: #a51c63; }
+.fiti-site .festival-category-filters button[aria-pressed="true"] { color: #a51c63; border-color: #a51c63; }
+.festival-site footer { background: #ffd65a; color: var(--vivid-ink); }
+.festival-site.fiti-site footer { background: #ffbc88; }
+.festival-site footer :is(p,a,h3,svg) { color: var(--vivid-ink); }
+.festival-site .scenery-control { background: #fff8dc; color: #62243c; border-color: #a15a3b55; }
+@media(max-width:700px) { .pigment-interaction-hint { bottom: 78px; font-size: 9px; } }
+.fiti-site :is(.festival-event-extra,.workshop-date > span,.workshop-copy details,.workshop-copy summary,.schedule-day-empty p,.schedule-notice) { color: var(--vivid-muted); }
+.fiti-site .festival-section-heading .festival-eyebrow { color: #a41162; }
+.fiti-site .calendar-legend > i { background: #a51c63; }
+.fiti-site .festival-calendar td > button:hover { border-color: #a51c63; box-shadow: inset 0 0 0 1px #a51c63; }
+.fiti-site .festival-calendar td > button[aria-current="date"] { box-shadow: inset 0 -3px 0 #a51c63; }
+.fiti-site .festival-calendar td > button[aria-pressed="true"] .calendar-cell-previews > span { color: #fff9ed; }
+.festival-site .living-backdrop-page { background: var(--vivid-paper); }
+.festival-site .area-menu { background: #fff0be; color: var(--vivid-ink); }
+.festival-site .area-menu :is(h2,h3,p,a,button,em) { color: var(--vivid-ink); }
+.festival-site.fiti-site .area-menu { background: #ffd6b8; }
+
+.festival-site .festival-brand small { color: var(--vivid-muted); }
+.festival-site .area-menu-grid > .area-menu-fiti { background: #ffd678; padding: 18px; border: 2px solid #a51c63; box-shadow: 5px 5px 0 #ec8b6a; }
+.festival-site .area-menu-grid > .area-menu-fiti h3 { color: #a51c63; }
+.festival-site .area-menu-grid > .area-menu-fiti a:first-of-type { background: #a51c63; color: #fff9ed; padding: 12px; margin-bottom: 10px; font-weight: 800; }
