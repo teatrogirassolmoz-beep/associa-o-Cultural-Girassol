@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
 import { useThemeSettings } from "@/hooks/useThemeSettings";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
@@ -10,6 +11,7 @@ export function Hero() {
   const f = useSection("home_hero");
   return (
     <section id="inicio" className="festival-hero">
+      <LivingBackdrop />
       {typeof f.background_video_url === "string" && f.background_video_url && (
         <video
           className="hero-video"

@@ -1113,3 +1113,422 @@ body:has(.festival-site dialog[open]) {
   align-items: center;
   gap: 6px;
 }
+
+/* Painted, moving scenery: broad colour fields rather than a flat backdrop. */
+.living-backdrop {
+  pointer-events: none;
+  overflow: hidden;
+  inset: 0;
+  z-index: 0;
+  --pointer-x: 0px;
+  --pointer-y: 0px;
+}
+.living-backdrop-hero {
+  position: absolute;
+}
+.living-backdrop-page {
+  position: fixed;
+  background: #fff5e5;
+  z-index: -1;
+}
+.paint-parallax {
+  position: absolute;
+  inset: -5%;
+  transform: translate(var(--pointer-x), var(--pointer-y));
+  transition: transform 1.5s ease-out;
+}
+.paint-cloud {
+  position: absolute;
+  width: 62%;
+  height: 83%;
+  border-radius: 48% 52% 68% 32% / 40% 30% 70% 60%;
+  animation: paintWander 14s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.paint-cloud-coral {
+  background: #ea6d91;
+  right: -12%;
+  top: -25%;
+  opacity: 0.55;
+  animation-delay: -5s;
+}
+.paint-cloud-sun {
+  background: #ffbd69;
+  left: -28%;
+  bottom: -64%;
+  opacity: 0.4;
+  animation-duration: 19s;
+}
+.paint-cloud-lilac {
+  background: #a96ae0;
+  left: 26%;
+  bottom: -57%;
+  opacity: 0.75;
+  animation-delay: -9s;
+  animation-duration: 17s;
+}
+.paint-ribbon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: paintRibbon 12s ease-in-out infinite alternate;
+}
+.paint-ribbon path {
+  fill: none;
+  stroke: #f7be9266;
+  stroke-width: 70;
+}
+.paint-ribbon path + path {
+  stroke: #f8d66622;
+  stroke-width: 24;
+}
+.paint-doodles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: #ffda8866;
+  animation: doodleDrift 10s ease-in-out infinite alternate;
+}
+.paint-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.5' d='M0 0h150v150H0z'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+.living-backdrop-page .paint-cloud {
+  opacity: 0.16;
+  width: 80%;
+  height: 100%;
+}
+.living-backdrop-page .paint-cloud-coral {
+  background: #fb8467;
+  top: -25%;
+  right: -25%;
+}
+.living-backdrop-page .paint-cloud-sun {
+  background: #e6b01e;
+  bottom: -30%;
+  left: -30%;
+}
+.living-backdrop-page .paint-cloud-lilac {
+  background: #a994e5;
+  left: 30%;
+  bottom: -25%;
+}
+.living-backdrop-page .paint-ribbon {
+  opacity: 0.25;
+}
+.living-backdrop-page .paint-doodles {
+  color: #693e9b22;
+}
+.festival-hero {
+  background: #5733a0;
+}
+.festival-hero:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #49258fbb, transparent 78%);
+}
+.festival-hero .hero-layout,
+.festival-hero .hero-bottom {
+  z-index: 1;
+}
+.festival-hero .hero-copy {
+  animation: stageEnter 1s both;
+}
+.festival-hero-fiti {
+  background: #b8df9a;
+}
+.festival-hero-fiti:after {
+  background: linear-gradient(90deg, #d3ecb8cc, transparent 78%);
+}
+.festival-hero-fiti .paint-cloud-coral {
+  opacity: 0.65;
+  background: #f6ad88;
+}
+.festival-hero-fiti .paint-cloud-lilac {
+  background: #a99bdd;
+  opacity: 0.45;
+}
+.festival-hero-fiti .paint-cloud-sun {
+  background: #ffe477;
+  opacity: 0.85;
+}
+.festival-hero-fiti .paint-doodles {
+  color: #5733a055;
+}
+.hero-eyebrow > span {
+  animation: inkPulse 3s ease-in-out infinite;
+}
+.hero-copy h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 1.04;
+}
+.hero-subtitle {
+  font-weight: 500;
+}
+.hero-bottom {
+  transform: rotate(-0.5deg);
+}
+.stage-collage {
+  isolation: isolate;
+  min-height: 460px;
+}
+.collage-sun {
+  position: absolute;
+  width: 92%;
+  left: 4%;
+  top: -7%;
+  color: #ffdb68;
+  animation: flowerTurn 48s linear infinite;
+  filter: drop-shadow(0 8px 0 #41207f22);
+}
+.collage-mask {
+  position: absolute;
+  width: 44%;
+  filter: drop-shadow(6px 14px 0 #28135233);
+}
+.collage-mask-coral {
+  left: 7%;
+  top: 13%;
+  transform: rotate(-19deg);
+  animation: maskCoral 7s ease-in-out infinite alternate;
+  z-index: 2;
+}
+.collage-mask-lilac {
+  right: 7%;
+  top: 24%;
+  transform: rotate(18deg);
+  animation: maskLilac 8s ease-in-out infinite alternate;
+  z-index: 3;
+}
+.collage-ink {
+  white-space: pre-line;
+  position: absolute;
+  left: 7%;
+  bottom: 8%;
+  z-index: 4;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  font-size: clamp(65px, 8vw, 122px);
+  line-height: 0.75;
+  color: #fff5dc;
+  text-shadow: 3px 4px 0 #49258f;
+  transform: rotate(-10deg);
+}
+.stage-collage .stage-art-tag {
+  left: auto;
+  right: -2%;
+  bottom: 9%;
+  z-index: 5;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  border: 0;
+  box-shadow: 3px 5px 0 #37205355;
+  transform: rotate(8deg);
+  animation: paperFlutter 6s ease-in-out infinite alternate;
+}
+.collage-scribble {
+  position: absolute;
+  width: 50%;
+  right: 1%;
+  top: -1%;
+  color: #fff2ce;
+  transform: rotate(18deg);
+  z-index: 5;
+}
+.stage-collage .stage-art-caption {
+  bottom: -7%;
+  right: 0;
+  transform: rotate(3deg);
+}
+.stage-art-fiti .collage-sun {
+  color: #ffdf62;
+}
+.stage-art-fiti .collage-ink {
+  font-size: clamp(50px, 6vw, 87px);
+  color: #4823a5;
+  text-shadow: 2px 3px 0 #fff5dc;
+}
+.stage-art-fiti .collage-scribble {
+  color: #4823a5;
+}
+.stage-art-fiti .stage-art-tag {
+  background: #ff896b;
+}
+.scenery-control {
+  position: fixed;
+  bottom: 76px;
+  left: 16px;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #5733a033;
+  background: #fff8eadf;
+  color: #48245d;
+  font-size: 11px;
+  backdrop-filter: blur(10px);
+}
+.scenery-control:hover {
+  background: #ffdc55;
+}
+.public-content {
+  background: transparent;
+}
+.public-content > section:nth-of-type(3n + 2) {
+  background: #fff9efe6;
+}
+.public-content > section:nth-of-type(3n + 3) {
+  background: #eee6fae0;
+}
+.public-content > section:nth-of-type(3n + 4) {
+  background: #e3edcedb;
+}
+.members-section {
+  background: #ffdc55ed !important;
+}
+.members-heading h2 {
+  font-family: Georgia, serif;
+  font-weight: 500;
+}
+.festival-site[data-motion-paused="true"]
+  :is(
+    .paint-cloud,
+    .paint-ribbon,
+    .paint-doodles,
+    .collage-sun,
+    .collage-mask,
+    .stage-art-tag,
+    .hero-eyebrow > span
+  ) {
+  animation-play-state: paused;
+}
+.festival-site[data-motion-paused="true"] .paint-parallax {
+  transform: none;
+  transition: none;
+}
+@keyframes paintWander {
+  0% {
+    transform: translate(-3%, -3%) rotate(-12deg) scale(0.92);
+    border-radius: 48% 52% 68% 32% / 40% 30% 70% 60%;
+  }
+  50% {
+    border-radius: 65% 35% 44% 56% / 56% 65% 35% 44%;
+  }
+  100% {
+    transform: translate(14%, 16%) rotate(18deg) scale(1.15);
+    border-radius: 32% 68% 35% 65% / 60% 44% 56% 40%;
+  }
+}
+@keyframes paintRibbon {
+  from {
+    transform: translate(-2%, 4%) rotate(-3deg);
+  }
+  to {
+    transform: translate(3%, -5%) rotate(4deg);
+  }
+}
+@keyframes doodleDrift {
+  to {
+    transform: translate(1%, 2%) rotate(2deg);
+  }
+}
+@keyframes maskCoral {
+  from {
+    transform: translate(0, 0) rotate(-19deg);
+  }
+  to {
+    transform: translate(-8px, 18px) rotate(-10deg);
+  }
+}
+@keyframes maskLilac {
+  from {
+    transform: translate(0, 0) rotate(18deg);
+  }
+  to {
+    transform: translate(8px, -15px) rotate(10deg);
+  }
+}
+@keyframes paperFlutter {
+  to {
+    transform: translateY(-9px) rotate(3deg);
+  }
+}
+@keyframes inkPulse {
+  50% {
+    transform: scale(1.6);
+    opacity: 0.6;
+  }
+}
+@media (max-width: 640px) {
+  .stage-collage {
+    width: 94%;
+    min-height: 340px;
+    margin-top: 35px;
+    margin-bottom: 45px;
+  }
+  .collage-ink {
+    font-size: 85px;
+    bottom: 7%;
+  }
+  .stage-collage .stage-art-tag {
+    font-size: 16px;
+    right: -3%;
+    bottom: 8%;
+    padding: 12px 16px;
+  }
+  .stage-collage .stage-art-caption {
+    font-size: 8px;
+    bottom: -6%;
+  }
+  .paint-cloud {
+    width: 100%;
+    height: 65%;
+  }
+  .paint-cloud-coral {
+    right: -45%;
+    top: -5%;
+  }
+  .paint-cloud-lilac {
+    bottom: -15%;
+    left: 20%;
+  }
+  .paint-cloud-sun {
+    left: -60%;
+    bottom: -40%;
+  }
+  .scenery-control {
+    left: 10px;
+    bottom: 74px;
+    padding: 9px 11px;
+    font-size: 10px;
+  }
+  .hero-copy h1 {
+    font-size: 55px;
+  }
+  .stage-art-fiti .collage-ink {
+    font-size: 62px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .living-backdrop .paint-parallax {
+    transform: none !important;
+    transition: none !important;
+  }
+  .scenery-control {
+    display: none;
+  }
+}

@@ -2,6 +2,8 @@
 import { Fragment, type ComponentType } from "react";
 import { Members } from "@/components/community/Members";
 import { AnnouncementRibbon } from "@/components/community/AnnouncementRibbon";
+import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
+import { MotionControl } from "@/components/ui/MotionControl";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FitiHero } from "@/components/fiti/FitiHero";
@@ -45,6 +47,8 @@ export function PublicFiti() {
   const { settings } = useThemeSettings();
   return (
     <div className="festival-site">
+      <LivingBackdrop page />
+      <MotionControl />
       <Navbar settings={settings as any} />
       <main className="public-content relative z-10">
         {sections.map((s) => {
