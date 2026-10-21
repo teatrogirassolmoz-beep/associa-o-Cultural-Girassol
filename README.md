@@ -319,6 +319,6 @@ Os editores de Página inicial e FITI apresentam apenas os campos usados pelos c
 
 ## Manual de utilização
 
-O [manual completo do CMS](docs/MANUAL_UTILIZACAO_CMS.md) está disponível no painel administrativo e nas versões [HTML](public/manual/manual-utilizacao-cms.html) e [PDF](public/manual/manual-utilizacao-cms.pdf), com capturas de demonstração sem dados privados.
+O [manual completo do CMS](docs/MANUAL_UTILIZACAO_CMS.md) está disponível no painel administrativo e nas versões [HTML](public/manual/manual-utilizacao-cms.html) e [PDF](public/manual/manual-utilizacao-cms.pdf), com 36 partes visuais: imagem da área no site, imagem do editor correspondente no CMS e passos para guardar. As 93 capturas de demonstração não contêm dados privados.
 
-Para regenerar os formatos HTML e PDF após editar o Markdown: `python scripts/gerar-manual.py` (requer `reportlab` e fontes DejaVu no ambiente de documentação; não altera as dependências do site).
+Edite os caminhos e passos visuais em `scripts/manual/partes.json` e a referência detalhada em `docs/REFERENCIA_CMS.md`. Execute `python scripts/manual/compor.py` e depois `python scripts/gerar-manual.py` para regenerar o Markdown, HTML e PDF (requer `reportlab` e fontes DejaVu no ambiente de documentação; não altera as dependências do site). O script `scripts/manual/capturar.cjs` documenta a configuração local de demonstração para renovar as capturas com Playwright; recusa gravações e não utiliza contas reais.

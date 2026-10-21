@@ -1,0 +1,586 @@
+[
+  {
+    "title": "Associação: abertura e botões",
+    "site": "#inicio",
+    "area": "Homepage",
+    "section": "Destaque principal",
+    "field": "title",
+    "path": "Página inicial → Destaque principal",
+    "steps": [
+      "Edite Chamada, Título, Subtítulo e Descrição para alterar o texto de abertura.",
+      "Nos campos Botão principal e Botão secundário, altere o texto; nos respectivos links, indique os destinos.",
+      "Clique em Guardar no início da secção. Actualize a página inicial e teste os dois botões."
+    ]
+  },
+  {
+    "title": "Cartazes: imagem, palavras e selo artístico",
+    "site": ".cultural-art",
+    "area": "Homepage",
+    "section": "Destaque principal",
+    "field": "image_url",
+    "path": "Página inicial → Destaque principal → Fotografias dos cartazes",
+    "steps": [
+      "Carregue a imagem na Biblioteca de imagens e copie o URL público.",
+      "Cole no campo Fotografia do cartaz correspondente: Teatro, Encontro ou Movimento; preencha a descrição alternativa.",
+      "Os campos Cartaz 1/2/3, selo e assinatura mudam os textos decorativos. Guarde a secção; o pequeno logotipo muda em Identidade Visual."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Destaque principal",
+        "field": "scene_1_name",
+        "path": "Página inicial → Destaque principal → Textos dos cartazes"
+      }
+    ]
+  },
+  {
+    "title": "Logotipos da Associação e do FITI",
+    "site": ".festival-brand",
+    "area": "Identidade Visual",
+    "path": "Site e identidade → Identidade Visual",
+    "steps": [
+      "Escolha o campo do logotipo da Associação ou do FITI. O logotipo da abertura e o do rodapé podem ter imagens próprias.",
+      "Seleccione o ficheiro da Biblioteca de imagens ou cole o URL e escreva o texto alternativo.",
+      "Guarde cada campo alterado e confirme o cabeçalho, a abertura, o cartaz e o rodapé."
+    ]
+  },
+  {
+    "title": "Menu completo: entradas e destinos",
+    "site": ".area-menu",
+    "openMenu": true,
+    "area": "Menus",
+    "path": "Site e identidade → Menus",
+    "steps": [
+      "Seleccione uma entrada existente ou use Novo. Edite Etiqueta e URL.",
+      "Use main_menu para a Associação, fiti_menu para o FITI e footer_menu para os atalhos. Ajuste Ordem e Activo.",
+      "Guarde alterações e teste o menu completo nos dois sites. Para mudar os títulos dos grupos, use Aparência → Menus."
+    ]
+  },
+  {
+    "title": "Menu do FITI e regresso à Associação",
+    "route": "/fiti/",
+    "site": ".festival-nav",
+    "area": "Aparência",
+    "group": "Menus",
+    "path": "Site e identidade → Aparência → Menus",
+    "steps": [
+      "Edite o nome e subtítulo de cada site, os botões de destaque e os seus destinos.",
+      "Use Botão de regresso à Associação para o texto do acesso de volta. Active Destacar o FITI no menu.",
+      "Clique em Guardar apresentação no final dos grupos e teste Associação → FITI → Associação."
+    ]
+  },
+  {
+    "title": "Destaque do FITI e mapa na página inicial",
+    "site": ".fiti-spotlight",
+    "area": "Homepage",
+    "section": "Destaque principal",
+    "field": "fiti_spotlight_title",
+    "path": "Página inicial → Destaque principal → Destaque do FITI",
+    "steps": [
+      "Altere o título, nome, apresentação e textos dos botões do destaque FITI.",
+      "Confira os links de entrada no festival e do calendário. O campo do mapa altera a legenda.",
+      "Guarde a secção. Mostrar ou ocultar o destaque e o mapa faz-se em Aparência → Elementos culturais."
+    ],
+    "extra": [
+      {
+        "area": "Aparência",
+        "group": "Elementos culturais",
+        "path": "Aparência → Elementos culturais → Mostrar mapa e destaque FITI"
+      }
+    ]
+  },
+  {
+    "title": "Quem somos: texto e imagem institucional",
+    "site": "#quem-somos",
+    "area": "Homepage",
+    "section": "Quem somos",
+    "field": "section_text",
+    "path": "Página inicial → Quem somos",
+    "steps": [
+      "Edite o título e o texto institucional; separe os parágrafos com mudanças de linha.",
+      "No URL da imagem, coloque a fotografia carregada na Biblioteca. Ajuste a legenda, assinatura e textos artísticos.",
+      "Guarde e confirme a imagem e o texto. Sem fotografia válida, o site utiliza a composição artística original."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Quem somos",
+        "field": "image_url",
+        "path": "Página inicial → Quem somos → Fotografia institucional"
+      }
+    ]
+  },
+  {
+    "title": "Missão, visão e valores",
+    "site": "#missao-visao",
+    "area": "Homepage",
+    "section": "Missão, visão e valores",
+    "path": "Página inicial → Missão, visão e valores",
+    "steps": [
+      "Edite o título, a Missão e a Visão nos campos correspondentes.",
+      "No campo Valores, escreva um valor por linha.",
+      "Guarde e confirme os três blocos na página da Associação."
+    ]
+  },
+  {
+    "title": "História: anos e acontecimentos",
+    "site": "#historia",
+    "area": "Timeline",
+    "path": "Conteúdos → História",
+    "steps": [
+      "Seleccione um acontecimento ou crie um registo com Novo. Preencha Ano, Título e Descrição.",
+      "Defina Ordem e Activo; guarde alterações.",
+      "O título geral desta área muda separadamente em Página inicial → História."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "História",
+        "path": "Página inicial → História → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "O que fazemos: cartões de actividade",
+    "site": "#o-que-fazemos",
+    "area": "Homepage",
+    "section": "O que fazemos",
+    "path": "Página inicial → O que fazemos",
+    "steps": [
+      "Altere o título e a nota lateral da secção.",
+      "No editor visual das áreas de actuação, edite os cartões e utilize os controlos para adicionar, remover ou ordenar.",
+      "Guarde a secção e confirme os títulos e descrições dos cartões no site."
+    ]
+  },
+  {
+    "title": "Projectos: cartões, imagens e ligações",
+    "site": "#projectos",
+    "area": "Projectos",
+    "path": "Conteúdos → Projectos",
+    "steps": [
+      "Seleccione o projecto ou crie um novo. Edite Título, Descrição, Imagem e Link.",
+      "Ajuste Destaque, Ordem e Activo e clique em Guardar alterações.",
+      "Os textos gerais e legendas artísticas mudam em Página inicial → Projectos. Teste o acesso ao FITI quando aplicável."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Projectos",
+        "path": "Página inicial → Projectos → Textos gerais"
+      }
+    ]
+  },
+  {
+    "title": "Impacto: números e indicadores",
+    "site": "#impacto",
+    "area": "Impacto",
+    "path": "Conteúdos → Impacto",
+    "steps": [
+      "Edite Indicador, Valor numérico e Sufixo. Utilize apenas números confirmados pela Associação.",
+      "Ajuste Ordem e Activo e guarde alterações.",
+      "O título desta secção muda em Página inicial → Impacto. Confira a leitura dos valores no site."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Impacto",
+        "path": "Página inicial → Impacto → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "Galeria: fotografias e categorias",
+    "site": "#galeria",
+    "area": "Galeria",
+    "path": "Conteúdos → Galeria",
+    "steps": [
+      "Carregue a fotografia na Biblioteca e coloque o URL no campo Imagem.",
+      "Preencha Título, Categoria, Descrição e Texto alternativo; defina Ordem e Activo e guarde.",
+      "Actualize o site, filtre pela categoria e abra a imagem. O título da secção muda em Página inicial → Galeria."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Galeria",
+        "path": "Página inicial → Galeria → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "Notícias: imagem, resumo e publicação",
+    "site": "#noticias",
+    "area": "Notícias",
+    "path": "Conteúdos → Notícias",
+    "steps": [
+      "Edite ou crie a notícia: Título, Resumo, Conteúdo, Imagem e Categoria.",
+      "Mantenha um slug simples e confirme Publicado antes de Guardar alterações.",
+      "Verifique a notícia no site. O título geral da área muda em Página inicial → Notícias; não existe publicação agendada."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Notícias",
+        "path": "Página inicial → Notícias → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "Membros da Associação e da equipa FITI",
+    "site": "#membros",
+    "area": "Membros",
+    "path": "Conteúdos → Membros",
+    "steps": [
+      "Use Adicionar perfil e preencha Nome, Função, Área, URL da fotografia e Biografia.",
+      "Escolha Associação ou FITI. Guarde a lista inteira com Guardar alterações; Remover perfil só tem efeito depois de guardar.",
+      "O título e a apresentação da área mudam em Aparência → Pessoas. Não existem campos individuais de ordem ou estado activo neste editor."
+    ],
+    "extra": [
+      {
+        "area": "Aparência",
+        "group": "Pessoas",
+        "path": "Aparência → Pessoas → Título e apresentação dos membros"
+      }
+    ],
+    "offset": 220
+  },
+  {
+    "title": "Avisos flutuantes: textos e ligações",
+    "site": ".floating-notices",
+    "openNotices": true,
+    "area": "Avisos",
+    "path": "Conteúdos → Avisos",
+    "steps": [
+      "Edite Texto do aviso e Link de destino ou use Adicionar aviso.",
+      "Guarde alterações: a lista é partilhada pelos dois sites e segue a ordem do editor.",
+      "O formato flutuante, os títulos, a activação e a velocidade mudam em Aparência → Avisos. Retire avisos expirados."
+    ],
+    "extra": [
+      {
+        "area": "Aparência",
+        "group": "Avisos",
+        "path": "Aparência → Avisos → Formato, títulos e movimento"
+      }
+    ]
+  },
+  {
+    "title": "Parceiros: logotipos em cada site",
+    "site": "#parceiros",
+    "area": "Parceiros",
+    "path": "Conteúdos → Parceiros",
+    "steps": [
+      "Preencha Nome, Categoria, Logotipo e Link; utilize o URL da imagem carregada na Biblioteca.",
+      "Assinale Página inicial e/ou FITI, ajuste Ordem, mantenha Activo e guarde.",
+      "Confirme os logotipos nas páginas escolhidas. O título da faixa muda em Página inicial → Parceiros ou FITI → Parceiros FITI."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Parceiros",
+        "path": "Página inicial → Parceiros → Título da faixa"
+      },
+      {
+        "area": "FITI",
+        "section": "Parceiros FITI",
+        "path": "FITI → Parceiros FITI → Título da faixa"
+      }
+    ]
+  },
+  {
+    "title": "Parceiros: posição e movimento da faixa",
+    "site": "#parceiros",
+    "area": "Aparência",
+    "group": "Parceiros",
+    "path": "Site e identidade → Aparência → Parceiros",
+    "steps": [
+      "Escolha a posição: fim do conteúdo, ordem das secções ou antes dos contactos.",
+      "Active o movimento e ajuste Segundos por volta dos parceiros: mais segundos tornam a faixa mais lenta.",
+      "Guarde apresentação. São necessários pelo menos dois logotipos para animar; a pausa e a preferência por movimento reduzido são respeitadas."
+    ]
+  },
+  {
+    "title": "Contactos da Associação e WhatsApp",
+    "site": "#contacto",
+    "area": "Aparência",
+    "fieldLabel": "Email institucional",
+    "path": "Site e identidade → Aparência → Contactos públicos, no final",
+    "steps": [
+      "Altere Email institucional, Localização e Link do WhatsApp. Estes campos tentam guardar quando o valor muda.",
+      "Volte a abrir a área para confirmar os valores e actualize o site. As redes sociais são geridas em Redes sociais.",
+      "O título da secção muda em Página inicial → Contactos. As mensagens recebidas consultam-se em Contactos."
+    ],
+    "extra": [
+      {
+        "area": "Homepage",
+        "section": "Contactos",
+        "path": "Página inicial → Contactos → Título de apresentação"
+      },
+      {
+        "area": "Redes sociais",
+        "path": "Site e identidade → Redes sociais"
+      }
+    ]
+  },
+  {
+    "title": "Rodapé: textos, atalhos e logotipos",
+    "site": "footer",
+    "area": "Aparência",
+    "group": "Rodapé",
+    "path": "Site e identidade → Aparência → Rodapé",
+    "steps": [
+      "Edite os títulos dos atalhos e dos contactos e a nota de direitos; clique em Guardar apresentação.",
+      "O texto longo do rodapé fica no final de Aparência e tenta guardar ao alterar. As ligações ficam em Menus → footer_menu.",
+      "Os logotipos ficam em Identidade Visual; os perfis sociais em Redes sociais. Confira o resultado nos dois sites."
+    ]
+  },
+  {
+    "title": "Cores da Associação",
+    "site": "#inicio",
+    "area": "Aparência",
+    "group": "Cores da Associação",
+    "path": "Site e identidade → Aparência → Cores da Associação",
+    "steps": [
+      "Escolha as cores da abertura, secções, cartões, menu, rodapé, texto, destaques e pinceladas.",
+      "Mantenha contraste suficiente entre letras e fundos. Os três fundos das secções alternam pela posição.",
+      "Clique em Guardar apresentação e percorra a página da Associação para conferir todas as áreas."
+    ]
+  },
+  {
+    "title": "FITI: abertura, fotografias e botões",
+    "route": "/fiti/",
+    "site": "#fiti-inicio",
+    "area": "FITI",
+    "section": "Destaque FITI",
+    "field": "title",
+    "path": "FITI → Destaque FITI",
+    "steps": [
+      "Edite título, subtítulo, descrição e botões da abertura do festival.",
+      "Nos campos das fotografias dos cartazes, coloque os URLs públicos e descrições; altere também os textos artísticos pretendidos.",
+      "Guarde a secção. O logotipo fica em Identidade Visual e as cores em Aparência → Cores do FITI."
+    ],
+    "extra": [
+      {
+        "area": "FITI",
+        "section": "Destaque FITI",
+        "field": "image_url",
+        "path": "FITI → Destaque FITI → Fotografias dos cartazes"
+      }
+    ]
+  },
+  {
+    "title": "FITI: apresentação do festival",
+    "route": "/fiti/",
+    "site": "#sobre",
+    "area": "FITI",
+    "section": "Sobre o FITI",
+    "path": "FITI → Sobre o FITI",
+    "steps": [
+      "Edite a chamada, título e texto de apresentação do festival.",
+      "Mantenha a identificação do FITI e a relação com a Associação correctas.",
+      "Guarde a secção e confirme os parágrafos na área Sobre do FITI."
+    ]
+  },
+  {
+    "title": "FITI: edição actual, tema e cartaz",
+    "route": "/fiti/",
+    "site": "#edicao",
+    "area": "Edições FITI",
+    "path": "Gestão do FITI → Edições FITI",
+    "steps": [
+      "Preencha Ano, Tema, Datas, Locais, Países, Descrição, Texto curatorial e Cartaz.",
+      "Mantenha uma edição activa e guarde alterações. A edição activa mais recente orienta o calendário.",
+      "Os títulos de apresentação ficam em FITI → Edição actual. O campo Datas é descritivo e não cria eventos."
+    ],
+    "extra": [
+      {
+        "area": "FITI",
+        "section": "Edição actual",
+        "path": "FITI → Edição actual → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "FITI: eventos no calendário e na agenda",
+    "route": "/fiti/",
+    "site": "#programacao",
+    "offset": 500,
+    "area": "Programação FITI",
+    "path": "Gestão do FITI → Programação FITI",
+    "steps": [
+      "Seleccione a edição correcta e preencha Título, Data, Hora, Companhia, País, Local e Categoria.",
+      "Complete Sinopse, Duração, Classificação etária, Imagem e Reserva, quando existirem. Mantenha Activo e guarde.",
+      "Confira o evento no dia escolhido. Use uma ocorrência por data e horário; os horários devem referir Maputo, UTC+2."
+    ],
+    "extra": [
+      {
+        "area": "Programação FITI",
+        "fieldLabel": "Sinopse",
+        "path": "Programação FITI → Sinopse, duração, imagem e reserva"
+      }
+    ]
+  },
+  {
+    "title": "FITI: vista inicial e filtros do calendário",
+    "route": "/fiti/",
+    "site": "#programacao",
+    "area": "FITI",
+    "section": "Programação FITI",
+    "field": "calendar_view",
+    "path": "FITI → Programação FITI",
+    "steps": [
+      "Edite o título e os textos da área de programação.",
+      "Escolha Vista inicial: calendar (Calendário) ou agenda (Agenda), e ajuste Filtros activos nos campos do editor.",
+      "Guarde e teste Calendário, Agenda, pesquisa, categorias e locais. Os eventos alteram-se em Programação FITI."
+    ]
+  },
+  {
+    "title": "FITI: companhias e artistas",
+    "route": "/fiti/",
+    "site": "#companhias",
+    "area": "Companhias FITI",
+    "path": "Gestão do FITI → Companhias FITI",
+    "steps": [
+      "Preencha edição, Nome, País, Cidade, Descrição, Imagem, Rede social e Espectáculo.",
+      "Ajuste Ordem e Activo e guarde alterações.",
+      "A listagem apresenta todas as companhias activas; desactive as antigas que já não devem aparecer. O título fica em FITI → Companhias FITI."
+    ],
+    "extra": [
+      {
+        "area": "FITI",
+        "section": "Companhias FITI",
+        "path": "FITI → Companhias FITI → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "FITI: oficinas e formação",
+    "route": "/fiti/",
+    "site": "#oficinas",
+    "area": "Oficinas FITI",
+    "path": "Gestão do FITI → Oficinas FITI",
+    "steps": [
+      "Seleccione a edição e preencha Título, Formador, Data, Hora, Local, Vagas, Público-alvo e Descrição.",
+      "Coloque o link de Inscrição, mantenha Activo e guarde alterações. A oficina entra no calendário da edição actual.",
+      "Não existe fotografia própria neste editor nem controlo automático de vagas. O título da secção fica em FITI → Oficinas FITI."
+    ],
+    "extra": [
+      {
+        "area": "FITI",
+        "section": "Oficinas FITI",
+        "path": "FITI → Oficinas FITI → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "FITI: bilhetes e reservas",
+    "route": "/fiti/",
+    "site": "#bilhetes",
+    "area": "FITI",
+    "section": "Bilhetes e reservas",
+    "path": "FITI → Bilhetes e reservas",
+    "steps": [
+      "Edite título e informação de acesso aos espectáculos.",
+      "Preencha os textos e destinos dos botões de reserva e contacto.",
+      "Guarde e teste os botões. O CMS apresenta as ligações, mas não processa pagamentos nem emite bilhetes."
+    ]
+  },
+  {
+    "title": "FITI: arquivo das edições anteriores",
+    "route": "/fiti/",
+    "site": "#arquivo",
+    "area": "Arquivo FITI",
+    "path": "Gestão do FITI → Arquivo FITI",
+    "steps": [
+      "Crie o registo com Ano, Tema, Datas, Descrição, Cartaz, Programa PDF e Vídeo.",
+      "Use URLs públicos, mantenha Activo e guarde. O arquivo da edição anterior é preparado manualmente.",
+      "O título geral muda em FITI → Arquivo FITI. Galeria JSON fica armazenado, mas não cria uma galeria nos cartões públicos actuais."
+    ],
+    "extra": [
+      {
+        "area": "FITI",
+        "section": "Arquivo FITI",
+        "path": "FITI → Arquivo FITI → Título de apresentação"
+      }
+    ]
+  },
+  {
+    "title": "FITI: informação para imprensa",
+    "route": "/fiti/",
+    "site": "#imprensa",
+    "area": "FITI",
+    "section": "Imprensa FITI",
+    "path": "FITI → Imprensa FITI",
+    "steps": [
+      "Edite o título e a descrição da área destinada à imprensa.",
+      "Os cartões são um campo estruturado: preserve o formato existente e altere apenas os textos e URLs necessários; peça apoio se precisar de mudar a estrutura.",
+      "Guarde e teste as ligações. Os pedidos recebidos são consultados na área Imprensa e não neste editor público."
+    ]
+  },
+  {
+    "title": "FITI: formulários e candidaturas recebidas",
+    "route": "/fiti/",
+    "site": "#formularios",
+    "area": "Inscrições FITI",
+    "path": "Gestão do FITI → Inscrições FITI",
+    "steps": [
+      "Os textos de apresentação dos formulários mudam em FITI → Inscrições e pedidos FITI.",
+      "As respostas enviadas pelos visitantes ficam em Inscrições FITI: seleccione o pedido, leia os dados e actualize Estado.",
+      "Guarde alterações. Responda pelo email institucional: mudar o estado não envia mensagem. A captura utiliza apenas dados fictícios."
+    ],
+    "extra": [
+      {
+        "area": "FITI",
+        "section": "Inscrições e pedidos FITI",
+        "path": "FITI → Inscrições e pedidos FITI → Textos dos formulários"
+      }
+    ]
+  },
+  {
+    "title": "FITI: contactos públicos",
+    "route": "/fiti/",
+    "site": "#contacto",
+    "area": "FITI",
+    "section": "Contactos FITI",
+    "path": "FITI → Contactos FITI",
+    "steps": [
+      "Edite a chamada e o título da secção de contactos do FITI.",
+      "Email, localização e WhatsApp são partilhados com a Associação e ficam no final de Aparência; redes sociais ficam em Redes sociais.",
+      "Guarde a secção e confira o formulário e os contactos no site. As mensagens recebidas ficam em Contactos."
+    ]
+  },
+  {
+    "title": "Cores do FITI",
+    "route": "/fiti/",
+    "site": "#fiti-inicio",
+    "area": "Aparência",
+    "group": "Cores do FITI",
+    "path": "Site e identidade → Aparência → Cores do FITI",
+    "steps": [
+      "Edite a paleta própria do FITI, incluindo abertura, secções, cartões, menu, rodapé, texto e destaques.",
+      "Mantenha uma identidade diferente da Associação e confira a legibilidade.",
+      "Guarde apresentação e percorra o FITI, incluindo calendário, companhias, formulários e regresso à Associação."
+    ]
+  },
+  {
+    "title": "Fundo animado e interacção do rato",
+    "site": "#inicio",
+    "area": "Aparência",
+    "group": "Movimento",
+    "path": "Site e identidade → Aparência → Movimento",
+    "steps": [
+      "Active Movimento e pigmentos do fundo e Interacção do rato e toque em todo o site.",
+      "Ajuste Intensidade das pinceladas e Mensagem de interacção; guarde apresentação.",
+      "Teste movendo o rato ou tocando no site. A imagem é estática; no site o efeito depende também da pausa do visitante e da preferência por movimento reduzido."
+    ]
+  },
+  {
+    "title": "Imagens: carregar e colocar no site",
+    "site": "#galeria",
+    "area": "Media Library",
+    "path": "Site e identidade → Biblioteca de imagens",
+    "steps": [
+      "Preencha título, categoria, descrição e texto alternativo. Escolha o ficheiro e clique em Carregar.",
+      "Depois do sucesso, copie o URL público ou seleccione o ficheiro no editor da área pretendida.",
+      "Guarde o conteúdo de destino: carregar um ficheiro não o coloca automaticamente no site. Não apague ficheiros ainda utilizados."
+    ]
+  }
+]
