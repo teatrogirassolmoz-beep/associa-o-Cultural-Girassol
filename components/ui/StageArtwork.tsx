@@ -1,8 +1,12 @@
 "use client";
 
-import { useRef, useState, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { ArtPoster } from "@/components/art/ArtPoster";
+import { useSection, text, img } from "@/components/publicCms";
+import { ManagedLogo } from "@/components/ui/ManagedLogo";
+import { GirassolLogo } from "@/components/ui/GirassolLogo";
+import { FitiLogo } from "@/components/ui/FitiLogo";
 import { MozambiqueMap } from "@/components/art/MozambiqueMap";
 
 const scenes = [
@@ -16,6 +20,12 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
   const [scene, setScene] = useState(0);
   const host = useRef<HTMLDivElement>(null);
   const current = scenes[scene];
+  const fields = useSection(fiti ? "fiti_hero" : "home_hero");
+  const imageKey = scene === 0 ? "image" : `image_${scene + 1}`;
+  const photo = img(fields[`${imageKey}_url`]);
+  const [failedPhoto, setFailedPhoto] = useState("");
+  useEffect(() => setFailedPhoto(""), [photo]);
+  const hasPhoto = Boolean(photo) && photo !== failedPhoto;
   function move(event: PointerEvent<HTMLDivElement>) {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches || host.current?.closest<HTMLElement>(".festival-site")?.dataset.motionPaused === "true") return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -29,9 +39,9 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
   return <div ref={host} className="cultural-art" onPointerMove={move} onPointerLeave={reset}>
     <div className="cultural-poster-stack">
       <div className="cultural-paper cultural-paper-back" aria-hidden="true"><span>CULTURA<br/>É PRESENÇA.</span></div>
-      <div className="cultural-main-poster" key={scene}>
-        <ArtPoster variant={current.variant} title={current.name} />
-        <div className="cultural-poster-title" aria-hidden="true"><span>{fiti ? "FITI" : "GIRASSOL"}</span><strong>{current.word}<br/>EM CENA.</strong></div>
+      <div className={`cultural-main-poster ${hasPhoto ? "cultural-main-photo" : ""}`} key={scene}>
+        {hasPhoto ? <img className="cultural-photo" src={photo} alt={text(fields[`${imageKey}_alt`], current.name === "Teatro" ? "Teatro da Associação Cultural Girassol" : current.name)} onError={() => setFailedPhoto(photo)} /> : <ArtPoster variant={current.variant} title={current.name} />}
+        <div className="cultural-poster-title" aria-hidden="true"><ManagedLogo settingKey={fiti ? "fiti_logo_url" : "site_logo_url"} alt={fiti ? "FITI" : "Associação Cultural Girassol"} className="cultural-poster-logo" fallback={fiti ? <FitiLogo compact/> : <GirassolLogo compact/>}/><span>{fiti ? "FITI" : "GIRASSOL"}</span><strong>{current.word}<br/>EM CENA.</strong></div>
         <span className="cultural-print-note">MOÇAMBIQUE / TEATRO VIVO</span>
       </div>
       <span className="cultural-sticker" aria-hidden="true">ARTE<br/>QUE NOS<br/>MOVE</span>

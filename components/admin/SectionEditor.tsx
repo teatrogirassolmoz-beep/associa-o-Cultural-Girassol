@@ -25,10 +25,11 @@ type Confirmation = {
 };
 
 const sectionGuidance: Record<string, { text: string; target?: string; targetLabel?: string }> = {
-  home_hero: { text: 'Edite aqui todo o destaque inicial: chamada, título, descrição e os dois botões.' },
-  home_about: { text: 'Edite aqui o texto institucional e a fotografia de “Quem somos”. Carregue a fotografia na Media Library e cole o URL público no campo correspondente. Sem fotografia, o site mostra a composição artística original. Use parágrafos separados por uma mudança de linha.' },
+  home_hero: { text: 'Edite a abertura, as três fotografias dos cartazes e o destaque do FITI na página inicial. Carregue as fotografias em Imagens e ficheiros e cole os endereços públicos; acrescente uma descrição para acessibilidade. Sem fotografia, mantém-se a ilustração original.' },
+  fiti_hero: { text: 'Edite a abertura do FITI e as três fotografias dos cartazes (Teatro, Encontro e Movimento). Carregue os ficheiros na Biblioteca de imagens e cole os endereços públicos. Os logótipos são geridos em Identidade visual.' },
+  home_about: { text: 'Edite aqui o texto institucional e a fotografia de “Quem somos”. Carregue a fotografia na Biblioteca de imagens e cole o URL público no campo correspondente. Sem fotografia, o site mostra a composição artística original. Use parágrafos separados por uma mudança de linha.' },
   home_mission_vision: { text: 'Edite aqui a missão, a visão e os valores. Coloque um valor por linha.' },
-  home_timeline: { text: 'Aqui edita apenas o título de apresentação. Os anos e acontecimentos são geridos em Conteúdos → Timeline.', target: 'Timeline', targetLabel: 'Abrir Timeline' },
+  home_timeline: { text: 'Aqui edita apenas o título de apresentação. Os anos e acontecimentos são geridos em Conteúdos → História.', target: 'Timeline', targetLabel: 'Abrir História' },
   home_what_we_do: { text: 'Edite o título e as áreas de actuação. Pode adicionar, remover e ordenar os cartões no editor visual abaixo.' },
   home_projects: { text: 'Aqui edita apenas o título de apresentação. Os projectos são geridos em Conteúdos → Projectos.', target: 'Projectos', targetLabel: 'Abrir Projectos' },
   home_impact: { text: 'Aqui edita apenas o título de apresentação. Os números e indicadores são geridos em Conteúdos → Impacto.', target: 'Impacto', targetLabel: 'Abrir Impacto' },

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { AdminSidebar, adminAreas } from "./AdminSidebar";
+import { AdminSidebar, adminAreas, adminAreaLabel } from "./AdminSidebar";
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const [area, setArea] = useState("Dashboard");
   useEffect(() => {
@@ -27,7 +27,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             >
               {adminAreas.map((item) => (
                 <option key={item} value={item}>
-                  {item}
+                  {adminAreaLabel(item)}
                 </option>
               ))}
             </select>

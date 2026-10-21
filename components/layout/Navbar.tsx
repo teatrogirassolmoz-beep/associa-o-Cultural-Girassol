@@ -68,6 +68,7 @@ export function Navbar({ settings }: { settings?: ThemeSettings }) {
             </small>
           </span>
         </Link>
+        {fiti && <Link href="/" className="festival-return">← Associação<span> Girassol</span></Link>}
         <nav
           aria-label="Navegação principal"
           className="festival-primary-links"
@@ -84,8 +85,8 @@ export function Navbar({ settings }: { settings?: ThemeSettings }) {
             ),
           )}
         </nav>
-        <Link href="/fiti#formularios" className="festival-nav-register">
-          {fiti ? "Inscrições" : "Participar"}
+        <Link href={fiti ? "/fiti#formularios" : "/fiti"} className="festival-nav-register">
+          {fiti ? "Inscrições" : "Entrar no FITI"}
         </Link>
         <AreaMenu
           links={[...links, ...fitiLinks].map((link) => ({

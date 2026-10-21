@@ -2,12 +2,11 @@
 import Link from "next/link";
 import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
-import { useThemeSettings } from "@/hooks/useThemeSettings";
+import { FitiLogo } from "@/components/ui/FitiLogo";
 import { ArrowDown, ArrowUpRight, Asterisk } from "lucide-react";
 import { StageArtwork } from "@/components/ui/StageArtwork";
 import { useSection, text } from "@/components/publicCms";
 export function FitiHero() {
-  const { settings } = useThemeSettings();
   const f = useSection("fiti_hero");
   return (
     <section id="fiti-inicio" className="festival-hero festival-hero-fiti">
@@ -32,14 +31,7 @@ export function FitiHero() {
             <span />
             {text(f.eyebrow, "Moçambique encontra o mundo")}
           </p>
-          {settings.fiti_logo_url ? (
-            <ManagedLogo
-              settingKey="fiti_logo_url"
-              alt="FITI"
-              className="mb-6 h-28 w-auto object-contain"
-              fallback={null}
-            />
-          ) : null}
+          <ManagedLogo settingKey="fiti_logo_url" alt="FITI — Festival Internacional Teatro de Inverno" className="hero-official-logo" fallback={<FitiLogo />} />
           <p className="fiti-wordmark" aria-hidden="true">
             FI<span>TI</span>
             <i aria-hidden="true">

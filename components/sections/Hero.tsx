@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { LivingBackdrop } from "@/components/ui/LivingBackdrop";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
-import { useThemeSettings } from "@/hooks/useThemeSettings";
+import { GirassolLogo } from "@/components/ui/GirassolLogo";
+import { FitiLogo } from "@/components/ui/FitiLogo";
 import { ArrowDown, ArrowUpRight, Asterisk } from "lucide-react";
 import { StageArtwork } from "@/components/ui/StageArtwork";
 import { useSection, text } from "@/components/publicCms";
 export function Hero() {
-  const { settings } = useThemeSettings();
   const f = useSection("home_hero");
   const title = text(f.title, "Associação Cultural Girassol");
   const isDefaultTitle = title === "Associação Cultural Girassol";
@@ -30,14 +30,7 @@ export function Hero() {
           <span>TEATRO, JUVENTUDE E MEMÓRIA DESDE 1987.</span>
         </div>
         <div className="hero-copy">
-          {settings.hero_logo_url ? (
-            <ManagedLogo
-              settingKey="hero_logo_url"
-              alt="Associação Cultural Girassol"
-              className="mb-6 h-20 w-auto object-contain"
-              fallback={null}
-            />
-          ) : null}
+          <ManagedLogo settingKey="hero_logo_url" fallbackKeys={["site_logo_url"]} alt="Associação Cultural Girassol" className="hero-official-logo" fallback={<GirassolLogo />} />
           <p className="hero-eyebrow">
             <span />
             {text(f.eyebrow, "Teatro • juventude • memória")}
@@ -87,15 +80,16 @@ export function Hero() {
               <ArrowUpRight size={20} />
             </Link>
             <Link
-              className="festival-button festival-button-outline"
+              className="festival-button festival-button-outline home-fiti-entry"
               href={text(
                 f.secondary_button_url || f.secondary_button_link,
                 "/fiti",
               )}
             >
+              <ManagedLogo settingKey="fiti_logo_url" alt="FITI" className="home-fiti-entry-logo" fallback={<FitiLogo compact />} />
               {text(
                 f.secondary_button_label || f.secondary_button_text,
-                "Ver FITI",
+                "Entrar no FITI",
               )}
               <ArrowUpRight size={20} />
             </Link>

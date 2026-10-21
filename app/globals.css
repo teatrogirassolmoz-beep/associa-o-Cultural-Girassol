@@ -4726,3 +4726,27 @@ body:has(.festival-site dialog[open]) {
  .cultural-art-caption { font-size: 12px; }
  .cultural-map { width: 80px; left: -25px; }
 }
+
+.festival-return { flex-shrink: 0; font-size: 12px; font-weight: 750; color: #ffdc65; border: 1px solid #ffdc6560; padding: 9px 11px; border-radius: 4px; }
+.hero-official-logo { display: inline-flex; margin-bottom: 18px; height: 88px; width: auto; max-width: 180px; object-fit: contain; }
+.hero-official-logo > img { height: 88px; width: auto; }
+.home-fiti-entry { gap: 12px; }
+.home-fiti-entry-logo, .home-fiti-entry-logo > img { display: inline-flex; height: 44px; width: auto; object-fit: contain; }
+.spotlight-official-logo, .spotlight-official-logo > img { display: inline-flex; height: 105px; width: auto; object-fit: contain; margin-bottom: 12px; }
+.cultural-poster-logo, .cultural-poster-logo > img { display: inline-flex; height: 44px; width: auto; max-width: 100px; object-fit: contain; margin-bottom: 8px; }
+.cultural-poster-title > span { margin-bottom: 4px; }
+.cultural-poster-title strong { font-size: clamp(38px, 4.7vw, 70px); }
+.cultural-photo { width: 100%; aspect-ratio: 5 / 6; object-fit: cover; display: block; }
+.cultural-main-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(#180b37b0, transparent 65%, #180b3780); }
+.cultural-main-photo .cultural-poster-title, .cultural-main-photo .cultural-print-note { z-index: 1; color: #fff9ed; }
+.cultural-main-photo .cultural-poster-title { max-width: 85%; }
+@media(max-width: 1200px) { .fiti-site .festival-primary-links { display: none; } }
+@media(max-width: 700px) {
+ .hero-official-logo, .hero-official-logo > img { height: 65px; }
+ .festival-return { font-size: 11px; padding: 9px 7px; margin-left: auto; }
+ .festival-return > span { display: none; }
+ .fiti-site .festival-nav-register { display: none; }
+ .fiti-site .festival-brand > span:not([data-logo-key]) { display: none; }
+ .cultural-poster-title strong { font-size: 42px; }
+ .cultural-poster-logo, .cultural-poster-logo > img { height: 36px; margin-bottom: 4px; }
+}

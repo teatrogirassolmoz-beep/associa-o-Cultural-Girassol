@@ -8,7 +8,7 @@ import type { MediaAsset } from '@/types/cms';
 
 const BUCKET = 'site-media';
 const bucketWarning = 'Crie o bucket site-media no Supabase Storage e marque como público.';
-const unavailable = 'Media Library indisponível. Configure o Supabase para carregar ficheiros.';
+const unavailable = 'Biblioteca de imagens indisponível. Configure o Supabase para carregar ficheiros.';
 const categories = ['logos', 'gallery', 'partners', 'fiti', 'news', 'documents', 'videos'] as const;
 type MediaCategory = (typeof categories)[number];
 

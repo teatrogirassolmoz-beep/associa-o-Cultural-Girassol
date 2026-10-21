@@ -26,6 +26,9 @@ const groups = [
 
 export const adminAreas = [...primaryItems, ...groups.flatMap(group => [...group.items])];
 
+const translatedAreas: Record<string, string> = { Dashboard: 'Visão geral', Homepage: 'Página inicial', 'Media Library': 'Biblioteca de imagens', Timeline: 'História' };
+export const adminAreaLabel = (area: string) => translatedAreas[area] || area;
+
 const linkClass = 'block rounded-xl px-3 py-2 text-zinc-300 transition hover:bg-white/5 hover:text-sun focus:bg-white/5 focus:text-sun focus:outline-none';
 
 export function AdminSidebar() {
@@ -40,14 +43,14 @@ export function AdminSidebar() {
     <nav className="mt-4 min-h-0 flex-1 space-y-4 overflow-y-auto pr-2 text-sm" aria-label="Menu do CMS">
       <div className="space-y-1">
         <p className="px-3 pb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">Visão geral</p>
-        {primaryItems.map((item) => <a key={item} href={`#${item}`} className={linkClasses(item)} aria-current={activeArea===item?'page':undefined}>{item}</a>)}
+        {primaryItems.map((item) => <a key={item} href={`#${item}`} className={linkClasses(item)} aria-current={activeArea===item?'page':undefined}>{adminAreaLabel(item)}</a>)}
       </div>
       {groups.map((group, index) => <details key={group.label} open={index < 2} className="group rounded-2xl border border-white/5 bg-black/20">
         <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-3 py-3 font-semibold text-zinc-200 hover:text-sun">
           {group.label}<ChevronDown size={15} className="transition group-open:rotate-180"/>
         </summary>
         <div className="space-y-1 border-t border-white/5 px-1 py-2">
-          {group.items.map((item) => <a key={item} href={`#${item}`} className={linkClasses(item)} aria-current={activeArea===item?'page':undefined}>{item}</a>)}
+          {group.items.map((item) => <a key={item} href={`#${item}`} className={linkClasses(item)} aria-current={activeArea===item?'page':undefined}>{adminAreaLabel(item)}</a>)}
         </div>
       </details>)}
     </nav>

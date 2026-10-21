@@ -45,7 +45,7 @@ export function WhatWeDoCardsField({ value, onChange }: { value: string; onChang
     <div className="flex flex-wrap items-center justify-between gap-3">
       <div>
         <legend className="font-bold text-white">Áreas de actuação</legend>
-        <p className="mt-1 text-sm text-zinc-400">Adicione, edite e ordene os cartões apresentados na Homepage.</p>
+        <p className="mt-1 text-sm text-zinc-400">Adicione, edite e ordene os cartões apresentados na página inicial.</p>
       </div>
       <button type="button" onClick={() => update([...cards, { title: '', description: '' }])} className="inline-flex items-center gap-2 rounded-full border border-sun/30 px-4 py-2 text-sm font-bold text-sun transition hover:bg-sun/10">
         <Plus size={16} /> Adicionar área
