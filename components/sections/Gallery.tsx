@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { useRows, img, useSection, text } from "@/components/publicCms";
-import { ArtPoster } from "@/components/art/ArtPoster";
+import { GirassolArtwork } from "@/components/art/GirassolArtwork";
 import { gallery } from "@/lib/data";
 
 const PAGE_SIZE = 3;
@@ -102,7 +102,7 @@ export function Gallery() {
                   />
                 ) : (
                   <div className="gallery-art-placeholder">
-                    <ArtPoster
+                    <GirassolArtwork
                       variant={index}
                       title={item.category || item.title}
                     />
@@ -162,7 +162,7 @@ export function Gallery() {
               />
             ) : (
               <div className="gallery-art-placeholder gallery-art-expanded">
-                <ArtPoster
+                <GirassolArtwork
                   variant={selectedIndex ?? 0}
                   title={selected.category || selected.title}
                 />

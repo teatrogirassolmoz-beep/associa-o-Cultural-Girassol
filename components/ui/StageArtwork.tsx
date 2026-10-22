@@ -23,8 +23,17 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
   const host = useRef<HTMLDivElement>(null);
   const fields = useSection(fiti ? "fiti_hero" : "home_hero");
   const scenes = defaultScenes.map((item,index)=>({...item,name:text(fields[`scene_${index+1}_name`],item.name),word:text(fields[`scene_${index+1}_word`],item.word),line:text(fields[`scene_${index+1}_line`],item.line)}));
-  const current = scenes[scene];
-  const imageKey = scene === 0 ? "image" : `image_${scene + 1}`;
+  const seenImages = new Set<string>();
+  const selectableScenes = scenes.map((item, index) => ({ item, index, url: img(fields[index === 0 ? "image_url" : `image_${index + 1}_url`]) })).filter(({ url }) => {
+    const key = url || "sunflower";
+    if (seenImages.has(key)) return false;
+    seenImages.add(key);
+    return true;
+  });
+  const currentIndex = selectableScenes.some(item => item.index === scene) ? scene : selectableScenes[0].index;
+  const showSceneTabs = selectableScenes.length > 1;
+  const current = scenes[currentIndex];
+  const imageKey = currentIndex === 0 ? "image" : `image_${currentIndex + 1}`;
   const photo = img(fields[`${imageKey}_url`]);
   const [failedPhoto, setFailedPhoto] = useState("");
   useEffect(() => setFailedPhoto(""), [photo]);
@@ -42,7 +51,7 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
   return <div ref={host} className="cultural-art" onPointerMove={move} onPointerLeave={reset}>
     <div className={`cultural-poster-stack ${hasPhoto ? "" : "cultural-sunflower-stack"}`}>
       {hasPhoto && <div className="cultural-paper cultural-paper-back" aria-hidden="true"><span>{text(fields.poster_back,"CULTURA É PRESENÇA.")}</span></div>}
-      <div className={`cultural-main-poster ${hasPhoto ? "cultural-main-photo" : "cultural-sunflower-relief"}`} key={scene}>
+      <div className={`cultural-main-poster ${hasPhoto ? "cultural-main-photo" : "cultural-sunflower-relief"}`} key={currentIndex}>
         {hasPhoto ? <img className="cultural-photo" src={photo} alt={text(fields[`${imageKey}_alt`], current.name === "Teatro" ? "Teatro da Associação Cultural Girassol" : current.name)} onError={() => setFailedPhoto(photo)} /> : <img className="cultural-sunflower-image" src={sunflower.src} width={sunflower.width} height={sunflower.height} alt="Girassol esculpido em madeira, com pétalas douradas e veios naturais" fetchPriority="high" />}
         {hasPhoto ? <div className="cultural-poster-title" aria-hidden="true"><ManagedLogo settingKey={fiti ? "fiti_logo_url" : "site_logo_url"} alt={fiti ? "FITI" : "Associação Cultural Girassol"} className="cultural-poster-logo" fallback={fiti ? <FitiLogo compact/> : <GirassolLogo compact/>}/><span>{fiti ? "FITI" : "GIRASSOL"}</span><strong>{current.word}<br/>{text(fields.poster_suffix,"EM CENA.")}</strong></div> : <div className="cultural-sunflower-brand"><ManagedLogo settingKey={fiti ? "fiti_logo_url" : "site_logo_url"} alt={fiti ? "FITI" : "Associação Cultural Girassol"} className="cultural-sunflower-logo" fallback={fiti ? <FitiLogo compact/> : <GirassolLogo compact/>}/></div>}
         {hasPhoto && <span className="cultural-print-note">{text(fields.poster_note,"MOÇAMBIQUE / TEATRO VIVO")}</span>}
@@ -51,9 +60,9 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
       {fiti && presentation.map_enabled === "true" && <div className="cultural-map"><MozambiqueMap /></div>}
       {hasPhoto && <span className="cultural-tape" aria-hidden="true" />}
     </div>
-    <div className="cultural-art-caption"><p aria-live="polite">{current.line}</p><ArrowUpRight size={20}/></div>
-    <div className="cultural-scene-tabs" role="group" aria-label="Explorar os cartazes">
-      {scenes.map((item, index) => <button key={item.name} type="button" aria-pressed={scene === index} onClick={() => setScene(index)}>{item.name}<ArrowUpRight size={14} aria-hidden="true"/></button>)}
-    </div>
+    <div className="cultural-art-caption"><p aria-live="polite">{current.line}</p>{showSceneTabs && <ArrowUpRight size={20}/>}</div>
+    {showSceneTabs && <div className="cultural-scene-tabs" role="group" aria-label="Explorar imagens da abertura">
+      {selectableScenes.map(({ item, index, url }) => <button key={item.name} type="button" aria-pressed={currentIndex === index} onClick={() => setScene(index)}>{url ? item.name : "Girassol"}<ArrowUpRight size={14} aria-hidden="true"/></button>)}
+    </div>}
   </div>;
 }

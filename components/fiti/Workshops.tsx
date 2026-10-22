@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useSection, text } from "@/components/publicCms";
 import { formatFestivalDate } from "@/lib/fitiCalendar";
-import { ArtPoster } from "@/components/art/ArtPoster";
+import { GirassolArtwork } from "@/components/art/GirassolArtwork";
 import { useFitiSchedule } from "./FitiScheduleContext";
 export function Workshops() {
   const fields = useSection("fiti_workshops");
@@ -69,7 +69,7 @@ export function Workshops() {
                       />
                     ) : (
                       <>
-                        <ArtPoster variant={i + 1} title={event.title} />
+                        <GirassolArtwork variant={i + 1} title={event.title} />
                         <span>Ilustração</span>
                       </>
                     )}

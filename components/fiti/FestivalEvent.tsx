@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { ArrowUpRight, MapPin, Clock3 } from "lucide-react";
-import { ArtPoster } from "@/components/art/ArtPoster";
+import { GirassolArtwork } from "@/components/art/GirassolArtwork";
 import { categoryTone, type CalendarEvent } from "@/lib/fitiCalendar";
 export function FestivalEvent({
   event,
@@ -17,7 +17,7 @@ export function FestivalEvent({
           <img src={event.image} alt={event.title} loading="lazy" />
         ) : (
           <>
-            <ArtPoster
+            <GirassolArtwork
               variant={event.kind === "workshop" ? 1 : 3}
               title={event.title}
             />

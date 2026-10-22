@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { projects as fallback } from "@/lib/data";
-import { ArtPoster } from "@/components/art/ArtPoster";
+import { GirassolArtwork } from "@/components/art/GirassolArtwork";
 import { useRows, img, useSection, text } from "@/components/publicCms";
 
 export function Projects() {
@@ -44,7 +44,7 @@ export function Projects() {
                     />
                   ) : (
                     <>
-                      <ArtPoster
+                      <GirassolArtwork
                         variant={isFiti ? 3 : i}
                         title={project.title}
                       />

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { safePublicHref } from "@/lib/community";
-import { ArtPoster } from "@/components/art/ArtPoster";
+import { GirassolArtwork } from "@/components/art/GirassolArtwork";
 import { useSection, text, img } from "@/components/publicCms";
 import { aboutText, cmsEmptyState } from "@/lib/data";
 
@@ -38,7 +38,7 @@ export function About() {
                 onError={() => setFailedImage(image)}
               />
             ) : (
-              <ArtPoster title="Corpo, voz e criação teatral" />
+              <GirassolArtwork title="Corpo, voz e criação teatral" />
             )}
             <span className="identity-art-stamp">
               {text(about.art_stamp,"GIRASSOL / CORPO. VOZ. PRESENÇA.")}
