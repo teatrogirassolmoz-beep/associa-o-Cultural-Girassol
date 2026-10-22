@@ -4973,3 +4973,20 @@ body:has(.festival-site dialog[open]) {
 .cms-background-watermark { position: absolute; width: min(32vw,360px); height: min(32vw,360px); right: 5%; top: 12%; object-fit: contain; animation: cms-watermark-drift 42s ease-in-out infinite alternate; }
 @keyframes cms-watermark-drift { to { transform: translate(-28px,65px) rotate(12deg); } }
 .cms-presentation[data-background-motion="false"] .cms-background-watermark, .cms-presentation[data-motion-paused="true"] .cms-background-watermark { animation-play-state: paused; }
+
+/* A carved sunflower is the default hero artwork; the Mozambique map stays separate. */
+.cultural-sunflower-stack { width: 100%; margin: 0 auto 24px; }
+.cultural-sunflower-relief { transform: none; background: transparent; border-radius: 48% 48% 22% 22%; box-shadow: 0 24px 38px -28px #6a2e25a6; animation: sunflower-arrive .65s ease-out both; }
+.cultural-sunflower-image { display: block; width: 100%; height: auto; }
+.cultural-sunflower-brand { position: absolute; right: 7%; bottom: 5%; padding: 10px; background: #fff2d9eb; border: 1px solid #b8833866; border-radius: 50%; box-shadow: 0 5px 18px #66340c26; }
+.cultural-sunflower-logo { display: block; width: 56px; height: 56px; object-fit: contain; }
+.cultural-sunflower-stack .cultural-map { left: -8px; bottom: -8px; z-index: 2; }
+@keyframes sunflower-arrive { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
+.festival-site[data-motion-paused="true"] .cultural-sunflower-relief { animation: none; }
+@media (prefers-reduced-motion: reduce) { .cultural-sunflower-relief { animation: none; } }
+@media (max-width: 700px) {
+ .cultural-sunflower-stack { width: 100%; }
+ .cultural-sunflower-stack .cultural-map { left: -4px; }
+ .cultural-sunflower-logo { width: 42px; height: 42px; }
+ .cultural-sunflower-brand { padding: 8px; }
+}

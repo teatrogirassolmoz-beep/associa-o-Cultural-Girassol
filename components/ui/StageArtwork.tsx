@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { ArtPoster } from "@/components/art/ArtPoster";
+import sunflower from "@/public/art/girassol-madeira.webp";
 import { useSection, text, img } from "@/components/publicCms";
 import { ManagedLogo } from "@/components/ui/ManagedLogo";
 import { GirassolLogo } from "@/components/ui/GirassolLogo";
@@ -16,7 +16,7 @@ const defaultScenes = [
   { name: "Movimento", word: "GESTO", line: "A cultura está sempre em movimento.", variant: 2 },
 ];
 
-/** An interactive festival poster: illustration, paper and typography. */
+/** Wooden sunflower artwork; CMS photographs can replace each scene. */
 export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
   const presentation = usePresentation();
   const [scene, setScene] = useState(0);
@@ -40,16 +40,16 @@ export function StageArtwork({ fiti = false }: { fiti?: boolean }) {
     host.current?.style.setProperty("--paper-y", "0px");
   }
   return <div ref={host} className="cultural-art" onPointerMove={move} onPointerLeave={reset}>
-    <div className="cultural-poster-stack">
-      <div className="cultural-paper cultural-paper-back" aria-hidden="true"><span>{text(fields.poster_back,"CULTURA É PRESENÇA.")}</span></div>
-      <div className={`cultural-main-poster ${hasPhoto ? "cultural-main-photo" : ""}`} key={scene}>
-        {hasPhoto ? <img className="cultural-photo" src={photo} alt={text(fields[`${imageKey}_alt`], current.name === "Teatro" ? "Teatro da Associação Cultural Girassol" : current.name)} onError={() => setFailedPhoto(photo)} /> : <ArtPoster variant={current.variant} title={current.name} />}
-        <div className="cultural-poster-title" aria-hidden="true"><ManagedLogo settingKey={fiti ? "fiti_logo_url" : "site_logo_url"} alt={fiti ? "FITI" : "Associação Cultural Girassol"} className="cultural-poster-logo" fallback={fiti ? <FitiLogo compact/> : <GirassolLogo compact/>}/><span>{fiti ? "FITI" : "GIRASSOL"}</span><strong>{current.word}<br/>{text(fields.poster_suffix,"EM CENA.")}</strong></div>
-        <span className="cultural-print-note">{text(fields.poster_note,"MOÇAMBIQUE / TEATRO VIVO")}</span>
+    <div className={`cultural-poster-stack ${hasPhoto ? "" : "cultural-sunflower-stack"}`}>
+      {hasPhoto && <div className="cultural-paper cultural-paper-back" aria-hidden="true"><span>{text(fields.poster_back,"CULTURA É PRESENÇA.")}</span></div>}
+      <div className={`cultural-main-poster ${hasPhoto ? "cultural-main-photo" : "cultural-sunflower-relief"}`} key={scene}>
+        {hasPhoto ? <img className="cultural-photo" src={photo} alt={text(fields[`${imageKey}_alt`], current.name === "Teatro" ? "Teatro da Associação Cultural Girassol" : current.name)} onError={() => setFailedPhoto(photo)} /> : <img className="cultural-sunflower-image" src={sunflower.src} width={sunflower.width} height={sunflower.height} alt="Girassol esculpido em madeira, com pétalas douradas e veios naturais" fetchPriority="high" />}
+        {hasPhoto ? <div className="cultural-poster-title" aria-hidden="true"><ManagedLogo settingKey={fiti ? "fiti_logo_url" : "site_logo_url"} alt={fiti ? "FITI" : "Associação Cultural Girassol"} className="cultural-poster-logo" fallback={fiti ? <FitiLogo compact/> : <GirassolLogo compact/>}/><span>{fiti ? "FITI" : "GIRASSOL"}</span><strong>{current.word}<br/>{text(fields.poster_suffix,"EM CENA.")}</strong></div> : <div className="cultural-sunflower-brand"><ManagedLogo settingKey={fiti ? "fiti_logo_url" : "site_logo_url"} alt={fiti ? "FITI" : "Associação Cultural Girassol"} className="cultural-sunflower-logo" fallback={fiti ? <FitiLogo compact/> : <GirassolLogo compact/>}/></div>}
+        {hasPhoto && <span className="cultural-print-note">{text(fields.poster_note,"MOÇAMBIQUE / TEATRO VIVO")}</span>}
       </div>
-      <span className="cultural-sticker" aria-hidden="true">{text(fields.poster_sticker,"ARTE QUE NOS MOVE")}</span>
+      {hasPhoto && <span className="cultural-sticker" aria-hidden="true">{text(fields.poster_sticker,"ARTE QUE NOS MOVE")}</span>}
       {fiti && presentation.map_enabled === "true" && <div className="cultural-map"><MozambiqueMap /></div>}
-      <span className="cultural-tape" aria-hidden="true" />
+      {hasPhoto && <span className="cultural-tape" aria-hidden="true" />}
     </div>
     <div className="cultural-art-caption"><p aria-live="polite">{current.line}</p><ArrowUpRight size={20}/></div>
     <div className="cultural-scene-tabs" role="group" aria-label="Explorar os cartazes">
